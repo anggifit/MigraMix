@@ -1,0 +1,21 @@
+.slick-slide {
+  margin: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.carousel .slide {
+  transition: opacity 1s ease-in-out;
+}
+
+/* Initially set the slides to be transparent */
+.carousel .slide {
+  opacity: 0;
+}
+
+/* When a slide is active, make it fully visible */
+.carousel .slide.selected {
+  opacity: 1;
+}

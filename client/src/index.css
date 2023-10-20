@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'Audiowide';
+  src: url('/path-to-your-fonts/audiowide.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+.fade-slide-effect {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-slide-effect.active {
+  opacity: 1;
+  transform: translateY(0);
+}
