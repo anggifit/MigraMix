@@ -1,4 +1,4 @@
-CREATE DATABASE migramixFinal
+CREATE DATABASE migramix
 
 CREATE TABLE artist(
     id SERIAL PRIMARY KEY,
