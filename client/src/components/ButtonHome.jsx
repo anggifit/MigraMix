@@ -6,10 +6,11 @@ import {Button} from "@mui/material";
 const ButtonHome = () => {
     const navigate = useNavigate()
     const handleHomeClick = () => {
-          navigate("/")
-      }
+        navigate("/")
+    }
     return (
-         <Button 
+        <Button 
+            style={{ color: "#2D3142", border: "none"}}
             className="w-12" 
             variant="text" 
             startIcon={<HomeIcon />} 

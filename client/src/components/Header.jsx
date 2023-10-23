@@ -31,7 +31,7 @@ const Header = () => {
       >
         Welcome to a vibrant platform showcasing emerging migrant artists in
         Barcelona`s electronic music scene.
-        <br /> {/* Use <br /> for line breaks */}
+        <br /> 
         Let`s unite through music, creativity, and cultural diversity.
       </Typography>
       

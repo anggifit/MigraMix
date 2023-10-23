@@ -1,11 +1,11 @@
-import {Container, InputAdornment, Stack, TextField } from "@mui/material";
+import {Container, InputAdornment, Stack, TextField, InputLabel, MenuItem, FormControl } from "@mui/material";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-
+import Select from '@mui/material/Select';
+import PropTypes from 'prop-types';
 
 function SearchEventsBar({onSearch}) {
   const [titleFilter, setTitleFilter] = useState("");
-  const [dateFilter, setDateFilter] = useState("");
   const [priceFilter, setPriceFilter] = useState("");
 
   const handleTitleFilterChange = (event) => {
@@ -13,11 +13,7 @@ function SearchEventsBar({onSearch}) {
     setTitleFilter(eventValue);
     onSearch({title: eventValue})
   };
-  const handleDateFilterChange = (event) => {
-    const eventValue = event.target.value
-    setDateFilter(eventValue);
-    onSearch({date: eventValue})
-  };
+
   const handlePriceFilterChange = (event) => {
     const eventValue = event.target.value
     setPriceFilter(eventValue);
@@ -47,41 +43,25 @@ function SearchEventsBar({onSearch}) {
               ),
             }}
           />
-          <TextField
-            id="dateFilter"
-            type="search"
-            label="By Date"
-            value={dateFilter}
-            onChange={handleDateFilterChange}
-            sx={{ width: 600 }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            id="priceFilter"
-            type="search"
-            label="Free or Paid"
-            value={priceFilter}
-            onChange={handlePriceFilterChange}
-            sx={{ width: 600 }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel>Type of activity</InputLabel>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              value={priceFilter}
+              label="Type of activity"
+              onChange={handlePriceFilterChange}
+            >
+              <MenuItem><em>None</em></MenuItem>
+              <MenuItem>Free</MenuItem>
+              <MenuItem>Paid</MenuItem>
+            </Select>
+          </FormControl>
       </Stack>
     </Container>
-  );
+  )
 }
-// SearchEventsBar.propTypes = {
-//   onSearch: PropTypes.onSearch.isRequired, 
-// };
+SearchEventsBar.propTypes = {
+  onSearch: PropTypes.func.isRequired, 
+}
 export default SearchEventsBar
