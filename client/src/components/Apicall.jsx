@@ -20,12 +20,15 @@ function Apicall() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [titleFilter, setTitleFilter] = useState("");
-  const [priceFilter, setPriceFilter] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterType, setFilterType] = useState('');
 
-  const findEvents = ({title, price}) => {
-    setTitleFilter(title)
-    setPriceFilter(price);
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const handleFilterChange = (type) => {
+    setFilterType(type);
   };
 
   useEffect(() => {
@@ -50,6 +53,21 @@ function Apicall() {
       });
   }, []);
 
+  const filteredData = data.filter((event) => {
+    if (filterType === '') {
+      return true; 
+    } else if (filterType === 'free') {
+      return event.preu === 'Activitat gratuïta'; 
+    } else if (filterType === 'paid') {
+      return event.preu !== 'Activitat gratuïta';
+    }
+  
+
+    if (searchTerm.trim() === '') {
+      return true;
+    }
+    return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div className="bg-white font-sans p-8">
@@ -63,7 +81,8 @@ function Apicall() {
         <h1 className="text-5xl font-semibold">Barcelona Local Events</h1>
       </header>
 
-      <SearchEventsBar onSearch={findEvents} />
+      <SearchEventsBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+      
       {loading ? (
         <div> 
           <p>Loading data...</p>
@@ -75,19 +94,7 @@ function Apicall() {
       ) : (
         <Container maxWidth="lg">
           <Grid container spacing={3} justifyContent="center">
-            {data
-              .filter((event) =>
-                event.titol.toLowerCase().includes(titleFilter.toLowerCase()) ||
-                event.descripcio.toLowerCase().includes(titleFilter.toLowerCase())
-              )
-              .filter((event) => {
-                if (priceFilter === "Free") {
-                  return event.preu === "Activitat gratuita";
-                } else if (priceFilter === "Paid") {
-                  return event.preu !== "Activitat gratuita";
-                }
-                return true;
-              })
+            {filteredData
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
                   <CardExample
@@ -103,7 +110,7 @@ function Apicall() {
                     finalDate={event.data_fi}
                     urlEvent={event.url_general}
                     price={
-                      event.preu === "Activitat gratuita"
+                      event.preu === "Activitat gratuïta"
                         ? "Free"
                         : "Paid Activity"
                     }
