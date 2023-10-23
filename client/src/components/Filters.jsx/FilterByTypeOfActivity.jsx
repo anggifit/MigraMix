@@ -7,7 +7,7 @@ const FilterByTypeOfActivity = ({onFilterChange}) => {
       };
 
     return (
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ m: 1, minWidth: 200 }}>
             <InputLabel id="demo-simple-select-helper-label">By Type</InputLabel>
             <Select value="" onChange={handleFilterChange}>
                 <MenuItem value="">All</MenuItem>

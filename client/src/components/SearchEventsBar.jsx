@@ -11,7 +11,7 @@ function SearchEventsBar({ onSearch, onFilterChange }) {
           direction="row" 
           spacing={3} 
           alignItems='center'
-          justifyContent='space-between'
+          justifyContent='center'
       >         
         <FilterByEvent onSearch={onSearch} />
         <FilterByTypeOfActivity onFilterChange={onFilterChange} />
