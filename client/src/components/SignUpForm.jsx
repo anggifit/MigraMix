@@ -47,7 +47,7 @@ const SignUpForm = () => {
     if (isValid){
       data.dateOfBirth = selectedDate
       axios 
-        .post('api/sign-up', data, 
+        .post('/api/sign-up', data, 
         {headers: { 'Content-Type': 'application/json' }}
         )
         .then(response => {console.log(response.data)})
@@ -258,6 +258,7 @@ const SignUpForm = () => {
                         id="repeatPassword"
                         label="Repeat Password"
                         name="repeatPassword"
+                        autoComplete="new-password"
                         error={!!errorsCache.repeatPassword}
                         helperText={errorsCache.repeatPassword && errorsCache.repeatPassword.message.toString()}
                         InputProps={{ style: { fontSize: '16px' } }} 
