@@ -8,19 +8,18 @@ console.log(process.env.jwtSecret);
 
 const pool = new Pool({
   user: process.env.PGUSER,
-  password:process.env.PGHOST ,
-  host: process.env.PGPASSWORD,
-  port:process.env.PGPORT,
-  database:process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  host: process.env.PGHOST,
+  port: process.env.PGPORT,
+  database: process.env.PGDATABASE,
 });
 
 pool.connect((error) => {
   if (error) {
     console.log("DataBase connecton error ");
     throw error;
-  }
-  else{
-    console.log('Successful connection to DataBase');
+  } else {
+    console.log("Successful connection to DataBase");
   }
 });
 
