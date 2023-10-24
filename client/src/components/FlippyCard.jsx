@@ -53,6 +53,7 @@ function Sample({
 
     return (
         <Flippy
+        flipClick={false}
         flipOnHover={true}
         flipDirection="horizontal" 
         ref={ref}
