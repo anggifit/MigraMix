@@ -14,7 +14,7 @@ if (month < 10) {
 
 const formattedDate = `${year}-${month}`;
 const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_inici-like/${formattedDate}`;
-const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80`;
+const imgExample = `https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=3270&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`;
 
 function Apicall() {
   const [data, setData] = useState([]);
@@ -44,6 +44,7 @@ function Apicall() {
         /*   const limitedData = data.elements.slice(0, 9);
         setData(limitedData); */
 
+        //IMPORTANTE LA LOGICA DE DONDE VIENEN LOS EVENTOS DEBE VENIR DEL BACK, ELLOS PROVEERAN LA URL DE LA UE SE HARA FETCH
         setData(data.elements);
         setLoading(false);
       })

@@ -4,7 +4,7 @@ import {Select, MenuItem, FormControl, InputLabel} from '@mui/material';
 const FilterByTypeOfActivity = ({onFilterChange}) => {
     const handleFilterChange = (event) => {
         onFilterChange(event.target.value);
-      };
+    };
 
     return (
         <FormControl sx={{ m: 1, minWidth: 200 }}>
