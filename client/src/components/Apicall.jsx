@@ -4,6 +4,7 @@ import {Container, Grid} from "@mui/material";
 import { Stack } from "@mui/system";
 import SearchEventsBar from "./SearchEventsBar";
 import ButtonHome from "./ButtonHome";
+import Sample from "./FlippyCard";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -98,7 +99,7 @@ function Apicall() {
             {filteredData
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
-                  <CardExample
+                  <Sample
                     className="shadow-2xl"
                     image={
                       event.imatge && event.imatge.length > 0
