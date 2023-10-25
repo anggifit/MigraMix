@@ -5,6 +5,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
 import DateOfBirth from './DateOfBirth';
+import axios from "axios";
 
 
 function Copyright(props) {
@@ -48,8 +49,6 @@ const SignUpForm = () => {
       console.log({ dateOfBirth: selectedDate })    
     } 
   }
-
-
   const errorsCache = useMemo(() => {
     return errors;
   }, [errors]);

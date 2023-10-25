@@ -9,7 +9,7 @@ const ButtonHome = () => {
           navigate("/")
       }
     return (
-         <Button 
+         <Button
             className="w-12" 
             variant="text" 
             startIcon={<HomeIcon />} 

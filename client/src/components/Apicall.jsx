@@ -4,6 +4,7 @@ import {Container, Grid} from "@mui/material";
 import { Stack } from "@mui/system";
 import SearchEventsBar from "./SearchEventsBar";
 import ButtonHome from "./ButtonHome";
+import Sample from "./FlippyCard";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -15,6 +16,7 @@ if (month < 10) {
 const formattedDate = `${year}-${month}`;
 const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_inici-like/${formattedDate}`;
 const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80`;
+
 
 function Apicall() {
   const [data, setData] = useState([]);
@@ -42,7 +44,7 @@ function Apicall() {
         // tuve que pausar la muestra limitada para poder probar el search
         /*   const limitedData = data.elements.slice(0, 9);
         setData(limitedData); */
-
+        //IMPORTANTE LA LOGICA DE DONDE VIENEN LOS EVENTOS DEBE VENIR DEL BACK, ELLOS PROVEERAN LA URL DE LA UE SE HARA FETCH
         setData(data.elements);
         setLoading(false);
       })
@@ -51,9 +53,7 @@ function Apicall() {
         setLoading(false);
       });
   }, []);
-
-
-  return (
+ return (
     <div className="bg-white font-sans p-8">
       <header className="bg-white-500 py-2  text-blue-500 text-center hover:text-blue-800">
         <Stack justifyContent='left'> 
