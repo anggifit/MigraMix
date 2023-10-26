@@ -5,7 +5,7 @@ import ButtonExplore from "./components/ButtonExplore";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUp.jsx/SignUpForm";
 import Apicall from "./components/Apicall";
-import ArtistsSearch from "./components/ArtistsSearch";
+import ArtistsPage from "./components/ArtistsSection/ArtistsPage" 
 
 
 const router = createBrowserRouter([
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/artists",
-    element: <ArtistsSearch/>
+    element: <ArtistsPage/>
   }
 ])
 
