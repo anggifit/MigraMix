@@ -83,14 +83,14 @@ const SignUpForm = () => {
 
   return (
       <div
-        className="min-h-screen"
+        className="min-h-screen flex items-center justify-center"
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1529068726703-d4dfa1c99b99?auto=format&fit=crop&q=80&w=3538&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`, 
           backgroundSize: 'cover',
         }}
       >
       <div className="opacity-75 bg-white absolute inset-0 min-h-screen"></div>
-      <div className="relative">
+      <div className="relative mt-15">
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
@@ -100,7 +100,7 @@ const SignUpForm = () => {
                   flexDirection: 'column',
                   alignItems: 'center',
                   padding: '20px',
-                  backgroundColor: 'white'
+                  backgroundColor: 'white',
                 }}
               >
                 <Avatar sx={{ m: 1, bgcolor: '#FF4B4B' }}>
