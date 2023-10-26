@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Box, Button, Typography, Modal, Stack } from '@mui/material';
+import { Box, Typography, Modal, Stack } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 

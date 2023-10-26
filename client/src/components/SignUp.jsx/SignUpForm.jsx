@@ -1,13 +1,12 @@
 import { useState, useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
+import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, MenuItem, Stack } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
 import DateOfBirth from './DateOfBirth';
 import axios from "axios";
 import SuccesfullRegistration from "./SuccessfulRegistration";
-
 
 function Copyright(props) {
   return (
@@ -38,6 +37,7 @@ const SignUpForm = () => {
   })
 
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedRole, setSelectedRole] = useState('Artist')
   const [open, setOpen] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
 
@@ -53,6 +53,7 @@ const SignUpForm = () => {
   const onSubmit = (data) => {
     if (isValid){
       data.dateOfBirth = selectedDate
+      data.role = selectedRole
       axios 
         .post('/api/sign-up', data, 
         {headers: { 'Content-Type': 'application/json' }}
@@ -98,7 +99,6 @@ const SignUpForm = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                 //border: '2px solid #000', // Establece el borde negro
                   padding: '20px',
                   backgroundColor: 'white'
                 }}
@@ -167,7 +167,7 @@ const SignUpForm = () => {
                         }}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12}>
                       <TextField
                         {...register("username", {
                           required: "Username is required",
@@ -199,13 +199,36 @@ const SignUpForm = () => {
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <DateOfBirth 
-                        onChange={(date) => {
-                          setValue("dateOfBirth", date)
-                          handleDateChange(date)
+                      <TextField
+                        required
+                        select
+                        fullWidth
+                        label="Role"
+                        id="role"
+                        value={selectedRole}
+                        onChange={(e) => setSelectedRole(e.target.value)}
+                        InputProps={{ style: { fontSize: '16px' } }} 
+                            InputLabelProps={{ style: { fontSize: '16px' } }}
+                            sx={{
+                              '& .MuiInputBase-root': {
+                                borderWidth: '0.8px', 
+                                borderColor: '#2B2D42',
+                                maxWidth: 170,
+                              },
                         }}
-                      />
+                      >
+                        <MenuItem value="Artist">Artist</MenuItem>
+                        <MenuItem value="Organizer">Organizer</MenuItem>
+                      </TextField>
                     </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <DateOfBirth 
+                          onChange={(date) => {
+                            setValue("dateOfBirth", date)
+                            handleDateChange(date)
+                          }}
+                          />
+                      </Grid>
                     <Grid item xs={12}>
                       <TextField
                         {...register("email", {

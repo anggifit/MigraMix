@@ -43,7 +43,7 @@ const DateOfBirth = ({onChange}) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box 
-                width={300}
+                width={170}
             >
                 <DatePicker
                     value={dateSelected} 
