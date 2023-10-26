@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useMemo } from 'react'
 import dayjs from 'dayjs';
 import Box from '@mui/material/Box';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -12,9 +12,9 @@ const maxDateAllowed = dayjs().subtract(18, 'year');
 
 
 const DateOfBirth = ({onChange}) => {
-    const [dateSelected, setDateSelected] = React.useState(null)
-    const [error, setError] = React.useState(null);
-    const [isCalendarOpen, setIsCalendarOpen] = React.useState(false);
+    const [dateSelected, setDateSelected] = useState(null)
+    const [error, setError] = useState(null);
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
     const handlerDateClick = (date) => {
         setDateSelected(date);
@@ -25,7 +25,7 @@ const DateOfBirth = ({onChange}) => {
         setIsCalendarOpen(!isCalendarOpen);
     };
 
-    const errorMessage = React.useMemo(() => {
+    const errorMessage = useMemo(() => {
         switch (error) {
             case 'maxDate':
             case 'minDate': {

@@ -19,7 +19,7 @@ const formatDate = (date) => {
     return moment(date).format("MMM Do YY");
 };
 
-function Sample({
+function EventsCard({
         image,
         title,
         description,
@@ -29,6 +29,7 @@ function Sample({
         price,
     }) {
     const ref = useRef();
+
     const cardStyle = {
         width: '100%',
         minHeight: '500px',
@@ -50,13 +51,17 @@ function Sample({
         top: "10px",
         left: "10px",
     };
-
+    const cardContainerStyle = {
+        border: 'none',
+        boxShadow: 'none',
+    }
     return (
         <Flippy
         flipClick={false}
         flipOnHover={true}
         flipDirection="horizontal" 
         ref={ref}
+        style={cardContainerStyle}
     >
         <FrontSide>
             <Card
@@ -124,7 +129,7 @@ function Sample({
     )
 }
 
-Sample.propTypes = {
+EventsCard.propTypes = {
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -134,4 +139,4 @@ Sample.propTypes = {
     price: PropTypes.string.isRequired,
 };
 
-export default Sample;
+export default EventsCard;

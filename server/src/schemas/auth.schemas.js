@@ -8,7 +8,7 @@ export const signUpSchema = z.object({
     required_error: "Full Name must be a maximum of 50 characters.",
   }),
   username: z.string({ required_error: "User Name is required" }).max(8, {
-    required_error: "User Name must be a maximum of 8 characters.",
+    required_error: "User Name must be a maximum of 13 characters.",
   }),
   email: z
     .string({ required_error: "Email is required" })

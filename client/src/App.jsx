@@ -3,7 +3,7 @@ import Homepage from "./components/Homepage";
 import ButtonLogin from "./components/ButtonLogin";
 import ButtonExplore from "./components/ButtonExplore";
 import SignInForm from "./components/SignInForm";
-import SignUpForm from "./components/SignUpForm";
+import SignUpForm from "./components/SignUp.jsx/SignUpForm";
 import Apicall from "./components/Apicall";
 import ArtistsSearch from "./components/ArtistsSearch";
 

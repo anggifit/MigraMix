@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
 import DateOfBirth from './DateOfBirth';
 import axios from "axios";
+import SuccesfullRegistration from "./SuccessfulRegistration";
 
 
 function Copyright(props) {
@@ -37,12 +38,18 @@ const SignUpForm = () => {
   })
 
   const [selectedDate, setSelectedDate] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [userCreated, setUserCreated] = useState(false);
 
   const handleDateChange = (date) => {
     setSelectedDate(date)
     setValue("dateOfBirth", date)
   }
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  
   const onSubmit = (data) => {
     if (isValid){
       data.dateOfBirth = selectedDate
@@ -50,13 +57,24 @@ const SignUpForm = () => {
         .post('/api/sign-up', data, 
         {headers: { 'Content-Type': 'application/json' }}
         )
-        .then(response => {console.log(response.data)})
+        .then(response => {
+          console.log(response.data)
+          if ( response.status === 201) {
+            setUserCreated(true)
+          }
+        })
         .catch(error => {console.log(error.data)})
 
       console.log(data);
     } 
   }
   
+  useEffect(() => {
+    if (userCreated) {
+      setOpen(true);
+    } 
+  }, [userCreated]);
+
   const errorsCache = useMemo(() => {
     return errors;
   }, [errors]);
@@ -280,6 +298,7 @@ const SignUpForm = () => {
                   >
                     Sign Up
                   </Button>
+                  <SuccesfullRegistration open={open} handleClose={() => setOpen(false)}/>
                   <Grid container justifyContent="flex-end">
                     <Grid item>
                       <RouterLink style={{ textDecoration: "underline", color: '#1776D1'}} to="/sign-in">

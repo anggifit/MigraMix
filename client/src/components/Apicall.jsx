@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import CardExample from "./CardExample";
 import {Container, Grid} from "@mui/material";
 import { Stack } from "@mui/system";
 import SearchEventsBar from "./SearchEventsBar";
 import ButtonHome from "./ButtonHome";
-import Sample from "./FlippyCard";
+import EventsCard from "./EventsCard";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -99,7 +98,7 @@ function Apicall() {
             {filteredData
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
-                  <Sample
+                  <EventsCard
                     className="shadow-2xl"
                     image={
                       event.imatge && event.imatge.length > 0

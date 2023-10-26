@@ -13,7 +13,7 @@ export const signUp = async (req, res) => {
       lastName,
       username,
       email,
-      password,
+      passwordHash,
       dateOfBirth,
     ]);
     return res.sendStatus(201);

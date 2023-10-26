@@ -3,8 +3,8 @@ export const validateSchemaRequest = (schema) => (req, res, next) => {
     schema.parse(req.body);
     next();
   } catch (error) {
-    return res
-      .status(400)
-      .json({ error: error.errors.map((e) => e.message) }); //[lista de errores]
+    const errorMessages = error.errors.map((e) => e.message);
+    console.error("Error 400:", errorMessages);
+    return res.status(400).json({ error: errorMessages });
   }
 };
