@@ -47,16 +47,16 @@ const SignUpForm = () => {
     if (isValid){
       data.dateOfBirth = selectedDate
       axios 
-        .post('/api/sign-up', data, 
+        .post('api/sign-up', data, 
         {headers: { 'Content-Type': 'application/json' }}
         )
         .then(response => {console.log(response.data)})
         .catch(error => {console.log(error.data)})
 
       console.log(data);
+      console.log({ dateOfBirth: selectedDate })    
     } 
   }
-  
   const errorsCache = useMemo(() => {
     return errors;
   }, [errors]);
@@ -80,9 +80,6 @@ const SignUpForm = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                 //border: '2px solid #000', // Establece el borde negro
-                  padding: '20px',
-                  backgroundColor: 'white'
                 }}
               >
                 <Avatar sx={{ m: 1, bgcolor: '#FF4B4B' }}>
