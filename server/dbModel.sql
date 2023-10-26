@@ -1,3 +1,5 @@
+DROP DATABASE migramix IF EXISTS
+
 CREATE DATABASE migramix;
 
 CREATE TABLE users(
@@ -9,6 +11,7 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL,
     dateOfBirth DATE NOT NULL
 );
+
 CREATE TABLE artists(artist_id INT UNIQUE references users(id));
 
 CREATE TABLE events_organiser(organiser_id INT UNIQUE references users(id)); 
@@ -25,3 +28,6 @@ CREATE TABLE event_by_artist(
     event_id INT references events(id),
     event_by_artist_id INT references artists(artist_id)
 );
+
+INSERT INTO users (first_name, last_name, userName, email, password, dateOfBirth) VALUES
+('Damian', 'R', 'gamag', 'damian@correo.com','$2a$10$NbrynEsr.i4r5c8xWhsGKuW9j.e/l5Kt/ZKurIX6WUV.oqJJLaYi.','2000-10-10')
