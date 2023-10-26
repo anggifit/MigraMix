@@ -18,7 +18,7 @@ const DateOfBirth = ({onChange}) => {
 
     const handlerDateClick = (date) => {
         setDateSelected(date);
-        onChange(date)
+        onChange(date.format('YYYY-MM-DD'))
     }
     
     const toggleCalendar = () => {
