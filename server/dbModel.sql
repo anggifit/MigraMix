@@ -7,7 +7,8 @@ CREATE TABLE users(
     userName VARCHAR(8) NOT NULL,
     email VARCHAR(120) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
-    dateOfBirth DATE NOT NULL
+    dateOfBirth DATE NOT NULL,
+    role VARCHAR(50) NOT NULL
 )
 
 CREATE TABLE artists(

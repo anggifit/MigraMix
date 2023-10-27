@@ -2,9 +2,9 @@ import bcrypt from "bcryptjs";
 import pool from "../db.js";
 
 export const signUp = async (req, res) => {
-  const { firstName, lastName, username, email, password, dateOfBirth } =
+  const { firstName, lastName, username, email, password, dateOfBirth, role } =
     req.body;
-  let query = `INSERT INTO users (first_name,last_name,username,email,password,dateOfBirth) VALUES ($1,$2,$3,$4,$5,$6)`;
+  let query = `INSERT INTO users (first_name,last_name,username,email,password,dateOfBirth,role) VALUES ($1,$2,$3,$4,$5,$6, $7)`;
   try {
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
@@ -15,6 +15,7 @@ export const signUp = async (req, res) => {
       email,
       passwordHash,
       dateOfBirth,
+      role,
     ]);
     return res.sendStatus(201);
     // if(!rows) return res.sendStatus(404)
