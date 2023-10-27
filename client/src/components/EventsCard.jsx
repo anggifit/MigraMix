@@ -43,7 +43,7 @@ function EventsCard({
     };
 
     const isFreeStyle = {
-        background: price === "Free" ? "green" : "red", // Cambia los colores según tus preferencias
+        background: price === "Free" ? "#84CC14" : "#FF4B4B", // Cambia los colores según tus preferencias
         color: "white",
         padding: "5px 10px",
         borderRadius: "4px",
