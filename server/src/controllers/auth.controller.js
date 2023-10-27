@@ -28,5 +28,6 @@ export const signUp = async (req, res) => {
 export const getUsersByArtist = async (re, res) => {
   const response = await pool.query("SELECT * FROM artists");
   console.log(response.rows);
+  console.log(error);
   res.status(200).json(response.rows);
 };
