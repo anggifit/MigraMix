@@ -1,8 +1,8 @@
 [
         {
             "id": 1,
-            "username": "artist1",
-            "artistProfilePicture": "https://unsplash.com/es/fotos/retrato-de-cabeza-y-hombros-de-un-hombre-afroamericano-contemporaneo-sonriendo-a-la-camara-mientras-posa-contra-fondo-azul-copia-el-espacio-PMghehKt3Ao",
+            "username": "Artist1",
+            "artistProfilePicture": "https://plus.unsplash.com/premium_photo-1682614337066-4b0d8e21d6e9?auto=format&fit=crop&q=80&w=3271&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "artistBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nibh, varius non pellentesque vitae, sollicitudin at velit. Suspendisse risus urna, lobortis id ullamcorper eget, dictum vitae eros. Ut vel placerat magna. Quisque id sollicitudin enim.",
             "artistMainLink": "www.artist1.com",
             "artistSecondaryLink": "www.artist1-social.com",
@@ -15,9 +15,9 @@
         },
         {
             "id": 2,
-            "username": "artist2",
+            "username": "Artist2",
             "artistProfilePicture": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=3270&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "artistBio": "Singer-songwriter.",
+            "artistBio": "Singer-songwriter.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nibh, varius non, sollicitudin at velit.",
             "artistMainLink": "www.artist2.com",
             "artistSecondaryLink": "www.artist2-social.com",
             "artistThirdLink": "www.artist2-website.com",
@@ -29,7 +29,7 @@
         },
         {
             "id": 3,
-            "username": "artist3",
+            "username": "Artist3",
             "artistProfilePicture": "https://images.unsplash.com/photo-1535146851324-6571dc3f2672?auto=format&fit=crop&q=80&w=3270&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "artistBio": "Rock band member.",
             "artistMainLink": "www.artist3.com",
@@ -43,7 +43,7 @@
         },
         {
             "id": 4,
-            "username": "artist4",
+            "username": "Artist4",
             "artistProfilePicture": "https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?auto=format&fit=crop&q=80&w=3436&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "artistBio": "Electronic music producer.",
             "artistMainLink": "www.artist4.com",
@@ -57,7 +57,7 @@
         },
         {
             "id": 5,
-            "username": "artist5",
+            "username": "Artist5",
             "artistProfilePicture": "https://images.unsplash.com/photo-1521434095289-4c29c71ba6d4?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fHNpbmdnZXJzJTIwcHJvZmlsZXxlbnwwfDB8MHx8fDA%3D",
             "artistBio": "Acoustic performer.",
             "artistMainLink": "www.artist5.com",

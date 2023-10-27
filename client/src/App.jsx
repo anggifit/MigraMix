@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <Apicall/>
   },
   {
-    path: "/artists",
+    path: "/api/artists",
     element: <ArtistsPage/>
   }
 ])

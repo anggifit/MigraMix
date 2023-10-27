@@ -16,7 +16,7 @@ const ButtonExplore = () => {
         navigate("/events")
     }
     const handleExploreArtistsClick = () => {
-        navigate("/artists")
+        navigate("/api/artists")
     }
     
     return (
