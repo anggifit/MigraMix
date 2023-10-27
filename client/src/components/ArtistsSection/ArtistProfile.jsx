@@ -15,12 +15,12 @@ const style = {
     borderRadius: 4,
 };
 
-const ArtistProfile = ({ open, handleClose, image, user, email, musicGenre, performance, typeOfPerformance, bio}) => {
+const ArtistProfile = ({ open, onClose, image, user, email, musicGenre, performance, typeOfPerformance, bio}) => {
     return (
         <div>
             <Modal
                 open={open}
-                onClose={handleClose}
+                onClose={onClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -46,14 +46,7 @@ const ArtistProfile = ({ open, handleClose, image, user, email, musicGenre, perf
                                     <Typography id="modal-modal-title" variant="h2" align='center' sx={{ fontFamily: "Audiowide, sans-serif" }}>  
                                     {user}
                                     </Typography>
-                                    <Button 
-                                        variant="contained" 
-                                        href={email} 
-                                        fullWidth='true'
-                                        sx={{ backgroundColor: '#2B2D42', color: 'white', '&:hover':{backgroundColor: '#9C9FA5'}}}
-                                    >
-                                    Contact with me
-                                    </Button>
+
                                     <div className='flex justify-between items-center my-5 px-6'>
                                         <Accordion>
                                             <AccordionSummary
@@ -100,6 +93,14 @@ const ArtistProfile = ({ open, handleClose, image, user, email, musicGenre, perf
                                                 <p className='mb-4 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased'>
                                                 {bio}
                                                 </p>
+                                                <Button 
+                                                    variant="contained" 
+                                                    href={email} 
+                                                    fullWidth='true'
+                                                    sx={{ backgroundColor: '#2B2D42', color: 'white', '&:hover':{backgroundColor: '#9C9FA5'}}}
+                                                >
+                                                Contact me
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>

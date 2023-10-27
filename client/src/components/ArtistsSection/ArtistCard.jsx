@@ -7,6 +7,8 @@ const ArtistCard = ({ image, genre, user, bio, email, musicGenre, performance, t
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+
+
     return (
         <div className="relative flex w-full max-w-[50rem] mb-8 flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md hover:shadow-red-300">
             <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
