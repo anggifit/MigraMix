@@ -12,9 +12,16 @@ CREATE TABLE users(
 )
 
 CREATE TABLE artists(
-    artist_id INT references users(id)
-
-    
+    artist_id INT REFERENCES users(id),
+    ArtistsProfilePicture
+    ArtistBio VARCHAR(500) NOT NULL,
+    ArtistMainLink VARCHAR(50),
+    ArtistSecundaryLink VARCHAR(50),
+    ArtistThirdLink VARCHAR(50),
+    MusicGenre VARCHAR(50) NOT NULL,
+    Performance VARCHAR(50) NOT NULL,
+    Type of performance VARCHAR(50) NOT NULL,
+    ContactNumber INT NOT NULL   
 )
 
 CREATE TABLE events_organiser(
