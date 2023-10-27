@@ -14,21 +14,21 @@ if (month < 10) {
 
 const formattedDate = `${year}-${month}`;
 const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_inici-like/${formattedDate}`;
-const imgExample = `https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=3270&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`;
+const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80`;
+
 
 function Apicall() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('');
+  const [titleFilter, setTitleFilter] = useState("");
+/*   const [dateFilter, setDateFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState(""); */
 
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
-
-  const handleFilterChange = (type) => {
-    setFilterType(type);
+  const findEvents = ({title,/*  date, price */}) => {
+    setTitleFilter(title);
+/*     setDateFilter(date)
+    setPriceFilter(price) */
   };
 
   useEffect(() => {
@@ -43,7 +43,6 @@ function Apicall() {
         // tuve que pausar la muestra limitada para poder probar el search
         /*   const limitedData = data.elements.slice(0, 9);
         setData(limitedData); */
-
         //IMPORTANTE LA LOGICA DE DONDE VIENEN LOS EVENTOS DEBE VENIR DEL BACK, ELLOS PROVEERAN LA URL DE LA UE SE HARA FETCH
         setData(data.elements);
         setLoading(false);
@@ -53,49 +52,36 @@ function Apicall() {
         setLoading(false);
       });
   }, []);
-
-  const filteredData = data.filter((event) => {
-    if (filterType === '') {
-      return true; 
-    } else if (filterType === 'free') {
-      return event.preu === 'Activitat gratuïta'; 
-    } else if (filterType === 'paid') {
-      return event.preu !== 'Activitat gratuïta';
-    }
-  
-
-    if (searchTerm.trim() === '') {
-      return true;
-    }
-    return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  return (
+ return (
     <div className="bg-white font-sans p-8">
-      <header 
-          className="bg-white-500 py-2 text-[#F70808] text-center hover:text-[#712b2b]" 
-          style={{ fontFamily: "Audiowide, sans-serif" }}
-      >
+      <header className="bg-white-500 py-2  text-blue-500 text-center hover:text-blue-800">
         <Stack justifyContent='left'> 
           <ButtonHome/>
         </Stack>
-        <h1 className="text-5xl font-semibold">Barcelona Local Events</h1>
+        <h1 className="text-3xl font-semibold">Barcelona Local Events</h1>
       </header>
 
-      <SearchEventsBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
-      
+      <SearchEventsBar onSearch={findEvents} />
       {loading ? (
-        <div> 
-          <p>Loading data...</p>
-        </div>
+        <p>Loading data...</p>
       ) : error ? (
-        <div>
-          <p>Error: {error.message}</p>
-        </div>
+        <p>Error: {error.message}</p>
       ) : (
         <Container maxWidth="lg">
           <Grid container spacing={3} justifyContent="center">
-            {filteredData
+            {data
+              .filter((event) =>
+                event.titol.toLowerCase().includes(titleFilter.toLowerCase()) ||
+                event.descripcio.toLowerCase().includes(titleFilter.toLowerCase())
+              )
+/*               .filter((event)=>{
+                event.data_inici.includes("") || 
+                event.data_inici.includes(dateFilter)
+              })
+              .filter((event)=>{
+                event.data_inici.includes("") || 
+                event.data_inici.includes(priceFilter)
+              }) */
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
                   <EventsCard
@@ -111,7 +97,7 @@ function Apicall() {
                     finalDate={event.data_fi}
                     urlEvent={event.url_general}
                     price={
-                      event.preu === "Activitat gratuïta"
+                      event.preu === "Activitat gratuita"
                         ? "Free"
                         : "Paid Activity"
                     }
