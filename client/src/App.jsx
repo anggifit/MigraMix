@@ -6,6 +6,7 @@ import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUp.jsx/SignUpForm";
 import Apicall from "./components/Apicall";
 import ArtistsPage from "./components/ArtistsSection/ArtistsPage" 
+import ArtistDashboard from "./components/ArtistDashboard/ArtistDashboard";
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/api/sign-up",
     element: <SignUpForm/>
+  },
+  {
+    path:"/DashboardArtist",
+    element: <ArtistDashboard/>
   },
   {
     path: "/events",

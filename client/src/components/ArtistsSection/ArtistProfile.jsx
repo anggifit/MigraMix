@@ -9,7 +9,6 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 800,
-/*     bgcolor: 'background.paper', */
     boxShadow: 24,
     p: 4,
     borderRadius: 4,
@@ -90,6 +89,7 @@ const ArtistProfile = ({ open, onClose, image, user, email, musicGenre, performa
                                     <div className='mt-8 py-6 border-t border-slate-200 text-center'>
                                         <div className='flex flex-wrap justify-center'>
                                             <div className='w-full px-4'>
+                                                
                                                 <p className='mb-4 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased'>
                                                 {bio}
                                                 </p>
@@ -122,7 +122,8 @@ ArtistProfile.propTypes = {
     performance: PropTypes.string.isRequired,
     typeOfPerformance: PropTypes.string.isRequired,
     bio: PropTypes.string.isRequired,
-    handleClose:PropTypes.func.isRequired,
+    onClose:PropTypes.func.isRequired,
     open:PropTypes.func.isRequired
 };
 export default ArtistProfile
+

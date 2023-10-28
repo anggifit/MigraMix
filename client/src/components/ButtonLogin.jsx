@@ -3,6 +3,7 @@ import Stack from '@mui/material/Stack';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useNavigate } from "react-router-dom";
+import BotonProvisorio from './BotonProvisorio';
 
 const ButtonLogin = () => {
     const navigate = useNavigate()
@@ -35,6 +36,7 @@ const ButtonLogin = () => {
         >
           Sign in
         </Button>
+        <BotonProvisorio/>
       </Stack>
     );
 }

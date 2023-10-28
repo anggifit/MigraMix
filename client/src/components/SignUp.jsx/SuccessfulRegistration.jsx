@@ -1,6 +1,6 @@
-import { Box, Typography, Modal, Stack } from '@mui/material';
+import { Box, Typography, Modal, Stack, Button } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
+import { useNavigate } from "react-router-dom";
 
 const style = {
     position: 'absolute',
@@ -15,12 +15,16 @@ const style = {
     };
 
 
-function SuccesfullRegistration({ open, handleClose }) {
+function SuccesfullRegistration({ open, onClose }) {
+    const navigate = useNavigate()
+    const handleNextClick = () => {
+        navigate("/sign-in")
+    }
     return (
         <div>
             <Modal
                 open={open}
-                onClose={handleClose}
+                onClose={onClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -35,9 +39,14 @@ function SuccesfullRegistration({ open, handleClose }) {
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             Succesfull Registration
                         </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        </Typography>
+                        <Button
+                            variant='contained'
+                            size="large"
+                            onClick={handleNextClick}
+                            sx={{ backgroundColor: '#2B2D42', color: 'white', '&:hover':{backgroundColor: '#9C9FA5'}}}
+                        >
+                            Next
+                        </Button>
                     </Stack>
                 </Box>
             </Modal>

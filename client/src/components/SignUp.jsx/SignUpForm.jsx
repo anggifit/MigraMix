@@ -321,7 +321,7 @@ const SignUpForm = () => {
                   >
                     Sign Up
                   </Button>
-                  <SuccesfullRegistration open={open} handleClose={() => setOpen(false)}/>
+                  <SuccesfullRegistration open={open} onClose={() => setOpen(false)}/>
                   <Grid container justifyContent="flex-end">
                     <Grid item>
                       <RouterLink style={{ textDecoration: "underline", color: '#1776D1'}} to="/sign-in">
