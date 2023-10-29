@@ -7,7 +7,7 @@ import SignUpForm from "./components/SignUp.jsx/SignUpForm";
 import PublicEvents from "./components/PublicEventsSection/PublicEvents"
 import ArtistsPage from "./components/ArtistsSection/ArtistsPage" 
 import ArtistDashboard from "./components/ArtistDashboard/ArtistDashboard";
-
+import EventPlannerDashboard from "./components/EventPlannerDashboard/EventPlannerDashboard"
 
 const router = createBrowserRouter([
   {
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
   {
     path:"/DashboardArtist",
     element: <ArtistDashboard/>
+  },
+  {
+    path:"/EventPlannerDashboard",
+    element: <EventPlannerDashboard/>
   },
   {
     path: "/events",

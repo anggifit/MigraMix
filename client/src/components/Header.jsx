@@ -7,7 +7,6 @@ const Header = () => {
   return (
     <div
       className="p-12 text-center bg-cover bg-center"
-      
     >
       <ButtonLogin />
       <Typography
