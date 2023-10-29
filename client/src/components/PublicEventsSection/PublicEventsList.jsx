@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import {Container, Grid} from "@mui/material";
-import { Stack } from "@mui/system";
 import SearchEventsBar from "./SearchEventsBar";
-import ButtonHome from "./ButtonHome";
-import EventsCard from "./EventsCard";
+import PublicEventCard from "./PublicEventCard";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -16,7 +14,7 @@ const formattedDate = `${year}-${month}`;
 const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_inici-like/${formattedDate}`;
 const imgExample = `https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=3270&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`;
 
-function Apicall() {
+function PublicEventsList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -44,7 +42,6 @@ function Apicall() {
         /*   const limitedData = data.elements.slice(0, 9);
         setData(limitedData); */
 
-        //IMPORTANTE LA LOGICA DE DONDE VIENEN LOS EVENTOS DEBE VENIR DEL BACK, ELLOS PROVEERAN LA URL DE LA UE SE HARA FETCH
         setData(data.elements);
         setLoading(false);
       })
@@ -72,16 +69,6 @@ function Apicall() {
 
   return (
     <div className="bg-white font-sans p-8">
-      <header 
-          className="bg-white-500 py-2 text-[#F70808] text-center hover:text-[#712b2b]" 
-          style={{ fontFamily: "Audiowide, sans-serif" }}
-      >
-        <Stack justifyContent='left'> 
-          <ButtonHome/>
-        </Stack>
-        <h1 className="text-5xl font-semibold">Barcelona Local Events</h1>
-      </header>
-
       <SearchEventsBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
       
       {loading ? (
@@ -98,8 +85,7 @@ function Apicall() {
             {filteredData
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
-                  <EventsCard
-                    className="shadow-2xl"
+                  <PublicEventCard
                     image={
                       event.imatge && event.imatge.length > 0
                         ? event.imatge
@@ -125,4 +111,4 @@ function Apicall() {
   );
 }
 
-export default Apicall;
+export default PublicEventsList;

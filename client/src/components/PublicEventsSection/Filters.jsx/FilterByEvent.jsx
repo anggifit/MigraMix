@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {TextField, InputAdornment} from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -24,6 +25,10 @@ const FilterByEvent = ({onSearch}) => {
         />
         </div>
     )
+}
+
+FilterByEvent.propTypes = {
+    onSearch: PropTypes.func.isRequired, 
 }
 
 export default FilterByEvent

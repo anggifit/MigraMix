@@ -4,7 +4,7 @@ import ButtonLogin from "./components/ButtonLogin";
 import ButtonExplore from "./components/ButtonExplore";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUp.jsx/SignUpForm";
-import Apicall from "./components/Apicall";
+import PublicEvents from "./components/PublicEventsSection/PublicEvents"
 import ArtistsPage from "./components/ArtistsSection/ArtistsPage" 
 import ArtistDashboard from "./components/ArtistDashboard/ArtistDashboard";
 
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/events",
-    element: <Apicall/>
+    element: <PublicEvents/>
   },
   {
     path: "/api/artists",

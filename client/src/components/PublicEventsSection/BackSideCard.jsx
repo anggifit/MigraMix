@@ -1,17 +1,5 @@
-import { useRef } from 'react';
-import Flippy, { FrontSide, BackSide } from 'react-flippy';
-import Card from "@mui/material/Card";
 import PropTypes from "prop-types";
-import {
-    Button,
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Typography,
-    Stack,
-    Chip,
-} from "@mui/material";
+import { Typography, Button, Card, CardActionArea, CardMedia, CardContent, CardActions, Stack, Chip} from "@mui/material";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import moment from "moment";
 
@@ -19,75 +7,21 @@ const formatDate = (date) => {
     return moment(date).format("MMM Do YY");
 };
 
-function EventsCard({
-        image,
-        title,
-        description,
-        initialDate,
-        finalDate,
-        urlEvent,
-        price,
-    }) {
-    const ref = useRef();
-
+const BackSideCard = ({ image,title,description,initialDate,finalDate,urlEvent,price }) => {
     const cardStyle = {
         width: '100%',
         minHeight: '500px',
         display: 'flex',
         flexDirection: 'column',
     };
-
+    
     const cardMediaStyle = {
         pt: "56.25%",
         backgroundImage: `url(${image})`,
     };
-
-    const isFreeStyle = {
-        background: price === "Free" ? "#84CC14" : "#FF4B4B", // Cambia los colores según tus preferencias
-        color: "white",
-        padding: "5px 10px",
-        borderRadius: "4px",
-        position: "absolute",
-        top: "10px",
-        left: "10px",
-    };
-    const cardContainerStyle = {
-        border: 'none',
-        boxShadow: 'none',
-    }
+    
     return (
-        <Flippy
-        flipClick={false}
-        flipOnHover={true}
-        flipDirection="horizontal" 
-        ref={ref}
-        style={cardContainerStyle}
-    >
-        <FrontSide>
-            <Card
-                onMouseEnter={() => { ref.current.toggle(); }}
-                sx={cardStyle}
-            >
-                <CardActionArea>
-                    <CardMedia
-                        component="div"
-                        sx={cardMediaStyle}
-                        image={image}
-                        alt={title}
-                    />
-                    <div style={isFreeStyle}>
-                        {price === "Free" ? "Free" : "Paid"}
-                    </div>
-                    <CardContent sx={{ flexGrow: 1 }}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {title || "Event Title"}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
-        </FrontSide>
-        <BackSide >
-            <Card 
+        <Card 
                 sx={cardStyle}>
             <CardActionArea>
                 <CardMedia
@@ -124,12 +58,11 @@ function EventsCard({
                 </Stack>
             </CardActions>
             </Card>
-        </BackSide>
-    </Flippy>
+
     )
 }
 
-EventsCard.propTypes = {
+BackSideCard.propTypes = {
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -139,4 +72,4 @@ EventsCard.propTypes = {
     price: PropTypes.string.isRequired,
 };
 
-export default EventsCard;
+export default BackSideCard

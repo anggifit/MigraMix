@@ -22,5 +22,6 @@ function SearchEventsBar({ onSearch, onFilterChange }) {
 }
 SearchEventsBar.propTypes = {
   onSearch: PropTypes.func.isRequired, 
+  onFilterChange: PropTypes.func.isRequired, 
 }
 export default SearchEventsBar
