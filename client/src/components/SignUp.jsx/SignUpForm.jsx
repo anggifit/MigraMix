@@ -4,8 +4,8 @@ import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
-import DateOfBirth from './DateOfBirth';
 import axios from "axios";
+import DateOfBirth from './DateOfBirth';
 import SuccesfullRegistration from "./SuccessfulRegistration";
 
 function Copyright(props) {

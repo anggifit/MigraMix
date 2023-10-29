@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ArtistProfile from "./ArtistProfile";
+import RedButton from "../RedButton";
 import PropTypes from "prop-types";
 
 const ArtistCard = ({ image, genre, user, bio, email, musicGenre, performance, typeOfPerformance}) => {
@@ -32,14 +33,10 @@ const ArtistCard = ({ image, genre, user, bio, email, musicGenre, performance, t
                 <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                     {bio.length > 120 ? shortBio(bio) + '...' : bio}                
                 </p>
-                <a className="inline-block">
-                    <button 
+                    <RedButton 
                         onClick={handleOpen}
-                        type="button"
-                        className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                    >View Profile
-                    </button>
-                </a>
+                        info="View Profile"
+                    />
                     <ArtistProfile 
                         image={image} 
                         user={user} 

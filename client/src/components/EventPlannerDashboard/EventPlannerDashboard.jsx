@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types'
 import MenuBar from './MenuBar'
+import ProfileSection from './ProfileSection'
 
-const OrganizerDAshboard = (props) => {
+const EventPlannerDashboard = (props) => {
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
         <MenuBar/>
+        <ProfileSection/>
     </div>
   )
 }
 
-OrganizerDAshboard.propTypes = {
+EventPlannerDashboard.propTypes = {
 
 }
 
-export default OrganizerDAshboard
+export default EventPlannerDashboard

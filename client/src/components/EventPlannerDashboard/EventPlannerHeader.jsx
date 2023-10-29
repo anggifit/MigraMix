@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const EventPlannerHeader = ({user, profilePhoto}) => {
+const EventPlannerHeader = ({user, profilePhoto, rol}) => {
   return (
     <div>
         <img
@@ -11,6 +11,7 @@ const EventPlannerHeader = ({user, profilePhoto}) => {
         <h2 className="font-bold text-base text-center text-gray-700 pt-4">
             {user}
         </h2>
+        <h3>{rol}</h3>
     </div>
   )
 }
