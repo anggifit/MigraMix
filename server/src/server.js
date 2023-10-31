@@ -5,7 +5,8 @@ dotenv.config();
 /*paquete de logging http */
 import morgan from "morgan";
 
-import authRouter from "./routes/auth.router.js";
+import authRouter from "./routes/auth.routes.js";
+import organizerRoutes from './routes/organizer.routes';
 
 const server = express();
 server.use(morgan("dev"));
@@ -14,5 +15,6 @@ server.use(morgan("dev"));
 server.use(express.json());
 
 server.use("/api", authRouter);
+server.use("/organizers",organizerRoutes)
 
 export default server;
