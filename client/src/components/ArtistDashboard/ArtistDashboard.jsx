@@ -1,11 +1,15 @@
+import ArtistForm from "./ArtistForm"
+import TestFormTest from "./TestFormTest";
+
 
 
 const ArtistDashboard = () => {
   return (
     <div>
-      AQUI VA TODO EL DASHBOARD DE ARTISTA
+      <ArtistForm />
+      <TestFormTest />
     </div>
-  )
+  );
 }
 
 export default ArtistDashboard
