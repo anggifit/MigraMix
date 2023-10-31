@@ -4,8 +4,8 @@ import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from "react-router-dom";
-import DateOfBirth from './DateOfBirth';
 import axios from "axios";
+import DateOfBirth from './DateOfBirth';
 import SuccesfullRegistration from "./SuccessfulRegistration";
 
 function Copyright(props) {
@@ -321,7 +321,7 @@ const SignUpForm = () => {
                   >
                     Sign Up
                   </Button>
-                  <SuccesfullRegistration open={open} handleClose={() => setOpen(false)}/>
+                  <SuccesfullRegistration open={open} onClose={() => setOpen(false)}/>
                   <Grid container justifyContent="flex-end">
                     <Grid item>
                       <RouterLink style={{ textDecoration: "underline", color: '#1776D1'}} to="/sign-in">

@@ -4,9 +4,10 @@ import ButtonLogin from "./components/ButtonLogin";
 import ButtonExplore from "./components/ButtonExplore";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUp.jsx/SignUpForm";
-import Apicall from "./components/Apicall";
+import PublicEvents from "./components/PublicEventsSection/PublicEvents"
 import ArtistsPage from "./components/ArtistsSection/ArtistsPage" 
-
+import ArtistDashboard from "./components/ArtistDashboard/ArtistDashboard";
+import EventPlannerDashboard from "./components/EventPlannerDashboard/EventPlannerDashboard"
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,19 @@ const router = createBrowserRouter([
     element: <SignUpForm/>
   },
   {
-    path: "/events",
-    element: <Apicall/>
+    path:"/DashboardArtist",
+    element: <ArtistDashboard/>
   },
   {
-    path: "/artists",
+    path:"/EventPlannerDashboard",
+    element: <EventPlannerDashboard/>
+  },
+  {
+    path: "/events",
+    element: <PublicEvents/>
+  },
+  {
+    path: "/api/artists",
     element: <ArtistsPage/>
   }
 ])
