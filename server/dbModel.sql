@@ -12,7 +12,7 @@ CREATE TABLE users(
 )
 
 CREATE TABLE artists(
-    artist_id INT REFERENCES users(id),
+    id INT REFERENCES users(id),
     ArtistsProfilePicture
     ArtistBio VARCHAR(500) NOT NULL,
     ArtistMainLink VARCHAR(50),

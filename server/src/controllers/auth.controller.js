@@ -18,16 +18,6 @@ export const signUp = async (req, res) => {
       dateOfBirth,
       role,
     ]);
-    const userId = rows[0].id;
-    console.log(userId);
-    if (role === "Artist") {
-      await pool.query("INSERT INTO artists (users_id) VALUES ($1)", [userId]);
-    } /*else if (role === "organiser") {
-      await pool.query(
-        "INSERT INTO organiser (user_id, información_adicional_organiser) VALUES ($1, $2...)",
-        [userId, "Información adicional del organiser"]
-      );
-    }*/
     return res.sendStatus(201);
     // if(!rows) return res.sendStatus(404)
   } catch (error) {
@@ -74,15 +64,17 @@ export const signIn = async (req, res) => {
   }
 };
 
-export const getProfileByArtist = async (re, res) => {
-  const id = req.params.id;
-  const response = await pool.query("SELECT * FROM artist WHERE id=$1", [id]);
+export const getProfileByArtist = async (req, res) => {
+  const artistIdParams = req.user.userId;
+  const response = await pool.query("SELECT * FROM artists WHERE id = $1", [
+    artistIdParams,
+  ]);
   console.log(response.rows);
   res.status(200).json(response.rows);
 };
 
-export const getArtistList = async (re, res) => {
-  const response = await pool.query("SELECT * FROM artists");
+export const getArtistList = async (req, res) => {
+  const response = await pool.query("SELECT * FROM artists ORDER BY userName");
   console.log(response.rows);
   res.status(200).json(response.rows);
 };

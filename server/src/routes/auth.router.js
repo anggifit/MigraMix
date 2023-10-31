@@ -13,7 +13,7 @@ const router = Router();
 /*Exe middlware(req,res,next) antes de servir la ruta desde controller*/
 router.post("/sign-up", validateSchemaRequest(signUpSchema), signUp);
 router.post("/sign-in", signIn);
-router.get("/artists", getArtistList);
-router.get("/artists/:id", authenticateToken, getProfileByArtist);
+router.get("/artists", authenticateToken, getProfileByArtist);
+router.get("/artistsList", getArtistList);
 
 export default router;
