@@ -4,10 +4,15 @@ import ButtonExplore from "./ButtonExplore";
 import ButtonLogin from "./ButtonLogin"; 
 
 const Header = () => {
+   const HeaderStyle = {
+     backgroundImage: `url('/header.png')`,
+     backgroundSize: "cover", // Adjust as needed
+     backgroundRepeat: "no-repeat", // Adjust as needed
+     backgroundPosition: "center", // Adjust as needed
+     backgroundColor: "rgba(255, 255, 255, 0.5)",
+   };
   return (
-    <div
-      className="p-12 text-center bg-cover bg-center"
-    >
+    <div className="p-12 text-center bg-cover bg-center" style={HeaderStyle}>
       <ButtonLogin />
       <Typography
         variant="h1"
@@ -30,10 +35,10 @@ const Header = () => {
       >
         Welcome to a vibrant platform showcasing emerging migrant artists in
         Barcelona`s electronic music scene.
-        <br /> 
+        <br />
         Let`s unite through music, creativity, and cultural diversity.
       </Typography>
-      
+
       <Stack className="mt-6">
         <ButtonExplore />
       </Stack>
