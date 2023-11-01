@@ -96,7 +96,7 @@ const ArtistProfile = ({ open, onClose, image, user, email, musicGenre, performa
                                                 <Button 
                                                     variant="contained" 
                                                     href={email} 
-                                                    fullWidth='true'
+                                                    fullWidth={true}
                                                     sx={{ backgroundColor: '#2B2D42', color: 'white', '&:hover':{backgroundColor: '#9C9FA5'}}}
                                                 >
                                                 Contact me
@@ -123,7 +123,7 @@ ArtistProfile.propTypes = {
     typeOfPerformance: PropTypes.string.isRequired,
     bio: PropTypes.string.isRequired,
     onClose:PropTypes.func.isRequired,
-    open:PropTypes.func.isRequired
+    open:PropTypes.bool.isRequired
 };
 export default ArtistProfile
 

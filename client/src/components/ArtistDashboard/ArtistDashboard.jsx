@@ -1,11 +1,14 @@
+import ArtistForm from "./ArtistForm"
+
 
 
 const ArtistDashboard = () => {
   return (
     <div>
-      AQUI VA TODO EL DASHBOARD DE ARTISTA
+      <ArtistForm />
+     
     </div>
-  )
+  );
 }
 
 export default ArtistDashboard
