@@ -1,7 +1,6 @@
-/* import { useState, useMemo, useEffect } from "react"; */
-/* import { useForm } from "react-hook-form"; */
-/* import axios from "axios"; */
-import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, MenuItem, Stack} from '@mui/material';
+import { useForm } from "react-hook-form";
+import axios from "axios"
+import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UploadProfilePhoto from './UploadProfilePhoto';
@@ -10,6 +9,42 @@ import RedButton from "../RedButton"
 const defaultTheme = createTheme();
 
 const ProfileSection = () => {
+    const { register, handleSubmit, formState: { isValid, errors } } = useForm({
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            eventPlannerBio: '',
+            eventPlannerMainLink:'',
+            eventProfilePicture: null,
+/*          username: '',
+            email: '',
+            password: '', */
+        }
+    })
+
+    const isURLValid = (url) => {
+        if (!url) return true;
+        const urlRegex = /^(http|https):\/\/[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,6}$/;
+        if (!urlRegex.test(url)) {
+            return "Please enter a valid website URL. The URL must start with http:// or https:// and have at least 3 characters.";
+        }
+        return true;
+    };
+    
+    const token = localStorage.getItem('token');
+
+    const onSubmit = (data) => {
+        if (isValid){
+            axios
+            .put(`/api/organizer/update/organizerId`, data, 
+            {headers: {
+                Authorization: `Bearer ${token}`
+            }})//Supongo que aca va el id correspondiente
+            .then(response => console.log(response.data))
+            .catch(error => {console.log(error.data)})
+        }
+    }
+
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
@@ -20,6 +55,7 @@ const ProfileSection = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     padding: '20px',
                     backgroundColor: 'white',
                     }}
@@ -35,83 +71,32 @@ const ProfileSection = () => {
                     </p>
                     <Box 
                     component="form" 
-                    /* onSubmit={handleSubmit(onSubmit)} */
+                    onSubmit={handleSubmit(onSubmit)}
                     sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
-                        <TextField
-                            /* {...register("firstName", { 
-                            required: "First Name is required",
-                            pattern: {
-                                value: /^[A-Za-z]+$/i,
-                                message: "invalid Name"
-                            }
-                            })} */
-                            required
-                            fullWidth
-                            id="firstName"
-                            label="First Name"
-                            /* error={!!errorsCache.firstName}
-                            helperText={errorsCache.firstName && errorsCache.firstName.message.toString()} */
-                            autoFocus
-                            InputProps={{ style: { fontSize: '16px' } }}
-                            InputLabelProps={{ style: { fontSize: '16px' } }}
-                            sx={{
-                                '& .MuiInputBase-root': {
-                                    borderWidth: '0.8px',
-                                    borderColor: '#2B2D42'
-                                },
-                            }}
-                        />
+                            <TextField
+                                disabled
+                                fullWidth
+                                id="firstName"
+                                label="First Name"
+                                InputProps={{ style: { fontSize: '16px' } }}
+                                InputLabelProps={{ style: { fontSize: '16px' } }}
+                                sx={{
+                                    '& .MuiInputBase-root': {
+                                        borderWidth: '0.8px',
+                                        borderColor: '#2B2D42'
+                                    },
+                                }}
+                            />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                        <TextField
-                            /* {...register("lastName", {
-                            required: "Last Name is required",
-                            pattern: {
-                                value: /^[A-Za-z]+$/i,
-                                message: "invalid Last Name"
-                            }
-                            })} */
-                            required
-                            fullWidth
-                            autoFocus
-                            id="lastName"
-                            label="Last Name"
-                            autoComplete="family-name"
-                            /* error={!!errorsCache.lastname}
-                            helperText={errorsCache.lastName && errorsCache.lastName.message.toString()} */
-                            InputProps={{ style: { fontSize: '16px' } }} 
-                            InputLabelProps={{ style: { fontSize: '16px' } }}
-                            sx={{
-                            '& .MuiInputBase-root': {
-                                borderWidth: '0.8px', 
-                                borderColor: '#2B2D42'
-                            },
-                            }}
-                        />
-                        </Grid>
-                        <Grid item xs={12}>
-                        <TextField
-                            /* {...register("username", {
-                            required: "Username is required",
-                            minLength: {
-                                value: 1,
-                                message: 'Must be at least 1 character'
-                            },
-                            maxLength : {
-                                value: 13,
-                                message: 'Maximum 13 characters' 
-                            }
-                            })} */
-                                required
+                            <TextField
+                                disabled
                                 fullWidth
-                                autoFocus
-                                autoComplete="Bio"
-                                id="eventPlannerBio"
-                                label="Bio: Write a few sentences about yourself."
-                                /* error={!!errorsCache.username}
-                                helperText={errorsCache.username && errorsCache.username.toString()} */
+                                id="lastName"
+                                label="Last Name"
+                                autoComplete="family-name"
                                 InputProps={{ style: { fontSize: '16px' } }} 
                                 InputLabelProps={{ style: { fontSize: '16px' } }}
                                 sx={{
@@ -123,21 +108,41 @@ const ProfileSection = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
+                            <TextField
+                                {...register("eventPlannerBio", {
+                                maxLength : {
+                                    value: 300,
+                                    message: 'Maximum 300 characters' 
+                                }
+                                })}
+                                fullWidth
+                                autoFocus
+                                autoComplete="Bio"
+                                id="eventPlannerBio"
+                                label="Bio: Write a few sentences about yourself."
+                                InputProps={{ style: { fontSize: '16px' } }} 
+                                InputLabelProps={{ style: { fontSize: '16px' } }}
+                                    sx={{
+                                    '& .MuiInputBase-root': {
+                                        borderWidth: '0.8px', 
+                                        borderColor: '#2B2D42'
+                                    },
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
                         <TextField
-                            /* {...register("email", {
-                            required: "Email is required",
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                message: "invalid email address"
-                            }
-                            })} */
-                            required
+                            {...register("eventPlannerMainLink", {validate:isURLValid})}
                             fullWidth
                             id="eventPlannerMainLink"
                             label="Website"
                             autoComplete="Website"
-                            /* error={!!errorsCache.email}
-                            helperText={errorsCache.email && errorsCache.email.message.toString()} */
+                            error={!!errors.eventPlannerMainLink}
+                            helperText={errors.eventPlannerMainLink && (
+                                <Typography variant="caption" color="error">
+                                    {errors.eventPlannerMainLink.message}
+                                </Typography>
+                            )}
                             InputProps={{ style: { fontSize: '16px' } }} 
                             InputLabelProps={{ style: { fontSize: '16px' } }}
                             sx={{
