@@ -74,7 +74,7 @@ export const getProfileByArtist = async (req, res) => {
 };
 
 export const getArtistList = async (req, res) => {
-  const response = await pool.query("SELECT * FROM artists ORDER BY userName");
+  const response = await pool.query("SELECT * FROM artists");
   console.log(response.rows);
   res.status(200).json(response.rows);
 };
