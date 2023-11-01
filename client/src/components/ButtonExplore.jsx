@@ -16,12 +16,12 @@ const ButtonExplore = () => {
         navigate("/events")
     }
     const handleExploreArtistsClick = () => {
-        navigate("/artists")
+        navigate("/api/artists")
     }
     
     return (
         <Stack spacing={3} direction="row" justifyContent='center'>
-            <RouterLink to="/artists">
+            <RouterLink to="/api/artists">
                 <CustomButton 
                     style={{ backgroundColor: '#F70808', color: 'white' }}
                     disabled={false}

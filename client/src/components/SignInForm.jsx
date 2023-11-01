@@ -12,6 +12,9 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
+
 
 function Copyright(props) {
   return (
@@ -22,9 +25,9 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <RouterLink color="inherit" to="/">
         Migramix Team
-      </Link>{" "}
+      </RouterLink>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -34,6 +37,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInForm() {
+  const [userCreated, setUserCreated] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -56,6 +60,7 @@ export default function SignInForm() {
       [name]: "",
     });
   };
+
 
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
@@ -91,7 +96,37 @@ export default function SignInForm() {
       });
     }
   };
+  const onSubmit = (data) => {
+    // Extract username and password from the form data
+    const { username, password } = data;
 
+    // Check if both username and password are provided
+    if (username && password) {
+      axios
+        .post(
+          "/api/sign-in",
+          { username, password },
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          if (response.status === 201) {
+            // Set userCreated to true when the user is successfully created
+            setUserCreated(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+
+      console.log(data); // You can still log the full form data if needed
+    } else {
+      // Handle the case where either username or password is missing
+      console.log("Username and password are required");
+    }
+  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -112,86 +147,100 @@ export default function SignInForm() {
             backgroundPosition: "center",
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+        {userCreated ? (
+          <div>User created successfully!</div>
+        ) : (
+          // Render your form or other content here
+
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            component={Paper}
+            elevation={6}
+            square
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
             <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+              sx={{
+                my: 8,
+                mx: 4,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                value={formData.email}
-                onChange={handleInputChange}
-                error={!!errors.email} // Set error to true if there's an error message
-                helperText={errors.email} // Display the error message here
-              />
-
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={formData.password}
-                onChange={handleInputChange}
-                error={!!errors.password} // Set error to true if there's an error message
-                helperText={errors.password} // Display the error message here
-              />
-
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit} // Connect the onSubmit function to handleSubmit
+                sx={{ mt: 1 }}
               >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  error={!!errors.email} // Set error to true if there's an error message
+                  helperText={errors.email} // Display the error message here
+                />
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  error={!!errors.password} // Set error to true if there's an error message
+                  helperText={errors.password} // Display the error message here
+                />
+
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
+                <Copyright sx={{ mt: 5 }} />
+              </Box>
             </Box>
-          </Box>
-        </Grid>
+          </Grid>
+        )}
       </Grid>
     </ThemeProvider>
   );

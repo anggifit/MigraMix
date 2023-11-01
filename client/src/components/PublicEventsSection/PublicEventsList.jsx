@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import {Container, Grid} from "@mui/material";
-import { Stack } from "@mui/system";
 import SearchEventsBar from "./SearchEventsBar";
-import ButtonHome from "./ButtonHome";
-import EventsCard from "./EventsCard";
+import PublicEventCard from "./PublicEventCard";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -17,7 +15,7 @@ const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_ini
 const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80`;
 
 
-function Apicall() {
+function PublicEventsList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -84,8 +82,7 @@ function Apicall() {
               }) */
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
-                  <EventsCard
-                    className="shadow-2xl"
+                  <PublicEventCard
                     image={
                       event.imatge && event.imatge.length > 0
                         ? event.imatge
@@ -111,4 +108,4 @@ function Apicall() {
   );
 }
 
-export default Apicall;
+export default PublicEventsList;

@@ -1,11 +1,11 @@
 import { Carousel } from "react-responsive-carousel";
-import artists from "./ArtistsDataBase";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../assets/Slide.css";
+import data from './ArtistsSection/ArtistsList.json';
 
 const ArtistProfile = () => {
   const randomCompare = () => Math.random() - 0.5;
-  const shuffledArtists = [...artists].sort(randomCompare);
+  const shuffledArtists = data.sort(randomCompare);
 
   return (
     <div className="max-w-4xl mx-auto ">
@@ -14,7 +14,7 @@ const ArtistProfile = () => {
           <div key={artist.id} className="relative ">
             <div
               style={{
-                backgroundImage: `url(${artist.image})`,               
+                backgroundImage: `url(${artist.artistProfilePicture})`,               
               }}
               className="bg-cover bg-clip-border bg-center h-[30rem] text-gray-700 shadow-xl"
             >
@@ -22,11 +22,11 @@ const ArtistProfile = () => {
             </div>
             <div className="absolute inset-0 flex flex-col justify-end items-start text-white p-8 m-5">
               <h2 className="mb-4 block text-3xl font-bold leading-[1.5] tracking-normal p-18 m-2 font-custom">
-                {artist.name}
+                {artist.username}
               </h2>
               <div>
                 <h5 className="block font-custom text-lg font-semibold leading-snug tracking-normal text-gray-200 p-18 whitespace-pre-wrap text-ellipsis m-2">
-                  {artist.bio}
+                  {artist.artistBio}
                 </h5>
               </div>
             </div>
