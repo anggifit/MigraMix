@@ -6,7 +6,7 @@ dotenv.config();
 import morgan from "morgan";
 
 import authRouter from "./routes/auth.routes.js";
-import organizerRoutes from './routes/organizer.routes';
+import organizerRoutes from "./routes/organizer.routes.js";
 
 const server = express();
 server.use(morgan("dev"));
@@ -15,6 +15,6 @@ server.use(morgan("dev"));
 server.use(express.json());
 
 server.use("/api", authRouter);
-server.use("/organizers",organizerRoutes)
+server.use("/organizers", organizerRoutes);
 
 export default server;
