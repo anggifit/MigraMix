@@ -9,8 +9,8 @@ const ArtistForm = () => {
   const onSubmit = (data) => console.log(data);
   console.log(errors);
   return (
-    <div className="w-full relative mt-4 shadow-2xl rounded my-2 overflow-hidden">
-      <div className="top h-full w-full bg-blue-600 overflow-hidden relative rounded-2xl">
+    <div className="w-full relative  shadow-2xl rounded overflow-hidden">
+      <div className="top h-full w-full bg-blue-600 overflow-hidden relative">
         <img
           src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
           alt=""
@@ -19,10 +19,11 @@ const ArtistForm = () => {
         <div className="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
           <img
             src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-            className="h-64 w-64 object-cover rounded-full"
+            className="h-64 w-64 object-cover rounded-full my-1 py-1"
           />
-          <h1 className="text-2xl font-semibold">Antonia Howell</h1>
-          <h4 className="text-sm font-semibold">Dj Tonia</h4>
+          <h1 className="text-2xl font-semibold">
+            Antonia Howell <p className="text-lg font-semibold text-center">Dj Tonia</p>
+          </h1>
         </div>
       </div>
       <div className="grid grid-cols-12 bg-white items-center object-center-absolute">
@@ -30,45 +31,48 @@ const ArtistForm = () => {
           <div className="px-4 pt-4">
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col space-y-3 "
+              className="flex flex-col space-y-2 "
               action="#"
             >
               <div>
-                <h3 className="text-2xl font-semibold">Basic Information</h3>
+                <h3 className="text-2xl ">Basic Information</h3>
                 <hr />
               </div>
 
               <div className="form-item">
-                <label className="text-lg ">Name</label>
+                <label className="text-lg "></label>
                 <input
                   type="text"
+                  placeholder="Name"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("name", { required: true, maxLength: 15 })}
                 />
               </div>
               <div className="form-item">
-                <label className="text-lg ">Lastname</label>
+                <label className="text-lg "></label>
                 <input
                   type="text"
+                  placeholder="Lastname"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("Lastname", { required: true, maxLength: 15 })}
                 />
               </div>
-              <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
+              <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2">
                 <div className="form-item w-full">
-                  <label className="text-lg ">Username</label>
+                  <label className="text-lg "></label>
                   <input
                     type="text"
+                    placeholder="Username"
                     className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
                     {...register("username", { required: true, maxLength: 25 })}
                   />
                 </div>
 
                 <div className="form-item w-full">
-                  <label className="text-lg ">Email</label>
+                  <label className="text-lg "></label>
                   <input
                     type="text"
-                    placeholder="email"
+                    placeholder="Email"
                     className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                     {...register("email", {
                       required: true,
@@ -78,10 +82,10 @@ const ArtistForm = () => {
                   />
                 </div>
                 <div className="form-item w-full">
-                  <label className="text-lg ">Password</label>
+                  <label className="text-lg "></label>
                   <input
                     type="text"
-                    placeholder="more than 8 characters"
+                    placeholder="Password: more than 8 characters"
                     className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                     {...register("Password", {
                       required: true,
@@ -93,52 +97,57 @@ const ArtistForm = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold ">More About Me</h3>
+                <h3 className="text-2xl ">More About Me</h3>
                 <hr />
               </div>
 
               <div className="form-item w-full">
-                <label className="text-lg ">Biography</label>
+                <label className="text-sm "></label>
                 <textarea
-                  cols="20"
-                  rows="10"
+                  cols="10"
+                  rows="5"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   placeholder="Bio"
                   {...register("Bio", { maxLength: 350 })}
                 />
               </div>
               <div>
-                <h3 className="text-2xl font-semibold">My Social Media</h3>
+                <h3 className="text-2xl">My Social Media</h3>
+                <hr />
                 <hr />
               </div>
               <div className="form-item">
-                <label className="text-xl ">Instagram</label>
+                <label className="text-xl "></label>
                 <input
                   type="text"
+                  placeholder="Instagram"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
                   {...register("instagram", {})}
                 />
               </div>
               <div className="form-item">
-                <label className="text-xl ">Facebook</label>
+                <label className="text-xl "></label>
                 <input
                   type="text"
+                  placeholder="Facebook"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("facebook", {})}
                 />
               </div>
               <div className="form-item">
-                <label className="text-xl ">Twitter</label>
+                <label className="text-xl "></label>
                 <input
                   type="text"
+                  placeholder="Twitter"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
                   {...register("twitter", {})}
                 />
               </div>
               <div className="form-item">
-                <label className="text-xl ">Soundcloud</label>
+                <label className="text-xl "></label>
                 <input
                   type="text"
+                  placeholder="Soundcloud"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
                   {...register("soundcloud", {})}
                 />
