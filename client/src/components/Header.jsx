@@ -6,9 +6,9 @@ import ButtonLogin from "./ButtonLogin";
 const Header = () => {
    const HeaderStyle = {
      backgroundImage: `url('/header.png')`,
-     backgroundSize: "cover", // Adjust as needed
-     backgroundRepeat: "no-repeat", // Adjust as needed
-     backgroundPosition: "center", // Adjust as needed
+     backgroundSize: "cover", 
+     backgroundRepeat: "no-repeat", 
+     backgroundPosition: "center", 
      backgroundColor: "rgba(255, 255, 255, 0.5)",
    };
   return (

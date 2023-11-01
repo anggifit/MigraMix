@@ -224,7 +224,8 @@ export default function SignInForm() {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                    sx={{ mt: 3, mb: 2, borderRadius: '24px', }}
+                    
                 >
                   Sign In
                 </Button>
