@@ -11,7 +11,7 @@ export const signUpSchema = z
     lastName: z.string().min(1, { message: 'Last Name is required' }).max(50, {
       message: 'Full Name must be a maximum of 50 characters.',
     }),
-    username: z.string().min(1, { message: 'User Name is required' }).max(13, {
+    username: z.string().min(1, { message: 'User Name is required' }).max(20, {
       message: 'User Name must be a maximum of 13 characters.',
     }),
     email: z
