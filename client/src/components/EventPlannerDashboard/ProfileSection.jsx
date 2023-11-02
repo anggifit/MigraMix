@@ -1,4 +1,5 @@
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useForm} from "react-hook-form";
 import axios from "axios"
 import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
@@ -32,11 +33,17 @@ const ProfileSection = () => {
     };
     
     const token = localStorage.getItem('token');
+    const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
+
+    const onImageUpload = (url) => {
+        setEventProfilePictureURL(url); // Almacena la URL de la imagen en el estado
+    };
 
     const onSubmit = (data) => {
         if (isValid){
+            data.eventProfilePicture = eventProfilePictureURL;
             axios
-            .put(`/api/organizer/update/organizerId`, data, 
+            .put(`/api/organizer/update`, data, 
             {headers: {
                 Authorization: `Bearer ${token}`
             }})//Supongo que aca va el id correspondiente
@@ -154,7 +161,7 @@ const ProfileSection = () => {
                         />
                         </Grid>
                         <Grid item xs={12}>
-                            <UploadProfilePhoto/>
+                            <UploadProfilePhoto onImageUpload={onImageUpload}/>
                         </Grid>
                     </Grid>
                     <Stack 
