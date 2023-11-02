@@ -89,44 +89,49 @@ export default function SignInForm() {
       console.log("Form is invalid. Please fix the errors.");
     } else {
       // Form is valid; proceed with form submission
-      const data = new FormData(event.currentTarget);
+      /* const data = new FormData(event.currentTarget);
       console.log({
         email: data.get("email"),
         password: data.get("password"),
-      });
+      }); */
+      console.log(formData);
+      onSubmit(formData);
     }
   };
-  const onSubmit = (data) => {
-    // Extract username and password from the form data
-    const { username, password } = data;
 
-    // Check if both username and password are provided
-    if (username && password) {
-      axios
-        .post(
-          "/api/sign-in",
-          { username, password },
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        )
-        .then((response) => {
-          console.log(response.data);
-          if (response.status === 201) {
-            // Set userCreated to true when the user is successfully created
-            setUserCreated(true);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
+ const onSubmit = (data) => {
+   // Extract username and password from the form data
+   const { email, password } = data; // Update variable names to match your form fields
 
-      console.log(data); // You can still log the full form data if needed
-    } else {
-      // Handle the case where either username or password is missing
-      console.log("Username and password are required");
-    }
-  };
+   // Check if both email and password are provided
+   if (email && password) {
+     axios
+       .post(
+         "/api/sign-in",
+         { email, password }, // Use the extracted email and password
+         {
+           headers: { "Content-Type": "application/json" },
+         }
+       )
+       .then((response) => {
+         console.log(response.data);
+         if (response.status === 201) {
+           // Set userCreated to true when the user is successfully created
+           setUserCreated(true);
+         }
+       })
+       .catch((error) => {
+         console.log(error.response.data);
+       });
+
+     console.log(data); // You can still log the full form data if needed
+   } else {
+     // Handle the case where either email or password is missing
+     console.log("Email and password are required");
+   }
+ };
+
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -179,7 +184,7 @@ export default function SignInForm() {
               <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit} // Connect the onSubmit function to handleSubmit
+                onSubmit={handleSubmit} 
                 sx={{ mt: 1 }}
               >
                 <TextField
@@ -215,12 +220,14 @@ export default function SignInForm() {
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
+                  /* onSubmit={onSubmit} */
                 />
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                    sx={{ mt: 3, mb: 2, borderRadius: '24px', }}
+                    
                 >
                   Sign In
                 </Button>
