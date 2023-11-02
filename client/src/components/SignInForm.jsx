@@ -89,11 +89,13 @@ export default function SignInForm() {
       console.log("Form is invalid. Please fix the errors.");
     } else {
       // Form is valid; proceed with form submission
-      const data = new FormData(event.currentTarget);
+      /* const data = new FormData(event.currentTarget);
       console.log({
         email: data.get("email"),
         password: data.get("password"),
-      });
+      }); */
+      console.log(formData);
+      onSubmit(formData);
     }
   };
 
@@ -182,7 +184,7 @@ export default function SignInForm() {
               <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit} // agregue el onSubmit
+                onSubmit={handleSubmit} 
                 sx={{ mt: 1 }}
               >
                 <TextField
@@ -218,7 +220,7 @@ export default function SignInForm() {
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
-                  onSubmit={onSubmit}
+                  /* onSubmit={onSubmit} */
                 />
                 <Button
                   type="submit"

@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <Homepage/>,
   },
   {
-    path: "/sign-in",
+    path: "/api/sign-in",
     element: <SignInForm/>,
   },
   {

@@ -17,7 +17,7 @@ CREATE TABLE artists(artist_id INT UNIQUE references users(id));
 
 CREATE TABLE artists(
     id INT REFERENCES users(id),
-    ArtistsProfilePicture
+    ArtistsProfilePicture 
     ArtistBio VARCHAR(500) NOT NULL,
     ArtistMainLink VARCHAR(50),
     ArtistSecundaryLink VARCHAR(50),

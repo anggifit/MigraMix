@@ -18,7 +18,7 @@ const style = {
 function SuccesfullRegistration({ open, onClose }) {
     const navigate = useNavigate()
     const handleNextClick = () => {
-        navigate("/sign-in")
+        navigate("/api/sign-in")
     }
     return (
         <div>
