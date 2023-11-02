@@ -14,6 +14,7 @@ CREATE TABLE users(
 )
 
 CREATE TABLE artists(artist_id INT UNIQUE references users(id));
+
 CREATE TABLE artists(
     id INT REFERENCES users(id),
     ArtistsProfilePicture
