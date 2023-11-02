@@ -36,7 +36,9 @@ export const signIn = async (req, res) => {
     ]);
 
     if (result.rows.length === 0) {
-      return res.status(401).json({ message: "Usuario no encontrado" });
+      return res
+        .status(401)
+        .json({ message: "Usuario o contraseña no válidos" });
     }
 
     const user = result.rows[0];
@@ -47,7 +49,7 @@ export const signIn = async (req, res) => {
       const token = generateToken(user.id);
       res.status(201).json({ message: "Autenticación exitosa", token });
     } else {
-      res.status(401).json({ message: "Contraseña incorrecta" });
+      res.status(401).json({ message: "Usuario o contraseña no válidos" });
     }
   } catch (error) {
     console.error(error);
@@ -65,14 +67,14 @@ export const putProfileByArtist = async (req, res) => {
   }
 
   const userId = req.userId;
-  console.log(userId);
+  //console.log(userId);
   try {
     const userResult = await pool.query(
       "SELECT * FROM users WHERE id = $1 AND role='Artist'",
       [userId]
     );
-    console.log(userId);
-    console.log(userResult.rows[0].role);
+    //console.log(userId);
+    //console.log(userResult.rows[0].role);
 
     if (userResult.rows.length === 0) {
       return res.status(401).json({ message: "Usuario no encontrado" });
@@ -102,8 +104,7 @@ export const putProfileByArtist = async (req, res) => {
   Performance=EXCLUDED.Performance, 
   Type_of_performance=EXCLUDED.Type_of_performance, 
   ContactNumber=EXCLUDED.ContactNumber
-
-  RETURNING *;`;
+`;
 
       try {
         const { rows } = await pool.query(query, [
@@ -132,14 +133,14 @@ export const putProfileByArtist = async (req, res) => {
 };
 
 export const getProfileArtist = async (req, res) => {
-  const token = req.headers.authorization;
+  //const token = req.headers.authorization;
   const userId = req.userId;
 
-  if (!token) {
-    return res
-      .status(401)
-      .json({ message: "Token de autorización no proporcionado" });
-  }
+  // if (!token) {
+  //   return res
+  //     .status(401)
+  //     .json({ message: "Token de autorización no proporcionado" });
+  // }
   const result = await pool.query(
     "SELECT * FROM artists INNER JOIN users ON users.id = artists.id WHERE artists.id = $1 AND role='Artist'",
     [userId]
