@@ -21,7 +21,7 @@ const UploadProfilePhoto = ({onImageUpload}) => {
 
                     try {
                         const imageUrl = await getDownloadURL(storageRef);
-                        console.log("URL de descarga:", imageUrl);
+                        //console.log("URL de descarga:", imageUrl);
                         setDownloadURL(imageUrl);
                         onImageUpload(imageUrl)
                     } catch (error) {
