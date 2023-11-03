@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 const BotonProvisorio = () => {
   const navigate = useNavigate();
   const handleDashboardArtistClick = () => {
-    navigate("/DashboardArtist");
+    navigate("/api/artists");
   };
   return (
     <Button
