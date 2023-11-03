@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import pool from "../db.js";
 import jwt from "jsonwebtoken";
-
+import { generateToken } from "../middleware/auth.middleware.js";
 export const signUp = async (req, res) => {
   const { firstName, lastName, username, email, password, dateOfBirth, role } =
     req.body;
