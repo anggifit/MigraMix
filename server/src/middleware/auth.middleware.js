@@ -12,8 +12,14 @@ export const authenticateToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ message: "Token invalido." });
     }
-    console.log(user);
-    req.user = user;
+//user = {  "userId": 3,  "userRole": "Artist",  "iat": 1699027044,  "exp": 1699030644}
+    req.userId = user.userId;
     next();
   });
+};
+
+export const generateToken = (userId, userRole) => {
+  const secretKey = process.env.TOKEN_SECRET;
+  const expiresIn = "1h";
+  return jwt.sign({ userId, userRole }, secretKey, { expiresIn });
 };

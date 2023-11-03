@@ -46,17 +46,9 @@ export const signIn = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (passwordMatch) {
-      // si autenticación es OK genero token
-      const generateToken = (userId) => {
-        const secretKey = process.env.TOKEN_SECRET;
-        const expiresIn = "1h";
-
-        return jwt.sign({ userId }, secretKey, { expiresIn });
-      };
-
-      const token = generateToken(user.id);
-      res.cookie("tokem", token);
-      res.json({ message: "Autenticación exitosa", token });
+      const token = generateToken(user.id, user.role);
+      // console.log(token);ok!!
+      res.status(201).json({ message: "Autenticación exitosa", token });
     } else {
       // contraseña incorrecta
       res.status(401).json({ message: "Contraseña incorrecta" });
