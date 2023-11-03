@@ -42,12 +42,15 @@ export const signIn = async (req, res) => {
     }
 
     const user = result.rows[0];
+    console.log(user);
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (passwordMatch) {
       const token = generateToken(user.id);
-      res.status(201).json({ message: "Autenticación exitosa", token });
+      res
+        .status(200)
+        .json({ message: "Autenticación exitosa", token, role: user.role });
     } else {
       res.status(401).json({ message: "Usuario o contraseña no válidos" });
     }

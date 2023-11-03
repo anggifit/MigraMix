@@ -18,6 +18,7 @@ export const authenticateToken = (req, res, next) => {
     }
 
     req.userId = user.userId;
+
     next();
   });
 };
