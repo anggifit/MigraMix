@@ -8,6 +8,8 @@ import PublicEvents from "./components/PublicEventsSection/PublicEvents"
 import ArtistsPage from "./components/ArtistsSection/ArtistsPage" 
 import ArtistDashboard from "./components/ArtistDashboard/ArtistDashboard";
 import EventPlannerDashboard from "./components/EventPlannerDashboard/EventPlannerDashboard"
+import UserContext from "./components/UserContext";
+import AdminDashboard from "./components/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +25,15 @@ const router = createBrowserRouter([
     element: <SignUpForm/>
   },
   {
-    path:"/DashboardArtist",
+    path: "/admin-dashboard",
+    element: <AdminDashboard/>
+  },
+  {
+    path:"/api/artists",
     element: <ArtistDashboard/>
   },
   {
-    path:"/EventPlannerDashboard",
+    path:"/api/organizer",
     element: <EventPlannerDashboard/>
   },
   {
@@ -35,17 +41,34 @@ const router = createBrowserRouter([
     element: <PublicEvents/>
   },
   {
-    path: "/api/artists",
+    path: "/api/artistsPage",
     element: <ArtistsPage/>
   }
 ])
 
 const App = () => {
+  /* const [role, setRole] = useState() */
+  const userRole = localStorage.getItem("role")
+  /* setRole(userRole) */
+
+/*   const getRole = async () => {
+      const role = await fetch ("/api/sign-in")
+      const userRole = await role.json()
+      setRole(userRole.role)
+  }
+
+  useEffect(() => {
+    getRole()
+  }, []) */
+
   return (
     <RouterProvider router={router}>
       <ButtonLogin />
       <Homepage />
       <ButtonExplore/>
+      <UserContext.Provider value={{userRole}}>
+        <AdminDashboard/>
+      </UserContext.Provider>
     </RouterProvider>
   );
 }
