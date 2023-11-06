@@ -12,13 +12,12 @@ const ArtistsList = () => {
         fetchArtistData()
         async function fetchArtistData() {
             try {
-                const response = await axios.get('http://localhost:4000/api/artistsList', {
-                    headers: { 'Content-Type': 'application/json' },
-                })
-                if (!response.ok) {
+                const response = await axios.get('http://localhost:4000/api/artistsList')
+                if (response.status !== 200) {
                     throw new Error("Network response was not ok")
                 }
-                const data = await response.json()
+
+                const data = response.data
                 setArtistData(data)
                 setLoading(false)
             }
@@ -39,16 +38,16 @@ const ArtistsList = () => {
                 ) : (
                     artistData.map((person) =>(
                         <Grid key={person.id} item xs={6}>
-                            <ArtistCard
-                                image={person.artistProfilePicture}
-                                genre={person.musicGenre}
+                            <ArtistCard /* pendiente con el nombre que se recibe de la tabla */
+                                image={person.artistsprofilepicture}
+                                genre={person.musicgenre}
                                 user={person.username}
-                                bio={person.artistBio}
-                                link={person.artistMainLink}
-                                email={person.contactEmail}
-                                musicGenre={person.musicGenre}
+                                bio={person.artistbio}
+                                link={person.artistmainlink}
+                                email={person.contactnumber}
+                                musicGenre={person.musicgenre}
                                 performance={person.performance}
-                                typeOfPerformance={person.typeOfPerformance}
+                                typeOfPerformance={person.type_of_performance}
                             />
                         </Grid>
                     ))
