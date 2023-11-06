@@ -1,11 +1,13 @@
 import MenuBar from './MenuBar'
-import ProfileSection from './ProfileSection'
+import EditProfile from './EditProfile'
+import CreateEventSection from './CreateEventSection'
 
 const EventPlannerDashboard = () => {
   return (
     <div style={{ display: 'flex' }}>
         <MenuBar/>
-        <ProfileSection/>
+        {/* <EditProfile/> */}
+        <CreateEventSection/>
     </div>
   )
 }

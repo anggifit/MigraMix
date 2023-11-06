@@ -2,14 +2,16 @@ import { useState } from "react";
 import { useForm} from "react-hook-form";
 import axios from "axios"
 import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UploadProfilePhoto from './UploadProfilePhoto';
 import RedButton from "../RedButton"
+import UrlValidation from "./UrlValidation";
+
 
 const defaultTheme = createTheme();
 
-const ProfileSection = () => {
+const EditProfile = () => {
     const { register, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             firstName: '',
@@ -23,20 +25,11 @@ const ProfileSection = () => {
         }
     })
 
-    const isURLValid = (url) => {
-        if (!url) return true;
-        const urlRegex = /^(http|https):\/\/[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,6}$/;
-        if (!urlRegex.test(url)) {
-            return "Please enter a valid website URL. The URL must start with http:// or https:// and have at least 3 characters.";
-        }
-        return true;
-    };
-    
     const token = localStorage.getItem('token');
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
 
     const onImageUpload = (url) => {
-        setEventProfilePictureURL(url); // Almacena la URL de la imagen en el estado
+        setEventProfilePictureURL(url); 
     };
 
     const onSubmit = (data) => {
@@ -46,7 +39,7 @@ const ProfileSection = () => {
             .put(`/api/organizer/update`, data, 
             {headers: {
                 Authorization: `Bearer ${token}`
-            }})//Supongo que aca va el id correspondiente
+            }})
             .then(response => console.log(response.data))
             .catch(error => {console.log(error.data)})
         }
@@ -68,7 +61,7 @@ const ProfileSection = () => {
                     }}
                 >
                     <Avatar sx={{ m: 2, bgcolor: '#FF4B4B' }}>
-                    <EditCalendarIcon/>
+                    <ManageAccountsIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5" sx={{ color: '#2B2D42', fontWeight: 'bold'}}>
                     Edit Profile
@@ -139,7 +132,7 @@ const ProfileSection = () => {
                         </Grid>
                         <Grid item xs={12}>
                         <TextField
-                            {...register("eventPlannerMainLink", {validate:isURLValid})}
+                            {...register("eventPlannerMainLink", {validate:UrlValidation})}
                             fullWidth
                             id="eventPlannerMainLink"
                             label="Website"
@@ -165,13 +158,9 @@ const ProfileSection = () => {
                         </Grid>
                     </Grid>
                     <Stack 
-                        direction="row"
-                        justifyContent="space-around"
                         alignItems="center"
-                        spacing={2}
                     >
                         <RedButton info="Save" widen size="large"/>
-                        <RedButton info="Edit" widen size="large"/>
                     </Stack>
                     </Box>
                 </Box>
@@ -181,8 +170,8 @@ const ProfileSection = () => {
     )
 }
 
-ProfileSection.propTypes = {
+EditProfile.propTypes = {
 
 }
 
-export default ProfileSection
+export default EditProfile

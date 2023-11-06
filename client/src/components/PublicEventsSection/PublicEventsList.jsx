@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import {Container, Grid, Stack} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import SearchEventsBar from "./SearchEventsBar";
 import PublicEventCard from "./PublicEventCard";
-import ButtonHome from "../ButtonHome";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -19,7 +18,7 @@ const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205
 function PublicEventsList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('')
   const [filterType, setFilterType] = useState('')
 
