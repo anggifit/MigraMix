@@ -28,7 +28,8 @@ const CreateEventSection = () => {
     /*  const token = localStorage.getItem('token'); */
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
-    const [eventDates, setEventDates] = useState([null, null])
+    const [initialDateSelected, setInitialDateSelected] = useState(null)
+    const [finalDateSelected, setFinalDAteSelected] = useState(null)
 
     const onImageUpload = (url) => {
         setEventProfilePictureURL(url); 
@@ -42,8 +43,8 @@ const CreateEventSection = () => {
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
-            data.initialDate = eventDates[0]
-            data.finalDate = eventDates[1]
+/*             data.initialDate = eventDates[0]
+            data.finalDate = eventDates[1] */
             axios
             .post('aca va la url de crear evento', data, {
                 headers: { 'Content-Type': 'application/json' },
@@ -174,8 +175,17 @@ const CreateEventSection = () => {
                                 <MenuItem value="Paid">Paid</MenuItem>
                             </TextField>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <DateRangeEvent onChange={handlerDateChange}/>
+                        <Grid item xs={6} sm={3}>
+                            <p>fecha inicial</p>
+                            <DateRangeEvent 
+                                onChange={handlerDateChange}
+                            />
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                            <p>fecha final</p>
+                            <DateRangeEvent 
+                                onChange={handlerDateChange}
+                            />
                         </Grid>
                         <Grid item xs={12}>
                             <UploadProfilePhoto onImageUpload={onImageUpload}/>

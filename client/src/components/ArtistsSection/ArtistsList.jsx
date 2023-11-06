@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container, Grid } from '@mui/material';
 import ArtistCard from './ArtistCard';
+import axios from 'axios';
 
 const ArtistsList = () => {
     const [artistData, setArtistData] = useState([])
@@ -11,7 +12,9 @@ const ArtistsList = () => {
         fetchArtistData()
         async function fetchArtistData() {
             try {
-                const response = await fetch ('http://localhost:4000/api/artistsList')
+                const response = await axios.get('http://localhost:4000/api/artistsList', {
+                    headers: { 'Content-Type': 'application/json' },
+                })
                 if (!response.ok) {
                     throw new Error("Network response was not ok")
                 }

@@ -158,6 +158,7 @@ export const getProfileArtist = async (req, res) => {
 };
 
 export const getArtistList = async (req, res) => {
+  console.log("hello")
   const response = await pool.query("SELECT * FROM artists");
   console.log(response.rows);
   res.status(200).json(response.rows);
