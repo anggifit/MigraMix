@@ -12,7 +12,6 @@ const FilterByEvent = ({onSearch}) => {
             <TextField
                 id="titleFilter"
                 label="By event"
-                //variant="outlined"
                 onChange={handleSearch}
                 sx={{ width: 600 }}
                 InputProps={{

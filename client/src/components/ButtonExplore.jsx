@@ -21,7 +21,7 @@ const ButtonExplore = () => {
     
     return (
         <Stack spacing={3} direction="row" justifyContent='center'>
-            <RouterLink to="/api/artists">
+            <RouterLink to="/api/artistsPage">
                 <CustomButton 
                     style={{ backgroundColor: '#F70808', color: 'white' }}
                     disabled={false}

@@ -22,6 +22,10 @@ const App = () => {
       element: <Homepage/>,
     },
     {
+      path: "/api/artistsPage",
+      element: <ArtistsPage/>
+    },
+    {
       path: "/api/sign-in",
       element: <SignInForm/>,
     },
@@ -44,10 +48,6 @@ const App = () => {
     {
       path: "/events",
       element: <PublicEvents/>
-    },
-    {
-      path: "/api/artistsPage",
-      element: <ArtistsPage/>
     }
   ])
 
@@ -57,6 +57,7 @@ const App = () => {
           <ButtonLogin />
           <Homepage />
           <ButtonExplore/>
+          <ArtistsPage/>
           <SignInForm/>
           <AdminDashboard/>
         </RouterProvider>
