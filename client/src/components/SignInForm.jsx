@@ -95,9 +95,13 @@ export default function SignInForm() {
     } else {
       // Form is valid; proceed with form submission
       /* const data = new FormData(event.currentTarget);
+      /* const data = new FormData(event.currentTarget);
       console.log({
         email: data.get("email"),
         password: data.get("password"),
+      }); */
+      console.log(formData);
+      onSubmit(formData);
       }); */
       console.log(formData);
       onSubmit(formData);

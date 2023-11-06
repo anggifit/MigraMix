@@ -1,9 +1,25 @@
 import pool from "../db.js";
 
 export const newOrganizer = async (req, res) => {
-  const { id, eventPlannerBio, eventPlannerMainLink, eventProfilePicture } =
-    req.body;
-  let query = `INSERT INTO organizer (id_user,biography,main_link,picture) VALUES ($1,$2,$3,$4) RETURNING * `;
+  console.log(req.body);
+  // const { id, eventPlannerBio, eventPlannerMainLink, eventProfilePicture } =
+
+  // let query = `INSERT INTO organizer (id_user,biography,main_link,picture) 
+  // VALUES ($1,$2,$3,$4) RETURNING * `;
+  const { eventPlannerBio, eventPlannerMainLink, eventProfilePicture } =
+  req.body;
+
+  let query = `INSERT INTO organizer (id_user, biography, main_link, picture) 
+  VALUES ($1,$2,$3,$4) 
+  ON CONFLICT (id_user) DO UPDATE 
+  SET 
+  biography=EXCLUDED.biography, 
+  main_link=EXCLUDED.main_link, 
+  picture=EXCLUDED.picture RETURNING * `;
+
+  const id = req.userId;
+  console.log(id);
+
   try {
     const { rows } = await pool.query(query, [
       id,
