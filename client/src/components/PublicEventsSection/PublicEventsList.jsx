@@ -64,7 +64,7 @@ function PublicEventsList() {
   });
 
  return (
-    <div className="bg-white font-sans p-8">
+    <div className="font-sans p-8">
       <SearchEventsBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
       
       {loading ? (

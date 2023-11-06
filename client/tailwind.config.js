@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        audiowide: ["Audiowide", "sans-serif"],
-        custom: ["Nunito Sans", "sans-serif"],       
+        audiowide: ["Helvetica", "sans-serif"],
+        custom: ["Helvetica", "sans-serif"],       
       },
     },
   },
