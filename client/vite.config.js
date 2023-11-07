@@ -14,6 +14,10 @@ export default defineConfig({
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
+      "/organizers/organizer": {
+        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        changeOrigin: true,
+      },
     },
   },
 });
