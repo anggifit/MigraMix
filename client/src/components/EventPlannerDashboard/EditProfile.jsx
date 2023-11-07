@@ -46,7 +46,7 @@ const EditProfile = () => {
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
-                <Container maxWidth="lg">
+                <Container maxWidth="xl">
                 <CssBaseline />
                 <Box
                     sx={{

@@ -70,10 +70,9 @@ export default function SignInForm() {
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
-    // Form validation logic
-    const newErrors = { ...errors }; // Initialize an empty error object
+    const newErrors = { ...errors };
 
     if (!formData.email) {
       newErrors.email = "Email is required";
@@ -99,7 +98,6 @@ export default function SignInForm() {
         email: data.get("email"),
         password: data.get("password"),
       }); */
-      console.log(formData);
       onSubmit(formData);
     }
   };
@@ -121,20 +119,17 @@ export default function SignInForm() {
           }
           )
           .then((response) => {
-            console.log(response.data);
-          if (response.status === 201) {
-            setAuthenticationSuccessful(true)
-            setRole(response.data.role)
-            localStorage.setItem("role", response.data.role)
-            localStorage.setItem('token', response.data.token);
-            navigate('/admin-dashboard')
-          }
+            if (response.status === 201) {
+              setAuthenticationSuccessful(true)
+              setRole(response.data.role)
+              localStorage.setItem("role", response.data.role)
+              localStorage.setItem('token', response.data.token)
+              navigate('/admin-dashboard')
+            }
         })
         .catch((error) => {
           console.log(error.response.data);
         });
-
-      console.log(data); // You can still log the full form data if needed
     } else {
       // Handle the case where either email or password is missing
       console.log("Email and password are required");
