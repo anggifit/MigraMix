@@ -18,16 +18,17 @@ const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205
 function PublicEventsList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [titleFilter, setTitleFilter] = useState("");
-/*   const [dateFilter, setDateFilter] = useState("");
-  const [priceFilter, setPriceFilter] = useState(""); */
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterType, setFilterType] = useState('')
 
-  const findEvents = ({title,/*  date, price */}) => {
-    setTitleFilter(title);
-/*     setDateFilter(date)
-    setPriceFilter(price) */
-  };
+  const handleSearch = (term) => {
+    setSearchTerm (term)
+  }
+
+  const handleFilterChange = (type) => {
+    setFilterType(type)
+  }
 
   useEffect(() => {
     fetch(eventDate)
@@ -38,10 +39,6 @@ function PublicEventsList() {
         return response.json();
       })
       .then((data) => {
-        // tuve que pausar la muestra limitada para poder probar el search
-        /*   const limitedData = data.elements.slice(0, 9);
-        setData(limitedData); */
-        //IMPORTANTE LA LOGICA DE DONDE VIENEN LOS EVENTOS DEBE VENIR DEL BACK, ELLOS PROVEERAN LA URL DE LA UE SE HARA FETCH
         setData(data.elements);
         setLoading(false);
       })
@@ -50,16 +47,26 @@ function PublicEventsList() {
         setLoading(false);
       });
   }, []);
- return (
-    <div className="bg-white font-sans p-8">
-      <header className="bg-white-500 py-2  text-blue-500 text-center hover:text-blue-800">
-        <Stack justifyContent='left'> 
-          <ButtonHome/>
-        </Stack>
-        <h1 className="text-3xl font-semibold">Barcelona Local Events</h1>
-      </header>
 
-      <SearchEventsBar onSearch={findEvents} />
+  const filteredData = data.filter((event) => {
+    if (filterType === '') {
+      return true; 
+    } else if (filterType === 'free') {
+      return event.preu === 'Activitat gratuïta'; 
+    } else if (filterType === 'paid') {
+      return event.preu !== 'Activitat gratuïta';
+    }
+
+    if (searchTerm.trim() === '') {
+      return true;
+    }
+    return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+ return (
+    <div className="font-sans p-8">
+      <SearchEventsBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+      
       {loading ? (
         <p>Loading data...</p>
       ) : error ? (
@@ -67,19 +74,7 @@ function PublicEventsList() {
       ) : (
         <Container maxWidth="lg">
           <Grid container spacing={3} justifyContent="center">
-            {data
-              .filter((event) =>
-                event.titol.toLowerCase().includes(titleFilter.toLowerCase()) ||
-                event.descripcio.toLowerCase().includes(titleFilter.toLowerCase())
-              )
-/*               .filter((event)=>{
-                event.data_inici.includes("") || 
-                event.data_inici.includes(dateFilter)
-              })
-              .filter((event)=>{
-                event.data_inici.includes("") || 
-                event.data_inici.includes(priceFilter)
-              }) */
+            {filteredData
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
                   <PublicEventCard
@@ -94,7 +89,7 @@ function PublicEventsList() {
                     finalDate={event.data_fi}
                     urlEvent={event.url_general}
                     price={
-                      event.preu === "Activitat gratuita"
+                      event.preu === "Activitat gratuïta"
                         ? "Free"
                         : "Paid Activity"
                     }

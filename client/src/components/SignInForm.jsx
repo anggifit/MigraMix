@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,6 +16,7 @@ import { Link as RouterLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from "./AdminDashboard";
+import UserContext from "./UserContext";
 
 function Copyright(props) {
   return (
@@ -48,7 +49,8 @@ export default function SignInForm() {
     email: "",
     password: "",
   });
-  const [role, setRole] = useState('')
+
+  const {setRole} = useContext(UserContext)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -121,7 +123,7 @@ export default function SignInForm() {
           .then((response) => {
             console.log(response.data);
           if (response.status === 201) {
-            setAuthenticationSuccessful(true)// Set userCreated to true when the user is successfully created
+            setAuthenticationSuccessful(true)
             setRole(response.data.role)
             localStorage.setItem("role", response.data.role)
             navigate('/admin-dashboard')

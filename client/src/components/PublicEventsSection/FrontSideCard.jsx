@@ -5,7 +5,7 @@ import { Typography, Card, CardActionArea, CardMedia, CardContent} from "@mui/ma
 const FrontSideCard = ({ image,title, price }) => {
   const cardStyle = {
     width: '100%',
-    minHeight: '500px',
+    minHeight: '350px',
     display: 'flex',
     flexDirection: 'column',
 };

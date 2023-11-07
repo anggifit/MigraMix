@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import ButtonLogin from "./components/ButtonLogin";
@@ -11,65 +12,56 @@ import EventPlannerDashboard from "./components/EventPlannerDashboard/EventPlann
 import UserContext from "./components/UserContext";
 import AdminDashboard from "./components/AdminDashboard";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Homepage/>,
-  },
-  {
-    path: "/api/sign-in",
-    element: <SignInForm/>,
-  },
-  {
-    path: "/api/sign-up",
-    element: <SignUpForm/>
-  },
-  {
-    path: "/admin-dashboard",
-    element: <AdminDashboard/>
-  },
-  {
-    path:"/api/artists",
-    element: <ArtistDashboard/>
-  },
-  {
-    path:"/api/organizer",
-    element: <EventPlannerDashboard/>
-  },
-  {
-    path: "/events",
-    element: <PublicEvents/>
-  },
-  {
-    path: "/api/artistsPage",
-    element: <ArtistsPage/>
-  }
-])
 
 const App = () => {
-  /* const [role, setRole] = useState() */
-  const userRole = localStorage.getItem("role")
-  /* setRole(userRole) */
+  const [role, setRole] = useState(localStorage.getItem("role") || '')
 
-/*   const getRole = async () => {
-      const role = await fetch ("/api/sign-in")
-      const userRole = await role.json()
-      setRole(userRole.role)
-  }
-
-  useEffect(() => {
-    getRole()
-  }, []) */
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Homepage/>,
+    },
+    {
+      path: "/api/artistsPage",
+      element: <ArtistsPage/>
+    },
+    {
+      path: "/api/sign-in",
+      element: <SignInForm/>,
+    },
+    {
+      path: "/api/sign-up",
+      element: <SignUpForm/>
+    },
+    {
+      path: "/admin-dashboard",
+      element: <AdminDashboard/>
+    },
+    {
+      path:"/api/artists",
+      element: <ArtistDashboard/>
+    },
+    {
+      path:"/api/organizer",
+      element: <EventPlannerDashboard/>
+    },
+    {
+      path: "/events",
+      element: <PublicEvents/>
+    }
+  ])
 
   return (
-    <RouterProvider router={router}>
-      <ButtonLogin />
-      <Homepage />
-      <ButtonExplore/>
-      <UserContext.Provider value={{userRole}}>
-        <AdminDashboard/>
-      </UserContext.Provider>
-    </RouterProvider>
+    <UserContext.Provider value={{role, setRole}}>
+        <RouterProvider router={router}>
+          <ButtonLogin />
+          <Homepage />
+          <ButtonExplore/>
+          <ArtistsPage/>
+          <SignInForm/>
+          <AdminDashboard/>
+        </RouterProvider>
+    </UserContext.Provider>
   );
 }
 
