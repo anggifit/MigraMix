@@ -14,18 +14,14 @@ const defaultTheme = createTheme();
 const EditProfile = () => {
     const { register, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
-            firstName: '',
-            lastName: '',
             eventPlannerBio: '',
             eventPlannerMainLink:'',
             eventProfilePicture: null,
-/*          username: '',
-            email: '',
-            password: '', */
         }
     })
 
     const token = localStorage.getItem('token');
+    
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
 
     const onImageUpload = (url) => {
@@ -36,12 +32,14 @@ const EditProfile = () => {
         if (isValid){
             data.eventProfilePicture = eventProfilePictureURL;
             axios
-            .put(`/api/organizer/update`, data, 
+            .post(`/organizers/organizer`, data, 
             {headers: {
                 Authorization: `Bearer ${token}`
             }})
-            .then(response => console.log(response.data))
-            .catch(error => {console.log(error.data)})
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {console.log(error.response.data)})
         }
     }
 
@@ -70,98 +68,103 @@ const EditProfile = () => {
                     This information will be displayed publicly so be careful what you share.
                     </p>
                     <Box 
-                    component="form" 
-                    onSubmit={handleSubmit(onSubmit)}
-                    sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                disabled
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                InputProps={{ style: { fontSize: '16px' } }}
-                                InputLabelProps={{ style: { fontSize: '16px' } }}
-                                sx={{
-                                    '& .MuiInputBase-root': {
-                                        borderWidth: '0.8px',
-                                        borderColor: '#2B2D42'
-                                    },
-                                }}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                disabled
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                autoComplete="family-name"
-                                InputProps={{ style: { fontSize: '16px' } }} 
-                                InputLabelProps={{ style: { fontSize: '16px' } }}
-                                sx={{
-                                '& .MuiInputBase-root': {
-                                    borderWidth: '0.8px', 
-                                    borderColor: '#2B2D42'
-                                },
-                                }}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                {...register("eventPlannerBio", {
-                                maxLength : {
-                                    value: 300,
-                                    message: 'Maximum 300 characters' 
-                                }
-                                })}
-                                fullWidth
-                                autoFocus
-                                autoComplete="Bio"
-                                id="eventPlannerBio"
-                                label="Bio: Write a few sentences about yourself."
-                                InputProps={{ style: { fontSize: '16px' } }} 
-                                InputLabelProps={{ style: { fontSize: '16px' } }}
+                        component="form" 
+                        onSubmit={handleSubmit(onSubmit)}
+                        sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    disabled
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    InputProps={{ style: { fontSize: '16px' } }}
+                                    InputLabelProps={{ style: { fontSize: '16px' } }}
+                                    sx={{
+                                        '& .MuiInputBase-root': {
+                                            borderWidth: '0.8px',
+                                            borderColor: '#2B2D42'
+                                        },
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    disabled
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    autoComplete="family-name"
+                                    InputProps={{ style: { fontSize: '16px' } }} 
+                                    InputLabelProps={{ style: { fontSize: '16px' } }}
                                     sx={{
                                     '& .MuiInputBase-root': {
                                         borderWidth: '0.8px', 
                                         borderColor: '#2B2D42'
                                     },
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    {...register("eventPlannerBio", {
+                                    maxLength : {
+                                        value: 300,
+                                        message: 'Maximum 300 characters' 
+                                    }
+                                    })}
+                                    fullWidth
+                                    autoFocus
+                                    autoComplete="Bio"
+                                    id="eventPlannerBio"
+                                    label="Bio: Write a few sentences about yourself."
+                                    InputProps={{ style: { fontSize: '16px' } }} 
+                                    InputLabelProps={{ style: { fontSize: '16px' } }}
+                                        sx={{
+                                        '& .MuiInputBase-root': {
+                                            borderWidth: '0.8px', 
+                                            borderColor: '#2B2D42'
+                                        },
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                            <TextField
+                                {...register("eventPlannerMainLink", {validate:UrlValidation})}
+                                fullWidth
+                                id="eventPlannerMainLink"
+                                label="Website"
+                                autoComplete="Website"
+                                error={!!errors.eventPlannerMainLink}
+                                helperText={errors.eventPlannerMainLink && (
+                                    <Typography variant="caption" color="error">
+                                        {errors.eventPlannerMainLink.message}
+                                    </Typography>
+                                )}
+                                InputProps={{ style: { fontSize: '16px' } }} 
+                                InputLabelProps={{ style: { fontSize: '16px' } }}
+                                sx={{
+                                    '& .MuiInputBase-root': {
+                                    borderWidth: '0.8px', 
+                                    borderColor: '#2B2D42'
+                                    },
                                 }}
                             />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <UploadProfilePhoto onImageUpload={onImageUpload}/>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                        <TextField
-                            {...register("eventPlannerMainLink", {validate:UrlValidation})}
-                            fullWidth
-                            id="eventPlannerMainLink"
-                            label="Website"
-                            autoComplete="Website"
-                            error={!!errors.eventPlannerMainLink}
-                            helperText={errors.eventPlannerMainLink && (
-                                <Typography variant="caption" color="error">
-                                    {errors.eventPlannerMainLink.message}
-                                </Typography>
-                            )}
-                            InputProps={{ style: { fontSize: '16px' } }} 
-                            InputLabelProps={{ style: { fontSize: '16px' } }}
-                            sx={{
-                                '& .MuiInputBase-root': {
-                                borderWidth: '0.8px', 
-                                borderColor: '#2B2D42'
-                                },
-                            }}
-                        />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <UploadProfilePhoto onImageUpload={onImageUpload}/>
-                        </Grid>
-                    </Grid>
-                    <Stack 
-                        alignItems="center"
-                    >
-                        <RedButton info="Save" widen size="large"/>
-                    </Stack>
+                        <Stack 
+                            alignItems="center"
+                        >
+                            <RedButton 
+                                info="Save" 
+                                widen 
+                                size="large"
+                                type="submit" 
+                            />
+                        </Stack>
                     </Box>
                 </Box>
                 </Container>

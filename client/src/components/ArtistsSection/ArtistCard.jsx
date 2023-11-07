@@ -2,7 +2,7 @@ import { useState } from "react";
 import ArtistProfile from "./ArtistProfile";
 import PropTypes from "prop-types";
 
-const ArtistCard = ({ image, genre, user, bio, email, musicGenre, performance, typeOfPerformance}) => {
+const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPerformance}) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -22,7 +22,7 @@ const ArtistCard = ({ image, genre, user, bio, email, musicGenre, performance, t
                     className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-[#FF4B4B] antialiased"
                     style={{ fontFamily: "Audiowide, sans-serif" }}
                 >
-                    {genre}
+                    {musicGenre}
                 </h6>
                 <h4 
                     className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"

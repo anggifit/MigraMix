@@ -42,7 +42,7 @@ const App = () => {
       element: <ArtistDashboard/>
     },
     {
-      path:"/api/organizer",
+      path:"/organizers/organizer",
       element: <EventPlannerDashboard/>
     },
     {

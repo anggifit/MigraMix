@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 const BotonProvisorio2 = () => {
   const navigate = useNavigate();
   const handleEventPlannerDashboardClick = () => {
-    navigate("/api/organizer");
+    navigate("/organizers/organizer");
   };
   return (
     <Button

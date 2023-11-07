@@ -5,7 +5,7 @@ import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import FestivalIcon from '@mui/icons-material/Festival';
 import EventPlannerHeader from './EventPlannerHeader'
 
-function MenuBar() {
+function MenuBar({onMenuClick}) {
         return (
         <Card className="h-[calc(100vh-1rem)] w-full max-w-[20rem] p-4 bg-gradient-to-t from-red-300 to-neutral-50 shadow-lg shadow-red-300">
             <div className="mb-4 p-6">
@@ -16,19 +16,29 @@ function MenuBar() {
                 />
             </div>
             <List>
-            <ListItem className="mb-2 p-4">
+            <ListItem 
+                className="mb-2 p-4"
+                onClick={() => onMenuClick('editProfile')}
+            >
                 <ListItemPrefix>
                     <ManageAccountsIcon/>
                 </ListItemPrefix>
                 Edit Profile
             </ListItem>
-            <ListItem className="mb-2 p-4">
+            <ListItem 
+                className="mb-2 p-4"
+                onClick={() => onMenuClick('createEvent')}
+            >
                 <ListItemPrefix>
                     <EditCalendarIcon/>
                 </ListItemPrefix>
                 Create Event
             </ListItem>
-            <ListItem className="mb-2 p-4">
+            <ListItem 
+                className="mb-2 p-4"
+                onClick={() => onMenuClick('myEvents')}
+
+            >
                 <ListItemPrefix>
                     <FestivalIcon/>
                 </ListItemPrefix>

@@ -126,6 +126,7 @@ export default function SignInForm() {
             setAuthenticationSuccessful(true)
             setRole(response.data.role)
             localStorage.setItem("role", response.data.role)
+            localStorage.setItem('token', response.data.token);
             navigate('/admin-dashboard')
           }
         })

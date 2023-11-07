@@ -40,7 +40,6 @@ const ArtistsList = () => {
                         <Grid key={person.id} item xs={6}>
                             <ArtistCard /* pendiente con el nombre que se recibe de la tabla */
                                 image={person.artistsprofilepicture}
-                                genre={person.musicgenre}
                                 user={person.username}
                                 bio={person.artistbio}
                                 link={person.artistmainlink}
