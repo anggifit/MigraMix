@@ -1,13 +1,46 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios"
+import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 
 const ArtistForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+    formState: { isValid, errors },
+  } = useForm({
+    defaultValues: {
+      artistbio: ''
+    }
+  });
+
+  const token = localStorage.getItem('token');
+
+  const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
+  
+  const onImageUpload = (url) => {
+    setEventProfilePictureURL(url)
+/*     onUpdateProfilePhoto(url)
+ */  }
+  
+  const onSubmit = (data) => {
+    console.log(data)
+    if (isValid){
+      data.eventProfilePicture = eventProfilePictureURL;
+      axios
+      .put(`/api/artists`, data, 
+      {headers: {
+          Authorization: `Bearer ${token}`
+      }})
+      .then(response => {
+          console.log(response.data)
+      })
+      .catch(error => {console.log(error.response.data)})
+  }
+  }
+  
   console.log(errors);
+  
   return (
     <div className="w-full relative  shadow-2xl rounded overflow-hidden">
       <div className="top h-full w-full bg-blue-600 overflow-hidden relative">
@@ -60,7 +93,7 @@ const ArtistForm = () => {
                 <hr />
               </div>
 
-              <div className="form-item">
+              {/* <div className="form-item">
                 <label className="text-lg "></label>
                 <input
                   type="text"
@@ -68,8 +101,8 @@ const ArtistForm = () => {
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("name", { required: true, maxLength: 15 })}
                 />
-              </div>
-              <div className="form-item">
+              </div> */}
+              {/* <div className="form-item">
                 <label className="text-lg "></label>
                 <input
                   type="text"
@@ -77,8 +110,8 @@ const ArtistForm = () => {
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("Lastname", { required: true, maxLength: 15 })}
                 />
-              </div>
-              <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2">
+              </div> */}
+              {/* <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2">
                 <div className="form-item w-full">
                   <label className="text-lg "></label>
                   <input
@@ -115,7 +148,7 @@ const ArtistForm = () => {
                     })}
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 {/* <h3 className="text-2xl ">More About Me</h3> */}
@@ -129,7 +162,8 @@ const ArtistForm = () => {
                   rows="5"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   placeholder="Bio"
-                  {...register("Bio", { maxLength: 350 })}
+                  id="artistbio"
+                  {...register("artistbio", { maxLength: 350 })}
                 />
               </div>
               <div>
@@ -173,8 +207,11 @@ const ArtistForm = () => {
                   {...register("soundcloud", {})}
                 />
               </div>
+              <div>
+                <UploadProfilePhoto onImageUpload={onImageUpload}/>
+              </div>
               <button className="flex flex-auto items-left max-w-2xl justify-center p-0.5 mb-2 mr-2 overflow-hidden text-lg font-medium text-gray-900 rounded-sm group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-600">
-                <input type="submit" placeholder="send" />{} 📤
+                <input type="submit" placeholder="send" />{} 📤 
               </button>
             </form>
           </div>
