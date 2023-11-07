@@ -148,6 +148,7 @@ export const getProfileArtist = async (req, res) => {
     "SELECT * FROM artists INNER JOIN users ON users.id = artists.id WHERE artists.id = $1 AND role='Artist'",
     [userId]
   );
+  //console.log(result.rows[0].firstName);
   try {
     console.log(result.rows);
     res.status(200).json(result.rows);
