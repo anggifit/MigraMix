@@ -22,11 +22,32 @@ const ArtistForm = () => {
             className="h-64 w-64 object-cover rounded-full my-1 py-1"
           />
           <h1 className="text-2xl font-semibold">
-            Antonia Howell <p className="text-lg font-semibold text-center">Dj Tonia</p>
+            Antonia Howell{" "}
+            <p className="text-lg font-semibold text-center">Dj Tonia</p>
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-12 bg-white items-center object-center-absolute">
+      <div className="grid grid-cols-12 bg-white items-top object-center-absolute">
+        <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
+          <a
+            href="#"
+            className="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold"
+          >
+            Edit Profile 🖼
+          </a>
+          <a
+            href="#"
+            className="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+          >
+            Another Information
+          </a>
+          <a
+            href="#"
+            className="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+          >
+            Log-out 🔒
+          </a>
+        </div>
         <div className="col-span-8 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-6 items-center">
           <div className="px-4 pt-4">
             <form
@@ -35,7 +56,7 @@ const ArtistForm = () => {
               action="#"
             >
               <div>
-                <h3 className="text-2xl ">Basic Information</h3>
+                {/* <h3 className="text-1xl ">Basic Information</h3> */}
                 <hr />
               </div>
 
@@ -97,7 +118,7 @@ const ArtistForm = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl ">More About Me</h3>
+                {/* <h3 className="text-2xl ">More About Me</h3> */}
                 <hr />
               </div>
 
@@ -112,7 +133,7 @@ const ArtistForm = () => {
                 />
               </div>
               <div>
-                <h3 className="text-2xl">My Social Media</h3>
+                {/* <h3 className="text-2xl">My Social Media</h3> */}
                 <hr />
                 <hr />
               </div>
@@ -152,9 +173,8 @@ const ArtistForm = () => {
                   {...register("soundcloud", {})}
                 />
               </div>
-
-              <button className="flex flex-auto items-center max-w-md justify-center p-0.5 mb-2 mr-2 overflow-hidden text-lg font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
-                <input type="submit" placeholder="send" />{" "}
+              <button className="flex flex-auto items-left max-w-2xl justify-center p-0.5 mb-2 mr-2 overflow-hidden text-lg font-medium text-gray-900 rounded-sm group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-600">
+                <input type="submit" placeholder="send" />{} 📤
               </button>
             </form>
           </div>

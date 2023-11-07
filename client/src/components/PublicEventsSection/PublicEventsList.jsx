@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import {Container, Grid, Stack} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import SearchEventsBar from "./SearchEventsBar";
 import PublicEventCard from "./PublicEventCard";
-import ButtonHome from "../ButtonHome";
+
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();

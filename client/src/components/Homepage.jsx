@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 const Homepage = () => {
   return (
-    <div className="min-h-screen bg-cover bg-center">
+    <div>
       <div className="opacity-90 bg-white absolute inset-0"></div>
       <div className="relative">
         <Header />

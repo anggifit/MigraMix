@@ -11,16 +11,16 @@ const ArtistCard = ({ image, genre, user, bio, email, musicGenre, performance, t
 
     return (
         <div 
-            className="relative flex w-full max-w-[50rem] mb-8 flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md hover:shadow-red-300"
+            className="relative flex w-5/6 max-w-[50rem] mb-8 flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md hover:shadow-red-300 grid-rows-4"
             style={{ height: '300px' }}
         >
-            <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
+            <div className="relative w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
                 <img src={image} className='h-full w-full object-cover'/>
             </div>
             <div className="p-8">
                 <h6 
                     className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-[#FF4B4B] antialiased"
-                    style={{ fontFamily: "Audiowide, sans-serif" }}
+                    style={{ fontFamily: "Helvetica, sans-serif" }}
                 >
                     {genre}
                 </h6>

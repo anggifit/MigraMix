@@ -142,7 +142,7 @@
         {
             "id": 11,
             "username": "artist11",
-            "artistProfilePicture": "https://unsplash.com/es/fotos/dos-hombres-cargando-mochilas-durante-el-dia-M1aegHe2j6g",
+            "artistProfilePicture": "https://images.unsplash.com/photo-1583292672674-ca4ffa2a6b38?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "artistBio": "Electronic music DJ.",
             "artistMainLink": "www.artist11.com",
             "artistSecondaryLink": "www.artist11-social.com",
@@ -198,7 +198,7 @@
         {
             "id": 15,
             "username": "artist15",
-            "artistProfilePicture": "https://unsplash.com/es/fotos/persona-tocando-violin-marron-Sgthj0HW6ec",
+            "artistProfilePicture": "https://images.unsplash.com/photo-1436831135709-48bdc150cce5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "artistBio": "Soulful vocalist and songwriter.",
             "artistMainLink": "www.artist15.com",
             "artistSecondaryLink": "www.artist15-social.com",
