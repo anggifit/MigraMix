@@ -10,8 +10,8 @@ import PropTypes from "prop-types";
 const DateRangeEvent = ({onChange}) => {
     const [dateSelected, setDateSelected] = useState(null)
 /*     const [error, setError] = useState(null); */
-    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-
+/*     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+ */
     const handlerDateClick = (date) => {
         setDateSelected(date);
         onChange(date)

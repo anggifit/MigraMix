@@ -9,11 +9,12 @@ import UploadProfilePhoto from './UploadProfilePhoto';
 import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
 import RedButton from "../RedButton"
+import SelectOptions from "../SelectOptions";
 
 const defaultTheme = createTheme();
 
 const CreateEventSection = () => {
-    const { register, handleSubmit, formState: { isValid, errors } } = useForm({
+    const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventTitle: '',
             typeOfActivity: '',
@@ -29,24 +30,30 @@ const CreateEventSection = () => {
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
     const [initialDateSelected, setInitialDateSelected] = useState(null)
-    const [finalDateSelected, setFinalDAteSelected] = useState(null)
+    const [finalDateSelected, setFinalDateSelected] = useState(null)
 
     const onImageUpload = (url) => {
         setEventProfilePictureURL(url); 
     };
 
-    const handlerDateChange = (newDateRange) =>{
-        setEventDates(newDateRange)
+    const handlerInitialDateChange = (newInitialDate) =>{
+        setInitialDateSelected(newInitialDate)
+        setValue('initialDate', newInitialDate)
+    }
+
+    const handlerFinalDateChange = (newFinalDate) =>{
+        setFinalDateSelected(newFinalDate)
+        setValue('finalDate', newFinalDate)
     }
 
     const onSubmit = (data) => {
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
-/*             data.initialDate = eventDates[0]
-            data.finalDate = eventDates[1] */
+            data.initialDate = initialDateSelected
+            data.finalDate = finalDateSelected
             axios
-            .post('aca va la url de crear evento', data, {
+            .post('/organizers/events', data, { //verificar la ruta con dante
                 headers: { 'Content-Type': 'application/json' },
             })
             .then((response) => {console.log(response.data)})
@@ -153,39 +160,49 @@ const CreateEventSection = () => {
                         />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                            required
-                            select
-                            fullWidth
-                            label="Type of Activity"
-                            id="typeOfActivity"
-                            value={selectedTypeOfActivity}
-                            onChange={(e) => setSelectedTypeOfActivity(e.target.value)}
-                            InputProps={{ style: { fontSize: '16px' } }}
-                            InputLabelProps={{ style: { fontSize: '16px' } }}
-                            sx={{
-                                '& .MuiInputBase-root': {
-                                borderWidth: '0.8px',
-                                borderColor: '#2B2D42',
-                                maxWidth: 170,
-                                },
-                            }}
+                            <SelectOptions
+                                label="Type of Activity"
+                                idField="typeOfActivity"
+                                value={selectedTypeOfActivity}
+                                onChange={(e) => setSelectedTypeOfActivity(e.target.value)}
+                                options={[
+                                    { value: 'Free', label: 'Free' },
+                                    { value: 'Paid', label: 'Paid' },
+                                ]}
+                            />
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                            <Stack
+                                direction="row"
+                                justifyContent="flex-end"
+                                alignItems="center"
+                                spacing={1}
                             >
-                                <MenuItem value="Free">Free</MenuItem>
-                                <MenuItem value="Paid">Paid</MenuItem>
-                            </TextField>
+                                <p>fecha inicial</p>
+                                <DateRangeEvent 
+                                    onChange={(date) => {
+                                        setValue('initialDate', date)
+                                        handlerInitialDateChange(date)
+                                    }}
+                                />
+                            </Stack>
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                            <p>fecha inicial</p>
-                            <DateRangeEvent 
-                                onChange={handlerDateChange}
-                            />
-                        </Grid>
-                        <Grid item xs={6} sm={3}>
-                            <p>fecha final</p>
-                            <DateRangeEvent 
-                                onChange={handlerDateChange}
-                            />
+                            <Stack 
+                                direction="row"
+                                justifyContent="flex-end"
+                                alignItems="center"
+                                spacing={1}
+                            >
+                                <p>fecha final</p>
+                                <DateRangeEvent 
+                                    onChange={(date) => {
+                                        setValue('finalDate', date)
+                                        handlerFinalDateChange(date)
+                                    }}
+                                />
+                            </Stack>
+                            
                         </Grid>
                         <Grid item xs={12}>
                             <UploadProfilePhoto onImageUpload={onImageUpload}/>
@@ -194,7 +211,7 @@ const CreateEventSection = () => {
                     <Stack 
                         alignItems="center"
                     >
-                        <RedButton info="Save" widen size="large"/>
+                        <RedButton info="Save Event" widen size="large"/>
                     </Stack>
                     </Box>
                 </Box>

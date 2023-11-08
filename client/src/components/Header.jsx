@@ -17,7 +17,7 @@ const Header = () => {
       <ButtonLogin />
       <Typography
         variant="h1"
-        className="text-3xl md:text-5xl lg:text-7xl text-center text-[#F70808] text-800 transition duration-500 ease-in-out hover:scale-90"
+        className="text-3xl md:text-5xl lg:text-7xl text-center text-[#F70808] outline-black transition duration-500 ease-in-out hover:scale-90"
         style={{ fontFamily: "Audiowide, sans-serif" }}
       >
         MIGRAMIX
@@ -30,8 +30,6 @@ const Header = () => {
         Amplify Culture, Harmonize Art
       </Typography>
       <div>
-        {" "}
-        {/* Wrap this content in a div */}
         <Typography
           variant="body1"
           className="mt-6 text-base md:text-lg lg:text-lg text-gray-900 text-custom"
@@ -40,8 +38,7 @@ const Header = () => {
           Barcelona`s electronic music scene.
         </Typography>
         Let`s unite through music, creativity, and cultural diversity.
-      </div>{" "}
-      {/* Close the div here */}
+      </div>
       <Stack className="mt-6">
         <ButtonExplore />
       </Stack>

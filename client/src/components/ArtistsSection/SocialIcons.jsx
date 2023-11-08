@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+// import React from 'react'
+// import PropTypes from 'prop-types'
 
-const SocialIcons = props => {
-  return (
-    <div>
+// const SocialIcons = props => {
+//   return (
+//     <div>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-SocialIcons.propTypes = {
+// SocialIcons.propTypes = {
 
-}
+// }
 
-export default SocialIcons
+// export default SocialIcons

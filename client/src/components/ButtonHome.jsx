@@ -15,7 +15,7 @@ const ButtonHome = () => {
             startIcon={<HomeIcon />} 
             onClick={handleHomeClick}
         >
-            Home
+            MIGRAMIX
         </Button>
     )
 }

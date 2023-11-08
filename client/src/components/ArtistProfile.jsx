@@ -8,15 +8,15 @@ const ArtistProfile = () => {
   const shuffledArtists = data.sort(randomCompare);
 
   return (
-    <div className="max-w-4xl mx-auto ">
+    <div className="w-4/6 mx-auto ">
       <Carousel showThumbs={false}>
         {shuffledArtists.map((artist) => (
-          <div key={artist.id} className="relative ">
+          <div key={artist.id} className="relative">
             <div
               style={{
-                backgroundImage: `url(${artist.artistProfilePicture})`,               
+                backgroundImage: `url(${artist.artistProfilePicture})`,
               }}
-              className="bg-cover bg-clip-border bg-center h-[30rem] text-gray-700 shadow-xl"
+              className="bg-cover bg-clip-border bg-center h-[35rem] text-gray-700"
             >
               <div className="to-bg-black-10 h-full bg-gradient-to-t from-black/80 via-black/50"></div>
             </div>

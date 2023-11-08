@@ -5,7 +5,7 @@ import ButtonHome from '../ButtonHome'
 const EventsHeader = () => {
     return (
         <Grid container spacing={2}
-            className="p-10 text-[#F70808] hover:text-[#712b2b]"
+            className="p-10 text-[#F70808] hover:text-[#1f1e1e]"
             style={{ fontFamily: "Audiowide, sans-serif" }}
         >
             <Grid item xs={1}>

@@ -17,6 +17,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
 import DateOfBirth from './DateOfBirth';
 import SuccesfullRegistration from './SuccessfulRegistration';
+import SelectOptions from '../SelectOptions';
 
 function Copyright(props) {
   return (
@@ -234,27 +235,16 @@ const SignUpForm = () => {
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      select
-                      fullWidth
+                    <SelectOptions
                       label="Role"
-                      id="role"
+                      idField="role"
                       value={selectedRole}
                       onChange={(e) => setSelectedRole(e.target.value)}
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
-                      sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
-                          maxWidth: 170,
-                        },
-                      }}
-                    >
-                      <MenuItem value="Artist">Artist</MenuItem>
-                      <MenuItem value="Organizer">Organizer</MenuItem>
-                    </TextField>
+                      options={[
+                        {value: 'Artist', label: 'Artist'},
+                        {value: 'Event Planner', label: 'Event Planner'}
+                      ]}
+                    />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <DateOfBirth
