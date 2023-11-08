@@ -9,6 +9,7 @@ import UploadProfilePhoto from './UploadProfilePhoto';
 import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
 import RedButton from "../RedButton"
+import SelectOptions from "../SelectOptions";
 
 const defaultTheme = createTheme();
 
@@ -159,27 +160,16 @@ const CreateEventSection = () => {
                         />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                            required
-                            select
-                            fullWidth
-                            label="Type of Activity"
-                            id="typeOfActivity"
-                            value={selectedTypeOfActivity}
-                            onChange={(e) => setSelectedTypeOfActivity(e.target.value)}
-                            InputProps={{ style: { fontSize: '16px' } }}
-                            InputLabelProps={{ style: { fontSize: '16px' } }}
-                            sx={{
-                                '& .MuiInputBase-root': {
-                                borderWidth: '0.8px',
-                                borderColor: '#2B2D42',
-                                maxWidth: 170,
-                                },
-                            }}
-                            >
-                                <MenuItem value="Free">Free</MenuItem>
-                                <MenuItem value="Paid">Paid</MenuItem>
-                            </TextField>
+                            <SelectOptions
+                                label="Type of Activity"
+                                idField="typeOfActivity"
+                                value={selectedTypeOfActivity}
+                                onChange={(e) => setSelectedTypeOfActivity(e.target.value)}
+                                options={[
+                                    { value: 'Free', label: 'Free' },
+                                    { value: 'Paid', label: 'Paid' },
+                                ]}
+                            />
                         </Grid>
                         <Grid item xs={6} sm={3}>
                             <Stack
