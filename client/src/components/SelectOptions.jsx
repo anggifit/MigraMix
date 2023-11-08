@@ -24,7 +24,7 @@ const SelectOptions = ({label, idField, value, onChange, options}) => {
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
-      ))}
+        ))}
     </TextField>
   )
 }

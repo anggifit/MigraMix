@@ -1,15 +1,19 @@
-
 import { useState } from "react";
 import { useForm} from "react-hook-form";
 import axios from "axios"
 import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack, MenuItem} from '@mui/material';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import dayjs from "dayjs";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import UploadProfilePhoto from './UploadProfilePhoto';
 import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
 import RedButton from "../RedButton"
 import SelectOptions from "../SelectOptions";
+import artists from '/Users/occ-k004/Desktop/MigraMix Project/MigraMix/client/src/components/ArtistsSection/ArtistsList.json';
+
 
 const defaultTheme = createTheme();
 
@@ -29,31 +33,51 @@ const CreateEventSection = () => {
     /*  const token = localStorage.getItem('token'); */
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
+    const [selectedArtist, setSelectedArtist] = useState('')
     const [initialDateSelected, setInitialDateSelected] = useState(null)
     const [finalDateSelected, setFinalDateSelected] = useState(null)
+    const [error, setError] = useState(null);
+    
+    dayjs.extend(isSameOrAfter)
+    dayjs.extend(isSameOrBefore)
 
     const onImageUpload = (url) => {
         setEventProfilePictureURL(url); 
     };
 
     const handlerInitialDateChange = (newInitialDate) =>{
-        setInitialDateSelected(newInitialDate)
-        setValue('initialDate', newInitialDate)
+        const currentDate = dayjs()
+    
+        if (newInitialDate.isSameOrAfter(currentDate, 'day')) {
+            setInitialDateSelected(newInitialDate.format('YYYY-MM-DD'))
+            setValue('initialDate', newInitialDate)
+            setError('')
+        } else {
+            setError('The selected date should be today or in the future.');
+        }
     }
 
     const handlerFinalDateChange = (newFinalDate) =>{
-        setFinalDateSelected(newFinalDate)
-        setValue('finalDate', newFinalDate)
+        const initialDate = dayjs(initialDateSelected)
+    
+        if(newFinalDate.isSameOrAfter(initialDate, 'day')) {
+            setFinalDateSelected(newFinalDate.format('YYYY-MM-DD'))
+            setValue('finalDate', newFinalDate)
+            setError('')            
+        } else {
+            setError('The final date should be the same or after the initial date.')
+        }
     }
 
     const onSubmit = (data) => {
+        console.log(data)
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
             axios
-            .post('/organizers/events', data, { //verificar la ruta con dante
+            .post('/organizers/organizer', data, { //verificar la ruta con dante
                 headers: { 'Content-Type': 'application/json' },
             })
             .then((response) => {console.log(response.data)})
@@ -159,7 +183,7 @@ const CreateEventSection = () => {
                             }}
                         />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={6} sm={3}>
                             <SelectOptions
                                 label="Type of Activity"
                                 idField="typeOfActivity"
@@ -172,19 +196,35 @@ const CreateEventSection = () => {
                             />
                         </Grid>
                         <Grid item xs={6} sm={3}>
+                        <SelectOptions 
+                            key="artistsListEvent"
+                            label="Artists"
+                            idField="artists"
+                            value={selectedArtist}
+                            onChange={(e) => setSelectedArtist(e.target.value)}
+                            options={artists.map((artist) => (
+                                <MenuItem key={artist.id} value={artist.username}>
+                                {artist.username}
+                                </MenuItem>
+                            ))}
+                            />
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
                             <Stack
                                 direction="row"
                                 justifyContent="flex-end"
                                 alignItems="center"
                                 spacing={1}
                             >
-                                <p>fecha inicial</p>
+                                <p>Initial date</p>
                                 <DateRangeEvent 
+                                    minDate={dayjs().toDate()}
                                     onChange={(date) => {
                                         setValue('initialDate', date)
                                         handlerInitialDateChange(date)
                                     }}
                                 />
+                                {error && <p>{error}</p>}
                             </Stack>
                         </Grid>
                         <Grid item xs={6} sm={3}>
@@ -200,7 +240,9 @@ const CreateEventSection = () => {
                                         setValue('finalDate', date)
                                         handlerFinalDateChange(date)
                                     }}
+                                    minDate={initialDateSelected ? dayjs(initialDateSelected).toDate() : dayjs().toDate()}
                                 />
+                                {error && <p>{error}</p>}
                             </Stack>
                             
                         </Grid>

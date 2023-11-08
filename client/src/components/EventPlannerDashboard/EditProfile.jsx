@@ -72,41 +72,9 @@ const EditProfile = ({onUpdateProfilePhoto}) => {
                     <Box 
                         component="form" 
                         onSubmit={handleSubmit(onSubmit)}
-                        sx={{ mt: 3 }}>
+                        sx={{ mt: 3 }}
+                    >
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    disabled
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    InputProps={{ style: { fontSize: '16px' } }}
-                                    InputLabelProps={{ style: { fontSize: '16px' } }}
-                                    sx={{
-                                        '& .MuiInputBase-root': {
-                                            borderWidth: '0.8px',
-                                            borderColor: '#2B2D42'
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    disabled
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    autoComplete="family-name"
-                                    InputProps={{ style: { fontSize: '16px' } }} 
-                                    InputLabelProps={{ style: { fontSize: '16px' } }}
-                                    sx={{
-                                    '& .MuiInputBase-root': {
-                                        borderWidth: '0.8px', 
-                                        borderColor: '#2B2D42'
-                                    },
-                                    }}
-                                />
-                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     {...register("eventPlannerBio", {
