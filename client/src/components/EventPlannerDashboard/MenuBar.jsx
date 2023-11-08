@@ -4,6 +4,8 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import FestivalIcon from '@mui/icons-material/Festival';
 import EventPlannerHeader from './EventPlannerHeader'
+import PropTypes from "prop-types";
+
 
 function MenuBar({onMenuClick, profilePhoto }) {
         return (
@@ -54,5 +56,10 @@ function MenuBar({onMenuClick, profilePhoto }) {
         </Card>
         );
     }
+
+MenuBar.PropTypes = {
+    onMenuClick: PropTypes.func.isRequired,
+    profilePhoto: PropTypes.string.isRequired
+}
 
 export default MenuBar

@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UploadProfilePhoto from './UploadProfilePhoto';
 import RedButton from "../RedButton"
 import UrlValidation from "./UrlValidation";
+import PropTypes from "prop-types";
 
 
 const defaultTheme = createTheme();
@@ -144,7 +145,7 @@ const EditProfile = ({onUpdateProfilePhoto}) => {
 }
 
 EditProfile.propTypes = {
-
+    onUpdateProfilePhoto: PropTypes.func.isRequired,
 }
 
 export default EditProfile

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm} from "react-hook-form";
 import axios from "axios"
-import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack, MenuItem} from '@mui/material';
+import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import dayjs from "dayjs";
@@ -196,17 +196,16 @@ const CreateEventSection = () => {
                             />
                         </Grid>
                         <Grid item xs={6} sm={3}>
-                        <SelectOptions 
-                            key="artistsListEvent"
-                            label="Artists"
-                            idField="artists"
-                            value={selectedArtist}
-                            onChange={(e) => setSelectedArtist(e.target.value)}
-                            options={artists.map((artist) => (
-                                <MenuItem key={artist.id} value={artist.username}>
-                                {artist.username}
-                                </MenuItem>
-                            ))}
+                            <SelectOptions 
+                                key="artistsListEvent"
+                                label="Artists"
+                                idField="artists"
+                                value={selectedArtist}
+                                onChange={(e) => setSelectedArtist(e.target.value)}
+                                options={artists.map((artist)=> ({
+                                    value: artist.username,
+                                    label: artist.username,
+                                }))}
                             />
                         </Grid>
                         <Grid item xs={6} sm={3}>

@@ -1,6 +1,8 @@
 import { useState } from "react"
 import firebaseApp from '../FirebaseConfig'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import PropTypes from "prop-types";
+
 
 const UploadProfilePhoto = ({onImageUpload}) => {
     const [uploading, setUploading] = useState(false);
@@ -21,7 +23,6 @@ const UploadProfilePhoto = ({onImageUpload}) => {
 
                     try {
                         const imageUrl = await getDownloadURL(storageRef);
-                        //console.log("URL de descarga:", imageUrl);
                         setDownloadURL(imageUrl);
                         onImageUpload(imageUrl)
                     } catch (error) {
@@ -88,4 +89,7 @@ const UploadProfilePhoto = ({onImageUpload}) => {
     )
 }
 
+UploadProfilePhoto.propTypes = {
+    onImageUpload: PropTypes.func.isRequired
+}
 export default UploadProfilePhoto

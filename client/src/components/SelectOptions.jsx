@@ -16,7 +16,7 @@ const SelectOptions = ({label, idField, value, onChange, options}) => {
             '& .MuiInputBase-root': {
             borderWidth: '0.8px',
             borderColor: '#2B2D42',
-            maxWidth: 170,
+            maxWidth: 300,
             },
         }}    
     >

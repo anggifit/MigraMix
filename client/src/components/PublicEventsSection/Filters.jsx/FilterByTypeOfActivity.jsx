@@ -1,4 +1,5 @@
 import {Select, MenuItem, FormControl, InputLabel} from '@mui/material';
+import PropTypes from "prop-types";
 
 
 const FilterByTypeOfActivity = ({onFilterChange}) => {
@@ -16,6 +17,10 @@ const FilterByTypeOfActivity = ({onFilterChange}) => {
             </Select>
         </FormControl>
     )
+}
+
+FilterByTypeOfActivity.propTypes = {
+    onFilterChange: PropTypes.func.isRequired
 }
 
 export default FilterByTypeOfActivity

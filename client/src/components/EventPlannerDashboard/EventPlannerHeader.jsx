@@ -18,7 +18,9 @@ const EventPlannerHeader = ({user, profilePhoto, rol}) => {
 }
 
 EventPlannerHeader.propTypes = {
-
+  user: PropTypes.string.isRequired,
+  profilePhoto: PropTypes.string.isRequired,
+  rol: PropTypes.string.isRequired,
 }
 
 export default EventPlannerHeader
