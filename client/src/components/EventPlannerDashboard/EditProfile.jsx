@@ -11,7 +11,7 @@ import UrlValidation from "./UrlValidation";
 
 const defaultTheme = createTheme();
 
-const EditProfile = () => {
+const EditProfile = ({onUpdateProfilePhoto}) => {
     const { register, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventPlannerBio: '',
@@ -24,8 +24,10 @@ const EditProfile = () => {
     
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
 
+
     const onImageUpload = (url) => {
         setEventProfilePictureURL(url); 
+        onUpdateProfilePhoto(url)
     };
 
     const onSubmit = (data) => {
