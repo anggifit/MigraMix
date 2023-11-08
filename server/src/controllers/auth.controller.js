@@ -29,7 +29,6 @@ export const signUp = async (req, res) => {
 };
 
 export const signIn = async (req, res) => {
-  console.log(req.body);
   const { email, password } = req.body;
 
   try {
@@ -51,7 +50,7 @@ export const signIn = async (req, res) => {
     if (passwordMatch) {
       const token = generateToken(user.id);
       res
-        .status(200)
+        .status(201)
         .json({ message: "Autenticación exitosa", token, role: user.role });
     } else {
       res.status(401).json({ message: "Usuario o contraseña no válidos" });

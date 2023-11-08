@@ -33,7 +33,7 @@ const ArtistForm = () => {
     if (isValid) {
       data.eventProfilePicture = eventProfilePictureURL;
       axios
-        .put(`/api/artists`, data, {
+        .put(`/artists/artists`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

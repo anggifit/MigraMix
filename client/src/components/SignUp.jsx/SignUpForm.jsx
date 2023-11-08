@@ -90,7 +90,7 @@ const SignUpForm = () => {
           console.log(error.data);
         });
 
-      console.log(data);
+      //console.log(data);
     }
   };
 

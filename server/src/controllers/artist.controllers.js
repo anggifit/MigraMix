@@ -62,7 +62,7 @@ export const putProfileByArtist = async (req, res) => {
           Type_of_performance,
           ContactNumber,
         ]);
-        res.status(200).json(rows[0]);
+        res.status(200).send("Usuario actualizado").json(rows[0]);
       } catch (error) {
         console.log("Error query insert : ", error);
         res.status(500).json(error.detail);
