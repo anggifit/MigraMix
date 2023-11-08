@@ -60,7 +60,7 @@ const ArtistForm = () => {
                 <hr />
               </div>
 
-              <div className="form-item">
+              {/* <div className="form-item">
                 <label className="text-lg "></label>
                 <input
                   type="text"
@@ -68,7 +68,7 @@ const ArtistForm = () => {
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("name", { required: true, maxLength: 15 })}
                 />
-              </div>
+              </div> */}
               <div className="form-item">
                 <label className="text-lg "></label>
                 <input
