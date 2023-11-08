@@ -8,8 +8,8 @@ const SelectOptions = ({label, idField, value, onChange, options}) => {
         fullWidth
         label={label}
         id={idField}
-        value={value}
-        onChange={onChange}
+        value={value}//  const [selectedValue, setSelectedValue] = useState('none');
+        onChange={onChange} //(e) => setSelectedValue(e.target.value)}
         InputProps={{ style: { fontSize: '16px' } }}
         InputLabelProps={{ style: { fontSize: '16px' } }}
         sx={{
