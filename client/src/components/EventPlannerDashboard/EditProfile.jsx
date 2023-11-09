@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 const defaultTheme = createTheme();
 
-const EditProfile = ({onUpdateProfilePhoto}) => {
+const EditProfile = () => {
     const { register, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventPlannerBio: '',
@@ -27,8 +27,7 @@ const EditProfile = ({onUpdateProfilePhoto}) => {
 
 
     const onImageUpload = (url) => {
-        setEventProfilePictureURL(url); 
-        onUpdateProfilePhoto(url)
+        setEventProfilePictureURL(url);  
     };
 
     const onSubmit = (data) => {
@@ -145,7 +144,7 @@ const EditProfile = ({onUpdateProfilePhoto}) => {
 }
 
 EditProfile.propTypes = {
-    onUpdateProfilePhoto: PropTypes.func.isRequired,
+    onUpdateProfilePhoto: PropTypes.func,
 }
 
 export default EditProfile
