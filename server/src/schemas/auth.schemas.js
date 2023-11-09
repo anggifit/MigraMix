@@ -23,14 +23,8 @@ export const signUpSchema = z
       }),
     password: z
       .string()
-      .min(6, { message: "Password must be atleast 6 characters" }),
-    repeatPassword: z
-      .string()
-      .min(1, { message: "Confirm Password is required" }),
+      .min(6, { message: "Password must be at least 6 characters" }),
     role: z.string({ required_error: "Role is required" })
-  })
-  .refine((data) => data.password === data.repeatPassword, {
-    message: "Password don't match",
   })
   .refine((data) => data.firstName !== data.lastName, {
     message: "First name cannot be the same as Last name",
