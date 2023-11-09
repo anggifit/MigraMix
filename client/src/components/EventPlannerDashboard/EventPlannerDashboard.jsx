@@ -4,7 +4,7 @@ import EditProfile from './EditProfile'
 import CreateEventSection from './CreateEventSection'
 import MyEventsSection from './MyEventsSection'
 
-const EventPlannerDashboard = () => {
+const EventPlannerDashboard = ({username, fullname}) => {
   const [activeSection, setActiveSection] = useState('')
   const [profilePhoto, setProfilePhoto] = useState('https://i.pinimg.com/736x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg');
 
@@ -21,6 +21,8 @@ const EventPlannerDashboard = () => {
         <MenuBar 
           onMenuClick= {handlerMenuClick} 
           profilePhoto={profilePhoto}
+          username={username}
+          fullname={fullname}
         />
         {activeSection === 'editProfile' && <EditProfile onUpdateProfilePhoto={handleUpdateProfilePhoto}/>}
         {activeSection === 'createEvent' && <CreateEventSection/>}

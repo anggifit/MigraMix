@@ -42,6 +42,7 @@ export const newOrganizer = async (req, res) => {
 export const getPerfilOrganizer = async (req, res) => {
   const id = req.userId;
   console.log(id);
+  
   let query = `SELECT first_name, last_name, username
   FROM users u
   INNER JOIN organizer o
@@ -55,8 +56,9 @@ export const getPerfilOrganizer = async (req, res) => {
     }
     console.log(rows);
     return res.status(200).json(rows[0]);
+
   } catch (error) {
-    console.log(error);
-    return res.sendStatus(400);
+      console.log(error);
+      return res.sendStatus(400);
   }
 };
