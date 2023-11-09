@@ -19,7 +19,7 @@ const EventPlannerHeader = ({fullname, profilePhoto, username}) => {
 
 EventPlannerHeader.propTypes = {
   fullname: PropTypes.string,
-  profilePhoto: PropTypes.string.isRequired,
+  profilePhoto: PropTypes.string
   username: PropTypes.string
 }
 

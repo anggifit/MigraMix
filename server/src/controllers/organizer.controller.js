@@ -43,7 +43,7 @@ export const getPerfilOrganizer = async (req, res) => {
   const id = req.userId;
   console.log(id);
   
-  let query = `SELECT first_name, last_name, username
+  let query = `SELECT u.first_name, u.last_name, u.username, o.picture
   FROM users u
   INNER JOIN organizer o
     ON u.id = o.id_user

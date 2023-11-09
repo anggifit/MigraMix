@@ -10,7 +10,10 @@ const AdminDashboard = () => {
     const [organizerUsername, setOrganizerUsername] = useState(null)
     const [organizerFistName, setOrganizerFirstName] = useState(null)
     const [organizerLastName, setOrganizerLastName] = useState(null)
-
+    
+    const [organizerPicture, setOrganizerPicture] = useState('https://i.pinimg.com/736x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg')
+/*     const [artistUsername, setArtistUsername] = useState()
+ */
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -25,6 +28,9 @@ const AdminDashboard = () => {
                     setOrganizerUsername(response.data.username)
                     setOrganizerFirstName(response.data.first_name)
                     setOrganizerLastName(response.data.last_name)
+                    if (response.data.picture) {
+                        setOrganizerPicture(response.data.picture)
+                    }
                 })
                 .catch((error) => {
                     console.error("error al obtener el nombre de usuario", error)
@@ -35,7 +41,7 @@ const AdminDashboard = () => {
     if (role === "Artist") {
         return <ArtistDashboard/>
     } else if (role === "Organizer"){
-        return <EventPlannerDashboard username={organizerUsername} fullname={`${organizerFistName} ${organizerLastName}`}/>
+        return <EventPlannerDashboard profilePhoto={organizerPicture} username={organizerUsername} fullname={`${organizerFistName} ${organizerLastName}`}/>
     } else {
         return <div>No role assigned</div>
     }
