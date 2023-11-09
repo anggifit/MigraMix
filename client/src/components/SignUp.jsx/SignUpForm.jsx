@@ -242,7 +242,7 @@ const SignUpForm = () => {
                       onChange={(e) => setSelectedRole(e.target.value)}
                       options={[
                         {value: 'Artist', label: 'Artist'},
-                        {value: 'Event Planner', label: 'Event Planner'}
+                        {value: 'Organizer', label: 'Organizer'}
                       ]}
                     />
                   </Grid>
