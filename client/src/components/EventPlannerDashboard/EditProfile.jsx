@@ -144,7 +144,7 @@ const EditProfile = () => {
 }
 
 EditProfile.propTypes = {
-    onUpdateProfilePhoto: PropTypes.func.isRequired,
+    onUpdateProfilePhoto: PropTypes.func,
 }
 
 export default EditProfile

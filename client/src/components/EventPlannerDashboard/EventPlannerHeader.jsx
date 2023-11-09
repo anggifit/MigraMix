@@ -7,7 +7,9 @@ const EventPlannerHeader = ({fullname, profilePhoto, username}) => {
             src={profilePhoto}
             alt="Avatar user"
             className="w-20 md:w-32 rounded-full mx-auto"
-            style={{maxWidth: "200px"}}
+            style={{
+              maxWidth: '250px',
+            }}
         />
         <h2 className="font-bold text-2xl text-center text-gray-700 pt-4">
             {fullname}
@@ -19,8 +21,8 @@ const EventPlannerHeader = ({fullname, profilePhoto, username}) => {
 
 EventPlannerHeader.propTypes = {
   fullname: PropTypes.string,
-  profilePhoto: PropTypes.string
-  username: PropTypes.string
+  profilePhoto: PropTypes.string,
+  username: PropTypes.string,
 }
 
 export default EventPlannerHeader

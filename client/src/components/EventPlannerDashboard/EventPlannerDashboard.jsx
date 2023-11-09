@@ -3,6 +3,8 @@ import MenuBar from './MenuBar'
 import EditProfile from './EditProfile'
 import CreateEventSection from './CreateEventSection'
 import MyEventsSection from './MyEventsSection'
+import PropTypes from "prop-types";
+
 
 const EventPlannerDashboard = ({username, fullname, profilePhoto }) => {
   const [activeSection, setActiveSection] = useState('')
@@ -29,6 +31,12 @@ const EventPlannerDashboard = ({username, fullname, profilePhoto }) => {
         {activeSection === 'myEvents' && <MyEventsSection/>}
     </div>
   )
+}
+
+EventPlannerDashboard.propTypes = {
+  username: PropTypes.string,
+  fullname: PropTypes.string,
+  profilePhoto: PropTypes.string
 }
 
 export default EventPlannerDashboard
