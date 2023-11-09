@@ -57,7 +57,7 @@ function MenuBar({onMenuClick, profilePhoto }) {
         );
     }
 
-MenuBar.PropTypes = {
+MenuBar.propTypes = {
     onMenuClick: PropTypes.func.isRequired,
     profilePhoto: PropTypes.string.isRequired
 }

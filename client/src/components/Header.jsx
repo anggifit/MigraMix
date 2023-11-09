@@ -17,7 +17,9 @@ const Header = () => {
       <ButtonLogin />
       <Typography
         variant="h1"
-        className="text-3xl md:text-5xl lg:text-7xl text-center text-[#F70808] outline-black transition duration-500 ease-in-out hover:scale-90"
+        classes={{
+          root: "text-sm sm:text-sm text-center text-[#F70808] outline-black transition duration-500 ease-in-out hover:scale-90",
+        }}
         style={{ fontFamily: "Audiowide, sans-serif" }}
       >
         MIGRAMIX

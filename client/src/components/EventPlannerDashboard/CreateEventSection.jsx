@@ -12,7 +12,7 @@ import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
 import RedButton from "../RedButton"
 import SelectOptions from "../SelectOptions";
-import artists from '/Users/occ-k004/Desktop/MigraMix Project/MigraMix/client/src/components/ArtistsSection/ArtistsList.json';
+import artists from '../ArtistsSection/ArtistsList.json';
 
 
 const defaultTheme = createTheme();
@@ -262,4 +262,4 @@ const CreateEventSection = () => {
     )
 }
 
-export default CreateEventSection
+export default CreateEventSection; 

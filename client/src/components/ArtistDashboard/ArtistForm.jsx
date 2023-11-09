@@ -3,7 +3,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 
-const ArtistForm = () => {
+
+const ArtistForm = () => {  
+  const handleKeyDown = (event) => {
+    // Prevent arrow keys from changing values
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+      event.preventDefault();
+    }
+  };
   const {
     register,
     handleSubmit,
@@ -20,7 +27,6 @@ const ArtistForm = () => {
     /^((https?|ftp|smtp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
 
   const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
-  
 
   const onImageUpload = (url) => {
     setEventProfilePictureURL(url);
@@ -29,7 +35,6 @@ const ArtistForm = () => {
   };
 
   const onSubmit = (data) => {
-    // console.log(data);
     if (isValid) {
       data.eventProfilePicture = eventProfilePictureURL;
       axios
@@ -47,6 +52,8 @@ const ArtistForm = () => {
     }
   };
 
+
+  
   return (
     <div className="w-full relative  shadow-2xl rounded overflow-hidden">
       <div className="top h-full w-full bg-blue-600 overflow-hidden relative">
@@ -76,17 +83,12 @@ const ArtistForm = () => {
           </a>
           <a
             href="#"
-            className="text-sm p-2 bg-white text-center rounded shadow-xl font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all"
-          >
-            Another Information
-          </a>
-          <a
-            href="#"
             className="text-sm p-2 bg-white text-center rounded shadow-xl font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
           >
             Log-out 🔒
           </a>
         </div>
+
         <div className="col-span-8 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-6 items-center">
           <div className="px-4 pt-4">
             <form
@@ -94,66 +96,7 @@ const ArtistForm = () => {
               className="flex flex-col space-y-2 "
               action="#"
             >
-              {/* <h3 className="text-1xl ">Basic Information</h3> */}
-
-              {/* <div className="form-item">
-                <label className="text-lg "></label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                  {...register("name", { required: true, maxLength: 15 })}
-                />
-              </div> */}
-              {/* <div className="form-item">
-                <label className="text-lg "></label>
-                <input
-                  type="text"
-                  placeholder="Lastname"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                  {...register("Lastname", { required: true, maxLength: 15 })}
-                />
-              </div> */}
-              {/* <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2">
-                <div className="form-item w-full">
-                  <label className="text-lg "></label>
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
-                    {...register("username", { required: true, maxLength: 25 })}
-                  />
-                </div>
-
-                <div className="form-item w-full">
-                  <label className="text-lg "></label>
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                    {...register("email", {
-                      required: true,
-                      min: 8,
-                      pattern: /^\S+@\S+$/i,
-                    })}
-                  />
-                </div>
-                <div className="form-item w-full">
-                  <label className="text-lg "></label>
-                  <input
-                    type="text"
-                    placeholder="Password: more than 8 characters"
-                    className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                    {...register("Password", {
-                      required: true,
-                      min: 8,
-                      pattern: /^\S+@\S+$/i,
-                    })}
-                  />
-                </div>
-              </div> */}
-
-              <div>{/* <h3 className="text-2xl ">More About Me</h3> */}</div>
+              {/* Aqui van los campos comentados de name, username etc */}
 
               <div className="form-item w-full">
                 {/* <label className="text-sm "></label> */}
@@ -173,13 +116,79 @@ const ArtistForm = () => {
                   </p>
                 )}
               </div>
+              <div className="columns-3 pb-3 shadow-xl">
+                <div>
+                  <label
+                    htmlFor="HeadlineAct"
+                    className="block text-lg font-semibold text-gray-400 shadow-xl"
+                    {...register("genre", {
+                      required: "Please select a genre",
+                    })}
+                  >
+                    Genre
+                  </label>
+                  <select
+                    name="HeadlineAct"
+                    id="HeadlineAct"
+                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-600 sm:text-sm"
+                  >
+                    <option value="">Please select</option>
+                    <option value="JM">Pop</option>
+                    <option value="SRV">Electonic</option>
+                    <option value="JH">Rock</option>
+                    <option value="BBK">Urban</option>
+                    <option value="BBK">Other</option>
+                  </select>
+                  {errors.genre && (
+                    <p className="text-red-500 text-sm">
+                      {errors.genre.message}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor="HeadlineAct"
+                    className="block text-lg font-semibold text-gray-400 shadow-xl"
+                  >
+                    Performance
+                  </label>
+                  <select
+                    name="HeadlineAct"
+                    id="HeadlineAct"
+                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-600 sm:text-sm "
+                  >
+                    <option value="">Please select</option>
+                    <option value="JM">Solo</option>
+                    <option value="SRV">DeeJane/DeeJay</option>
+                    <option value="JH">Band</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    htmlFor="HeadlineAct"
+                    className="block text-lg font-semibold text-gray-400 shadow-xl"
+                  >
+                    Type of Performance
+                  </label>
+                  <select
+                    name="HeadlineAct"
+                    id="HeadlineAct"
+                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-600 sm:text-sm"
+                  >
+                    <option value="">Please select</option>
+                    <option value="JM">Versions & own creations/tracks</option>
+                    <option value="SRV">Only versions</option>
+                    <option value="JH">Own creations only</option>
+                  </select>
+                </div>
+              </div>
               <div>{/* <h3 className="text-2xl">My Social Media</h3> */}</div>
               <div className="form-item">
                 <label className="text-xl "></label>
                 <input
                   type="text"
                   placeholder="Instagram"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("instagram", {
                     pattern: {
                       value: socialMediaRegex,
@@ -196,9 +205,9 @@ const ArtistForm = () => {
               <div className="form-item">
                 <input
                   type="text"
-                  placeholder="Facebook"
+                  placeholder="Soundcloud"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                  {...register("facebook", {
+                  {...register("soundcloud", {
                     pattern: {
                       value: socialMediaRegex,
                       message: "Not a valid Link",
@@ -215,28 +224,9 @@ const ArtistForm = () => {
                 <label className="text-xl "></label>
                 <input
                   type="text"
-                  placeholder="Twitter"
+                  placeholder="Other"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
-                  {...register("twitter", {
-                    pattern: {
-                      value: socialMediaRegex,
-                      message: "Not a valid Link",
-                    },
-                  })}
-                />
-                {errors.twitter && (
-                  <p className="text-red-500 text-sm">
-                    {errors.twitter.message}
-                  </p>
-                )}
-              </div>
-              <div className="form-item">
-                <label className="text-xl "></label>
-                <input
-                  type="text"
-                  placeholder="Soundcloud"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
-                  {...register("soundcloud", {
+                  {...register("other", {
                     pattern: {
                       value: socialMediaRegex,
                       message: "Not a valid Link",
@@ -249,6 +239,28 @@ const ArtistForm = () => {
                   </p>
                 )}
               </div>
+              <div className="form-item">
+                <label className="text-xl"></label>
+                <input
+                  type="number" 
+                  placeholder="Contact Number"
+                  onKeyDown={handleKeyDown}
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                  {...register("contact", {
+                    pattern: {
+                      value:
+                        /^(?:(?:\+|00)34[\s.]?)?(6\d{8}|[679]\d{1}[\s.-]?\d{2}[\s.-]?\d{2}[\s.-]?\d{2})$/,
+                      message: "Not a valid Spain mobile number",
+                    },
+                  })}
+                />
+                {errors.contact && (
+                  <p className="text-red-500 text-sm">
+                    {errors.contact.message}
+                  </p>
+                )}
+              </div>
+
               <div>
                 <UploadProfilePhoto onImageUpload={onImageUpload} />
               </div>
