@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Typography, Card, CardActionArea, CardMedia, CardContent} from "@mui/material";
 
 
-const FrontSideCard = ({ image,title, price }) => {
+const FrontSideCard = ({ image,title, price, artist}) => {
   const cardStyle = {
     width: '100%',
     minHeight: '350px',
@@ -41,6 +41,11 @@ const isFreeStyle = {
                 <Typography gutterBottom variant="h5" component="h2">
                     {title || "Event Title"}
                 </Typography>
+                {artist && (
+                    <Typography variant="body2" color="textSecondary" component="p">
+                    Artist: {artist}
+                    </Typography>
+                )}
             </CardContent>
         </CardActionArea>
     </Card>
@@ -55,6 +60,7 @@ FrontSideCard.propTypes = {
     finalDate: PropTypes.string.isRequired,
     urlEvent: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
+    artist:PropTypes.string
 };
 
 export default FrontSideCard

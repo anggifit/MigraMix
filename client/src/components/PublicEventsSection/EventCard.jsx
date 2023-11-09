@@ -4,7 +4,7 @@ import CardFlip from 'react-card-flip';
 import FrontSideCard from './FrontSideCard'
 import BackSideCard from './BackSideCard'
 
-const PublicEventCard = ({image,title,description,initialDate,finalDate, urlEvent,price,}) => {
+const EventCard = ({image,title,description,initialDate,finalDate, urlEvent,price, artist }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
@@ -18,6 +18,7 @@ const PublicEventCard = ({image,title,description,initialDate,finalDate, urlEven
           image={image}
           title={title}
           price={price}
+          artist={artist}
         />
       </div>
       <div onClick={handleFlip}>
@@ -35,7 +36,7 @@ const PublicEventCard = ({image,title,description,initialDate,finalDate, urlEven
   )
 }
 
-PublicEventCard.propTypes = {
+EventCard.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -43,6 +44,7 @@ PublicEventCard.propTypes = {
   finalDate: PropTypes.string.isRequired,
   urlEvent: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  artist: PropTypes.string
 }
 
-export default PublicEventCard
+export default EventCard

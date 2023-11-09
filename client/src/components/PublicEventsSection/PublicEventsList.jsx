@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {Container, Grid} from "@mui/material";
 import SearchEventsBar from "./SearchEventsBar";
-import PublicEventCard from "./PublicEventCard";
+import EventCard from "./EventCard";
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -77,7 +77,7 @@ function PublicEventsList() {
             {filteredData
               .map((event) => (
                 <Grid item xs={4} key={event.acte_id}>
-                  <PublicEventCard
+                  <EventCard
                     image={
                       event.imatge && event.imatge.length > 0
                         ? event.imatge

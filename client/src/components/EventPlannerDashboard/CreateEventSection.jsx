@@ -21,11 +21,12 @@ const CreateEventSection = () => {
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventTitle: '',
-            typeOfActivity: '',
             eventDescription: '',
+            urlEvent: '',  
+            typeOfActivity: '',
+            artistEvent:'',
             initialDate: null,
             finalDate: null, 
-            urlEvent: '',  
             eventImage: null      
         }
     })
@@ -74,8 +75,10 @@ const CreateEventSection = () => {
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
+            data.artist = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
+            console.log(data)
             axios
             .post('/organizers/organizer', data, { //verificar la ruta con dante
                 headers: { 'Content-Type': 'application/json' },
