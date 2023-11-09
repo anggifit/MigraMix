@@ -2,6 +2,11 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ButtonExplore from "./ButtonExplore";
 import ButtonLogin from "./ButtonLogin";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+
 
 const Header = () => {
   const HeaderStyle = {
@@ -16,6 +21,7 @@ const Header = () => {
     <div className="p-12 text-center bg-cover bg-center" style={HeaderStyle}>
       <ButtonLogin />
       <Typography
+        theme={theme}
         variant="h1"
         classes={{
           root: "text-sm sm:text-sm text-center text-[#F70808] outline-black transition duration-500 ease-in-out hover:scale-90",

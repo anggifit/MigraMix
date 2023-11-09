@@ -4,41 +4,27 @@ import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 
 
+
+
 const ArtistForm = () => {  
-  const handleKeyDown = (event) => {
-    // Prevent arrow keys from changing values
-    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-      event.preventDefault();
-    }
-  };
-  const {
-    register,
-    handleSubmit,
-    formState: { isValid, errors },
-  } = useForm({
-    defaultValues: {
-      artistbio: "",
-    },
+   const {register, handleSubmit, formState: { isValid, errors },} = useForm({defaultValues: {artistbio: "",},
   });
   console.log(errors);
 
   const token = localStorage.getItem("token");
+  const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
   const socialMediaRegex =
     /^((https?|ftp|smtp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
 
-  const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
 
   const onImageUpload = (url) => {
-    setEventProfilePictureURL(url);
-    /*     onUpdateProfilePhoto(url)
-     */
+    setEventProfilePictureURL(url);    
   };
-
   const onSubmit = (data) => {
     if (isValid) {
       data.eventProfilePicture = eventProfilePictureURL;
       axios
-        .put(`/api/artists`, data, {
+        .post(`/artists/artists`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,9 +36,7 @@ const ArtistForm = () => {
           console.log(error.response.data);
         });
     }
-  };
-
-
+  }
   
   return (
     <div className="w-full relative  shadow-2xl rounded overflow-hidden">
@@ -116,11 +100,11 @@ const ArtistForm = () => {
                   </p>
                 )}
               </div>
-              <div className="columns-3 pb-3 shadow-xl">
+              <div className="md:grid md:grid-cols-3 md:gap-4 pb-3 shadow-xl">
                 <div>
                   <label
                     htmlFor="HeadlineAct"
-                    className="block text-lg font-semibold text-gray-400 shadow-xl"
+                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
                     {...register("genre", {
                       required: "Please select a genre",
                     })}
@@ -148,7 +132,7 @@ const ArtistForm = () => {
                 <div>
                   <label
                     htmlFor="HeadlineAct"
-                    className="block text-lg font-semibold text-gray-400 shadow-xl"
+                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
                   >
                     Performance
                   </label>
@@ -166,9 +150,9 @@ const ArtistForm = () => {
                 <div>
                   <label
                     htmlFor="HeadlineAct"
-                    className="block text-lg font-semibold text-gray-400 shadow-xl"
+                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
                   >
-                    Type of Performance
+                    Music Version
                   </label>
                   <select
                     name="HeadlineAct"
@@ -242,9 +226,8 @@ const ArtistForm = () => {
               <div className="form-item">
                 <label className="text-xl"></label>
                 <input
-                  type="number" 
+                  type="number"
                   placeholder="Contact Number"
-                  onKeyDown={handleKeyDown}
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("contact", {
                     pattern: {
