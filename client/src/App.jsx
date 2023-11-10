@@ -38,7 +38,7 @@ const App = () => {
       element: <AdminDashboard/>
     },
     {
-      path:"/api/artists",
+      path:"/artists/artists",
       element: <ArtistDashboard/>
     },
     {
