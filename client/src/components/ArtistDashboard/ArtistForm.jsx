@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
+import SelectOptions from "../SelectOptions";
 
 
 
@@ -12,7 +13,12 @@ const ArtistForm = () => {
   console.log(errors);
 
   const token = localStorage.getItem("token");
+  
   const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
+  const [selectedMusicGenre, setSelectedMusicGenre] = useState('');
+  const [selectedPerformance, setSelectedPerformance] = useState('');
+  const [selectedTypeOfPerformance, setSelectedTypeOfPerformance] = useState('');
+
   const socialMediaRegex =
     /^((https?|ftp|smtp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
 
@@ -21,10 +27,15 @@ const ArtistForm = () => {
     setEventProfilePictureURL(url);    
   };
   const onSubmit = (data) => {
+    console.log(data)
+
     if (isValid) {
-      data.eventProfilePicture = eventProfilePictureURL;
+      data.ArtistsProfilePicture = eventProfilePictureURL;
+      data.MusicGenre = selectedMusicGenre;
+      data.Performance = selectedPerformance;
+      data.Type_of_performance = selectedTypeOfPerformance;
       axios
-        .post(`/artists/artists`, data, {
+        .put(`/artists/artists`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -91,8 +102,8 @@ const ArtistForm = () => {
                   placeholder="Bio"
                   maxLength={350}
                   minLength={50}
-                  id="artistbio"
-                  {...register("artistbio", { maxLength: 350, minLength: 50 })}
+                  id="ArtistBio"
+                  {...register("ArtistBio", { maxLength: 350, minLength: 50 })}
                 />
                 {errors.artistbio && (
                   <p className="text-red-500 text-sm">
@@ -102,7 +113,20 @@ const ArtistForm = () => {
               </div>
               <div className="md:grid md:grid-cols-3 md:gap-4 pb-3 shadow-xl">
                 <div>
-                  <label
+                  <SelectOptions
+                    label="Music Genre"
+                    idField="musicGenre"
+                    value={selectedMusicGenre}
+                    onChange={(e) => setSelectedMusicGenre(e.target.value)}
+                    options={[
+                      { value: 'Pop', label: 'Pop' },
+                      { value: 'Electonic', label: 'Electonic' },
+                      { value: 'Rock', label: 'Rock' },
+                      { value: 'Urban', label: 'Urban' },
+                      { value: 'Other', label: 'Other' },
+                    ]}/>
+
+                  {/* <label
                     htmlFor="HeadlineAct"
                     className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
                     {...register("genre", {
@@ -127,10 +151,22 @@ const ArtistForm = () => {
                     <p className="text-red-500 text-sm">
                       {errors.genre.message}
                     </p>
-                  )}
+                  )} */}
                 </div>
                 <div>
-                  <label
+                  <SelectOptions
+                      label="Performance"
+                      idField="performance"
+                      value={selectedPerformance}
+                      onChange={(e) => setSelectedPerformance(e.target.value)}
+                      options={[
+                        { value: 'Solo', label: 'Solo' },
+                        { value: 'DeeJane/DeeJay', label: 'DeeJane/DeeJay' },
+                        { value: 'Band', label: 'Band' },
+                      ]}
+                    />
+
+                  {/* <label
                     htmlFor="HeadlineAct"
                     className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
                   >
@@ -145,10 +181,22 @@ const ArtistForm = () => {
                     <option value="JM">Solo</option>
                     <option value="SRV">DeeJane/DeeJay</option>
                     <option value="JH">Band</option>
-                  </select>
+                  </select> */}
                 </div>
                 <div>
-                  <label
+                  <SelectOptions
+                        label="Type of performance"
+                        idField="typeOfPerformance"
+                        value={selectedTypeOfPerformance}
+                        onChange={(e) => setSelectedTypeOfPerformance(e.target.value)}
+                        options={[
+                          { value: 'Solo', label: 'Solo' },
+                          { value: 'DeeJane/DeeJay', label: 'DeeJane/DeeJay' },
+                          { value: 'Band', label: 'Band' },
+                        ]}
+                    />
+
+                  {/* <label
                     htmlFor="HeadlineAct"
                     className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
                   >
@@ -163,7 +211,7 @@ const ArtistForm = () => {
                     <option value="JM">Versions & own creations/tracks</option>
                     <option value="SRV">Only versions</option>
                     <option value="JH">Own creations only</option>
-                  </select>
+                  </select> */}
                 </div>
               </div>
               <div>{/* <h3 className="text-2xl">My Social Media</h3> */}</div>
@@ -172,17 +220,18 @@ const ArtistForm = () => {
                 <input
                   type="text"
                   placeholder="Instagram"
+                  id="ArtistMainLink"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                  {...register("instagram", {
+                  {...register("ArtistMainLink", {
                     pattern: {
                       value: socialMediaRegex,
                       message: "Not a valid Link",
                     },
                   })}
                 />
-                {errors.instagram && (
+                {errors.ArtistMainLink && (
                   <p className="text-red-500 text-sm">
-                    {errors.instagram.message}
+                    {errors.ArtistMainLink.message}
                   </p>
                 )}
               </div>
@@ -228,18 +277,19 @@ const ArtistForm = () => {
                 <input
                   type="number"
                   placeholder="Contact Number"
+                  id="ContactNumber"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                  {...register("contact", {
-                    pattern: {
+                  {...register("ContactNumber", {
+                    /* pattern: {
                       value:
                         /^(?:(?:\+|00)34[\s.]?)?(6\d{8}|[679]\d{1}[\s.-]?\d{2}[\s.-]?\d{2}[\s.-]?\d{2})$/,
                       message: "Not a valid Spain mobile number",
-                    },
+                    }, */
                   })}
                 />
-                {errors.contact && (
+                {errors.ContactNumber && (
                   <p className="text-red-500 text-sm">
-                    {errors.contact.message}
+                    {errors.ContactNumbers.message}
                   </p>
                 )}
               </div>
