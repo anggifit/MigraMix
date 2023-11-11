@@ -33,7 +33,7 @@ const UploadProfilePhoto = ({ onImageUpload }) => {
           setUploading(false);
         }
       } else {
-        console.error("El archivo seleccionado no es una imagen");
+        console.error("Archivo seleccionado no es una imagen");
       }
     }
   };
