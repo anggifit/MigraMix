@@ -117,12 +117,13 @@ const ArtistForm = ({artistProfilePic}) => {
                     value={selectedMusicGenre}
                     onChange={(e) => setSelectedMusicGenre(e.target.value)}
                     options={[
-                      { value: 'Pop', label: 'Pop' },
-                      { value: 'Electonic', label: 'Electonic' },
-                      { value: 'Rock', label: 'Rock' },
-                      { value: 'Urban', label: 'Urban' },
-                      { value: 'Other', label: 'Other' },
-                    ]}/>
+                      { value: "Pop", label: "Pop" },
+                      { value: "Electonic", label: "Electonic" },
+                      { value: "Rock", label: "Rock" },
+                      { value: "Urban", label: "Urban" },
+                      { value: "Other", label: "Other" },
+                    ]}
+                  />
 
                   {/* <label
                     htmlFor="HeadlineAct"
@@ -153,16 +154,16 @@ const ArtistForm = ({artistProfilePic}) => {
                 </div>
                 <div>
                   <SelectOptions
-                      label="Performance"
-                      idField="performance"
-                      value={selectedPerformance}
-                      onChange={(e) => setSelectedPerformance(e.target.value)}
-                      options={[
-                        { value: 'Solo', label: 'Solo' },
-                        { value: 'DeeJane/DeeJay', label: 'DeeJane/DeeJay' },
-                        { value: 'Band', label: 'Band' },
-                      ]}
-                    />
+                    label="Performance"
+                    idField="performance"
+                    value={selectedPerformance}
+                    onChange={(e) => setSelectedPerformance(e.target.value)}
+                    options={[
+                      { value: "Solo", label: "Solo" },
+                      { value: "DeeJane/DeeJay", label: "DeeJane/DeeJay" },
+                      { value: "Band", label: "Band" },
+                    ]}
+                  />
 
                   {/* <label
                     htmlFor="HeadlineAct"
@@ -183,16 +184,24 @@ const ArtistForm = ({artistProfilePic}) => {
                 </div>
                 <div>
                   <SelectOptions
-                        label="Type of performance"
-                        idField="typeOfPerformance"
-                        value={selectedTypeOfPerformance}
-                        onChange={(e) => setSelectedTypeOfPerformance(e.target.value)}
-                        options={[
-                          { value: 'Solo', label: 'Solo' },
-                          { value: 'DeeJane/DeeJay', label: 'DeeJane/DeeJay' },
-                          { value: 'Band', label: 'Band' },
-                        ]}
-                    />
+                    label="Music Version"
+                    idField="typeOfPerformance"
+                    value={selectedTypeOfPerformance}
+                    onChange={(e) =>
+                      setSelectedTypeOfPerformance(e.target.value)
+                    }
+                    options={[
+                      {
+                        value: "Versions & own creations",
+                        label: "Versions & own creations",
+                      },
+                      { value: "Only versions", label: "Only versions" },
+                      {
+                        value: "Only own creations",
+                        label: "Only own creations",
+                      },
+                    ]}
+                  />
 
                   {/* <label
                     htmlFor="HeadlineAct"
