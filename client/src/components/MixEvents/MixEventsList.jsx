@@ -63,7 +63,6 @@ const MixEventsList = () => {
               ))}
           </Grid>
         </Container>
-
     </div>
   )
 }

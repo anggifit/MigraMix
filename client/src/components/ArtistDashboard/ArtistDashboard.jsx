@@ -1,9 +1,9 @@
 import ArtistForm from "./ArtistForm"
 
-const ArtistDashboard = () => {
+const ArtistDashboard = ({artistProfilePic}) => {
   return (
     <div>
-      <ArtistForm />     
+      <ArtistForm artistProfilePic={artistProfilePic}/>     
     </div>
   );
 }

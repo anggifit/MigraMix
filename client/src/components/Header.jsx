@@ -43,9 +43,9 @@ const Header = () => {
           className="mt-6 text-base md:text-lg lg:text-lg text-gray-900 text-custom"
         >
           Welcome to a vibrant platform showcasing emerging migrant artists in
-          Barcelona`s electronic music scene.
+          Barcelona`s electronic music scene. 
+          Let`s unite through music, creativity, and cultural diversity.
         </Typography>
-        Let`s unite through music, creativity, and cultural diversity.
       </div>
       <Stack className="mt-6">
         <ButtonExplore />

@@ -10,10 +10,11 @@ const AdminDashboard = () => {
     const [organizerUsername, setOrganizerUsername] = useState('')
     const [organizerFistName, setOrganizerFirstName] = useState(null)
     const [organizerLastName, setOrganizerLastName] = useState(null)
-    
     const [organizerPicture, setOrganizerPicture] = useState('https://i.pinimg.com/736x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg')
+    
+    const [artistProfilePic, setArtistProfilePic] = useState('https://i.pinimg.com/736x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg')
 /*     const [artistUsername, setArtistUsername] = useState()
- */
+ */    
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -35,11 +36,26 @@ const AdminDashboard = () => {
                 .catch((error) => {
                     console.error("error al obtener el nombre de usuario", error)
                 })
+        } else if (role === "Artist" && token) {
+            axios.get('http://localhost:4000/artists/artists?timestamp=${Date.now()', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Cache-Control': 'no-cache',
+                }
+            })
+                .then((response) => {
+                    if(response.data.artistProfilePicture){
+                        setArtistProfilePic(response.data.artistsProfilePicture)
+                    }
+                })
+                .catch((error) => {
+                    console.error("error al obtener el nombre de usuario", error)
+                })
         }
     }, [role, token])
 
     if (role === "Artist") {
-        return <ArtistDashboard/>
+        return <ArtistDashboard artistProfilePic={artistProfilePic}/>
     } else if (role === "Organizer"){
         return <EventPlannerDashboard profilePhoto={organizerPicture} username={organizerUsername} fullname={`${organizerFistName} ${organizerLastName}`}/>
     } else {

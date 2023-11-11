@@ -22,7 +22,8 @@ const BackSideCard = ({ image,title,description,initialDate,finalDate,urlEvent,p
     
     return (
         <Card 
-                sx={cardStyle}>
+            sx={cardStyle}
+        >
             <CardActionArea>
                 <CardMedia
                 component="div"
@@ -31,18 +32,16 @@ const BackSideCard = ({ image,title,description,initialDate,finalDate,urlEvent,p
                 alt={title}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {title || "Event Title"}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {description || "Event Description"}
-                    <p className="text-bue-900 mb-4">
-                    <span className="font-semibold">
-                        Date: from {formatDate(initialDate) || "N/A"} to{" "}
-                        {formatDate(finalDate) || "N/A"}
-                    </span>
-                    </p>
-                </Typography>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {title || "Event Title"}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {description || "Event Description"}
+                        <Typography variant="subtitle2">
+                                Date: from {formatDate(initialDate) || "N/A"} to{" "}
+                                {formatDate(finalDate) || "N/A"}
+                        </Typography>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
