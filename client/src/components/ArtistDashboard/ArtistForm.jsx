@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 import SelectOptions from "../SelectOptions";
+import { PropTypes } from "prop-types";
 
 
 const ArtistForm = ({artistProfilePic}) => {  
@@ -315,5 +316,10 @@ const ArtistForm = ({artistProfilePic}) => {
     </div>
   );
 };
+
+ArtistForm.propTypes = {
+  artistProfilePic: PropTypes.string,
+};
+
 
 export default ArtistForm;
