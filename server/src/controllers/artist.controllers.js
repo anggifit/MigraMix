@@ -100,7 +100,11 @@ export const getProfileArtist = async (req, res) => {
 };
 
 export const getArtistList = async (req, res) => {
-  const response = await pool.query("SELECT * FROM artists");
+  const response = await pool.query(`
+  SELECT a.id, u.first_name, u.last_name, u.username, a.ArtistsProfilePicture, a.ArtistBio, a.ArtistMainLink, a.ArtistSecundaryLink, a.ArtistThirdLink, a.MusicGenre, a.Performance, a.Type_of_performance, a.ContactNumber
+  FROM artists a
+  INNER JOIN users u ON a.id = u.id
+`);
   console.log(response.rows);
   res.status(200).json(response.rows);
 };

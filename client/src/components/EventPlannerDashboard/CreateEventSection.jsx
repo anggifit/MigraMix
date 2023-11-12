@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm} from "react-hook-form";
 import axios from "axios"
 import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
@@ -34,6 +34,7 @@ const CreateEventSection = () => {
     /*  const token = localStorage.getItem('token'); */
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
+    const [artistData, setArtistData] = useState([])
     const [selectedArtist, setSelectedArtist] = useState('')
     const [initialDateSelected, setInitialDateSelected] = useState(null)
     const [finalDateSelected, setFinalDateSelected] = useState(null)
@@ -42,13 +43,10 @@ const CreateEventSection = () => {
     dayjs.extend(isSameOrAfter)
     dayjs.extend(isSameOrBefore)
 
-    const onImageUpload = (url) => {
-        setEventProfilePictureURL(url); 
-    };
-
+    
     const handlerInitialDateChange = (newInitialDate) =>{
         const currentDate = dayjs()
-    
+        
         if (newInitialDate.isSameOrAfter(currentDate, 'day')) {
             setInitialDateSelected(newInitialDate.format('YYYY-MM-DD'))
             setValue('initialDate', newInitialDate)
@@ -57,10 +55,10 @@ const CreateEventSection = () => {
             setError('The selected date should be today or in the future.');
         }
     }
-
+    
     const handlerFinalDateChange = (newFinalDate) =>{
         const initialDate = dayjs(initialDateSelected)
-    
+        
         if(newFinalDate.isSameOrAfter(initialDate, 'day')) {
             setFinalDateSelected(newFinalDate.format('YYYY-MM-DD'))
             setValue('finalDate', newFinalDate)
@@ -69,6 +67,28 @@ const CreateEventSection = () => {
             setError('The final date should be the same or after the initial date.')
         }
     }
+    
+    const onImageUpload = (url) => {
+        setEventProfilePictureURL(url); 
+    };
+
+    useEffect(() => {
+        fetchArtistData()
+        async function fetchArtistData() {
+            try {
+                const response = await axios.get('http://localhost:4000/artists/artistsList')
+                if (response.status !== 200) {
+                    throw new Error("Network response was not ok")
+                }
+
+                const data = response.data
+                setArtistData(data)
+            }
+            catch (error) {
+                setError(error)
+            }
+        }
+    }, [])
 
     const onSubmit = (data) => {
         console.log(data)
@@ -205,7 +225,7 @@ const CreateEventSection = () => {
                                 idField="artists"
                                 value={selectedArtist}
                                 onChange={(e) => setSelectedArtist(e.target.value)}
-                                options={artists.map((artist)=> ({
+                                options={artistData.map((artist)=> ({
                                     value: artist.username,
                                     label: artist.username,
                                 }))}

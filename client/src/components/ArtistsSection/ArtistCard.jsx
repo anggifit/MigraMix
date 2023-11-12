@@ -2,7 +2,7 @@ import { useState } from "react";
 import ArtistProfile from "./ArtistProfile";
 import PropTypes from "prop-types";
 
-const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPerformance}) => {
+const ArtistCard = ({ image, user, bio, mainLink, musicGenre, performance, typeOfPerformance}) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -43,7 +43,7 @@ const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPe
                     <ArtistProfile 
                         image={image} 
                         user={user} 
-                        email={email} 
+                        mainLink={mainLink} 
                         musicGenre={musicGenre}
                         performance={performance}
                         typeOfPerformance={typeOfPerformance}
@@ -61,7 +61,7 @@ ArtistCard.propTypes = {
     genre: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    mainLink: PropTypes.string,
     musicGenre: PropTypes.string.isRequired,
     performance: PropTypes.string.isRequired,
     typeOfPerformance: PropTypes.string.isRequired,
