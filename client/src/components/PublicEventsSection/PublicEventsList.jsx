@@ -68,9 +68,9 @@ function PublicEventsList() {
       <SearchEventsBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
       
       {loading ? (
-        <p>Loading data...</p>
+        <div>Loading data...</div>
       ) : error ? (
-        <p>Error: {error.message}</p>
+        <div>Error: {error.message}</div>
       ) : (
         <Container maxWidth="lg">
           <Grid container spacing={3} justifyContent="center">

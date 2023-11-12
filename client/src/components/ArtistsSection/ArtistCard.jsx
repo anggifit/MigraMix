@@ -58,9 +58,9 @@ const ArtistCard = ({ image, user, bio, mainLink, musicGenre, performance, typeO
 
 ArtistCard.propTypes = {
     image: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
+    genre: PropTypes.string,
     user: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
+    link: PropTypes.string,
     mainLink: PropTypes.string,
     musicGenre: PropTypes.string.isRequired,
     performance: PropTypes.string.isRequired,

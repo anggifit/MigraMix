@@ -1,9 +1,10 @@
 import { Box, Button, Typography, Modal, Stack, Accordion, AccordionSummary, AccordionDetails} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PropTypes from "prop-types";
+/* 
 import { useNavigate} from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
-
+ */
 
 const style = {
     position: 'absolute',
@@ -17,7 +18,8 @@ const style = {
 };
 
 const ArtistProfile = ({ open, onClose, image, user, musicGenre, performance, typeOfPerformance, bio, mainLink}) => {
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
+    const protocol = 'http://';
 
     return (
         <div>
@@ -97,16 +99,20 @@ const ArtistProfile = ({ open, onClose, image, user, musicGenre, performance, ty
                                                 <p className='mb-4 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased'>
                                                 {bio}
                                                 </p>
-                                                <RouterLink to={mainLink}>
                                                     <Button 
                                                         variant="contained" 
-                                                        onClick={() => navigate({ pathname: `${mainLink}`})}
+                                                        onClick={() => {
+                                                            if(mainLink.startsWith('http')) {
+                                                                window.location.href = mainLink;
+                                                            } else {
+                                                                window.location.href = protocol + mainLink;
+                                                            }
+                                                        }}
                                                         fullWidth={true}
                                                         sx={{ backgroundColor: '#2B2D42', color: 'white', '&:hover':{backgroundColor: '#9C9FA5'}}}
                                                     >
                                                     Contact me
                                                     </Button>
-                                                </RouterLink>
                                             </div>
                                         </div>
                                     </div>

@@ -32,10 +32,10 @@ const BackSideCard = ({ image,title,description,initialDate,finalDate,urlEvent,p
                 alt={title}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5">
                         {title || "Event Title"}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body1" color="text.secondary">
                         {description || "Event Description"}
                         <Typography variant="subtitle2">
                                 Date: from {formatDate(initialDate) || "N/A"} to{" "}
