@@ -1,6 +1,7 @@
 import { Box, Typography, Modal, Stack, Button } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useNavigate } from "react-router-dom";
+import { PropTypes } from 'prop-types';
 
 const style = {
     position: 'absolute',
@@ -54,4 +55,9 @@ function SuccesfullRegistration({ open, onClose }) {
     );
 }
 
+
+SuccesfullRegistration.propTypes = {
+  open: PropTypes.open,
+  onClose: PropTypes.onClose,
+};
 export default SuccesfullRegistration

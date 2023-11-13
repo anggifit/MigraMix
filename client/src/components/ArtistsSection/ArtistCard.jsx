@@ -29,9 +29,9 @@ const ArtistCard = ({ image, user, bio, mainLink, musicGenre, performance, typeO
                 >
                     {user}
                 </h4>
-                <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+                <span className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                     {bio.length > 120 ? shortBio(bio) + '...' : bio}                
-                </p>
+                </span>
                 <a>
                     <button 
                             type="button" 

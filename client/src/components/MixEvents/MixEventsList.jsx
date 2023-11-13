@@ -1,5 +1,4 @@
-/* import { useEffect, useState } from "react";
- */import {Container, Grid} from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import EventCard from "../PublicEventsSection/EventCard";
 import FakeEventsList from './FakeEventsList.json'
 
