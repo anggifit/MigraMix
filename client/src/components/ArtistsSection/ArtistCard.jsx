@@ -18,12 +18,12 @@ const ArtistCard = ({ image, user, bio, mainLink, musicGenre, performance, typeO
                 <img src={image} className='h-full w-full object-cover'/>
             </div>
             <div className="p-8">
-                <h6 
+                <span
                     className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-[#FF4B4B] antialiased"
                     style={{ fontFamily: "Helvetica, sans-serif" }}
                 >
                     {musicGenre}
-                </h6>
+                </span>
                 <h4 
                     className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
                 >
@@ -61,7 +61,7 @@ ArtistCard.propTypes = {
     genre: PropTypes.string,
     user: PropTypes.string.isRequired,
     link: PropTypes.string,
-    mainLink: PropTypes.string,
+    mainLink: PropTypes.string.isRequired,
     musicGenre: PropTypes.string.isRequired,
     performance: PropTypes.string.isRequired,
     typeOfPerformance: PropTypes.string.isRequired,

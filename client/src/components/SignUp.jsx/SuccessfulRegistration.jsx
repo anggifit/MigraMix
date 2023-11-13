@@ -37,7 +37,7 @@ function SuccesfullRegistration({ open, onClose }) {
                         spacing={2}
                     >
                         <CheckCircleIcon fontSize='large' className='text-lime-500'/>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                        <Typography id="modal-modal-title" variant='h5' component="h2">
                             Succesfull Registration
                         </Typography>
                         <Button
@@ -61,3 +61,5 @@ SuccesfullRegistration.propTypes = {
   onClose: PropTypes.onClose,
 };
 export default SuccesfullRegistration
+
+

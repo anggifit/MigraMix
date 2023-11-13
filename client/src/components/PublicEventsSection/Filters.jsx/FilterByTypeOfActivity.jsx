@@ -8,6 +8,7 @@ const FilterByTypeOfActivity = ({onFilterChange}) => {
     };
 
     return (
+        <div>
         <FormControl sx={{ m: 1, minWidth: 200 }}>
             <InputLabel id="demo-simple-select-helper-label">By Type</InputLabel>
             <Select value="" onChange={handleFilterChange}>
@@ -16,11 +17,12 @@ const FilterByTypeOfActivity = ({onFilterChange}) => {
                 <MenuItem value="paid">Paid</MenuItem>
             </Select>
         </FormControl>
+        </div>
     )
 }
 
 FilterByTypeOfActivity.propTypes = {
-    onFilterChange: PropTypes.func.isRequired
+    onFilterChange: PropTypes.func,
 }
 
 export default FilterByTypeOfActivity

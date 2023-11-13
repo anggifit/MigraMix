@@ -17,6 +17,7 @@ const DateRangeEvent = ({onChange}) => {
     }
     
     return (
+        <>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box 
                 width={170}
@@ -35,6 +36,7 @@ const DateRangeEvent = ({onChange}) => {
                 />
             </Box>
         </LocalizationProvider>
+        </>
     );
 }
 

@@ -10,4 +10,4 @@ const MixEventsSection = () => {
   )
 }
 
-export default MixEventsSection
+export default MixEventsSection; 
