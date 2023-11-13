@@ -33,7 +33,7 @@ const MixEventsList = () => {
   }) */
 
   return (
-    <div className="font-sans p-8">  
+    <div className="font-sans p-8" >  
       {/* NO OLVIDAR COLOCAR ACA EL LOADING Y MANEJO DE ERROR */}
         <Container maxWidth="lg">
           <Grid container spacing={3} justifyContent="center">

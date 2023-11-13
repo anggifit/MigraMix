@@ -3,11 +3,11 @@ import { Typography, Button, Card, CardActionArea, CardMedia, CardContent, CardA
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import moment from "moment";
 
-const formatDate = (date) => {
-    return moment(date).format("MMM Do YY");
-};
 
 const BackSideCard = ({ image,title,description,initialDate,finalDate,urlEvent,price }) => {
+    const formatDate = (date) => {
+        return moment(date).format("MM Do YYYY");
+    };
     const cardStyle = {
         width: '100%',
         minHeight: '500px',
@@ -38,8 +38,8 @@ const BackSideCard = ({ image,title,description,initialDate,finalDate,urlEvent,p
                     <Typography variant="body1" color="text.secondary">
                         {description || "Event Description"}
                         <Typography variant="subtitle2">
-                                Date: from {formatDate(initialDate) || "N/A"} to{" "}
-                                {formatDate(finalDate) || "N/A"}
+                                Date: {initialDate ? `from ${formatDate(initialDate)}` : "N/A" } {" "}
+                                {finalDate ? `to ${formatDate(finalDate)}` : " " }
                         </Typography>
                     </Typography>
                 </CardContent>
@@ -66,7 +66,7 @@ BackSideCard.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     initialDate: PropTypes.string.isRequired,
-    finalDate: PropTypes.string.isRequired,
+    finalDate: PropTypes.string,
     urlEvent: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
 };

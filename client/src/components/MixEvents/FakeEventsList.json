@@ -1,13 +1,12 @@
 [
     {
       "id": 1,
-      "eventTitle": "Festival de Arte Urbano",
+      "eventTitle": "FESTIVAL DE ARTE URBANO",
       "eventDescription": "Únete a nosotros en el Festival de Arte Urbano, donde artistas de todo el mundo exhibirán su creatividad en graffiti, música en vivo y performances callejeras. ¡Una experiencia única que no querrás perderte!",
       "urlEvent": "http://ejemplo.com/festival-arte-urbano",
       "typeOfActivity": "free",
       "artistEvent": "Graffiti King",
       "initialDate": "2023-11-15T12:00:00",
-      "finalDate": "2023-11-15T20:00:00",
       "eventImage": "http://ejemplo.com/imagenes/festival-arte.jpg"
     },
     {
