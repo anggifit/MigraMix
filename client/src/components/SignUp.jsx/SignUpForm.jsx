@@ -13,9 +13,10 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import DateOfBirth from './DateOfBirth';
-import SuccesfullRegistration from './SuccessfulRegistration';
+import SuccesfullModal from './SuccesfullModal';
 import SelectOptions from '../SelectOptions';
 
 function Copyright(props) {
@@ -67,9 +68,14 @@ const SignUpForm = () => {
     setValue('dateOfBirth', date);
   };
 
-  const handleOpen = () => {
+  const navigate = useNavigate()
+  const handleNextClick = () => {
+      navigate("/api/sign-in")
+  }
+
+/*   const handleOpen = () => {
     setOpen(true);
-  };
+  }; */
 
   const onSubmit = (data) => {
     if (isValid) {
@@ -361,9 +367,11 @@ const SignUpForm = () => {
                 >
                   Sign Up
                 </Button>
-                <SuccesfullRegistration
+                <SuccesfullModal
                   open={open}
                   onClose={() => setOpen(false)}
+                  onClick={handleNextClick}
+                  description= "Succesfull Registration"
                 />
                 <Grid container justifyContent="flex-end">
                   <Grid item>

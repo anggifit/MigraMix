@@ -95,7 +95,7 @@ const CreateEventSection = () => {
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
-            data.artist = selectedArtist
+            data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
             console.log(data)
