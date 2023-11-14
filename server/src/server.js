@@ -30,4 +30,5 @@ server.use("/organizers", organizerRoutes);
 server.use("/artists", artistRoutes);
 server.use("/events", eventsRoutes);
 
+
 export default server;

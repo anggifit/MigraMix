@@ -66,3 +66,7 @@ export const getUsers = async (re, res) => {
   console.log(response.rows);
   res.status(200).json(response.rows);
 };
+
+export const logout = (req, res) => {
+  res.status(200).json({ message: "Logout exitosa", token: "", role: "" });
+};
