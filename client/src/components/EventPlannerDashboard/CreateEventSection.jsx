@@ -12,6 +12,8 @@ import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
 import RedButton from "../RedButton"
 import SelectOptions from "../SelectOptions";
+import SuccesfullModal from '../SignUp/SuccesfullModal'
+
 
 const defaultTheme = createTheme();
 
@@ -38,6 +40,7 @@ const CreateEventSection = () => {
     const [initialDateSelected, setInitialDateSelected] = useState(null)
     const [finalDateSelected, setFinalDateSelected] = useState(null)
     const [error, setError] = useState(null);
+    const [open, setOpen] = useState(false);
     
     dayjs.extend(isSameOrAfter)
     dayjs.extend(isSameOrBefore)
@@ -89,6 +92,10 @@ const CreateEventSection = () => {
         }
     }, [])
 
+    const handleExitClick = () => {
+        setOpen(false)
+    }
+
     const onSubmit = (data) => {
         console.log(data)
         if (isValid) {
@@ -104,11 +111,18 @@ const CreateEventSection = () => {
                     Authorization: `Bearer ${token}`,
                 },
             })
-            .then((response) => {console.log(response.data)})
+            .then((response) => {
+                console.log(response.data)
+                if (response.status === 200) {
+                    setOpen(true);
+                }
+            })
             .catch((error) => {console.log(error.data);})
         }
         console.log(data)
     }
+
+
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
@@ -274,9 +288,18 @@ const CreateEventSection = () => {
                         </Grid>
                     </Grid>
                     <Stack 
+                        direction="row"
                         alignItems="center"
+                        justifyContent="center"
+                        spacing={8}
                     >
-                        <RedButton info="Save Event" widen size="large"/>
+                        <RedButton info="Save Event" widen size="large" type="submit"/>
+                        <SuccesfullModal
+                                open={open}
+                                onClose={() => setOpen(false)}
+                                onClick={handleExitClick}
+                                description= "The event has been created successfully."
+                        />
                     </Stack>
                     </Box>
                 </Box>

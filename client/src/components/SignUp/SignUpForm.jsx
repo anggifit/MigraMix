@@ -94,8 +94,6 @@ const SignUpForm = () => {
         .catch((error) => {
           console.log(error.data);
         });
-
-      //console.log(data);
     }
   };
 

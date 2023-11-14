@@ -40,7 +40,7 @@ function SuccesfullModal({ open, onClose, onClick, description }) {
                             variant='contained'
                             size="large"
                             onClick={onClick}
-                            sx={{ backgroundColor: '#2B2D42', color: 'white', '&:hover':{backgroundColor: '#9C9FA5'}}}
+                            sx={{ backgroundColor: '#2B2D42', color: 'white', textAlign: 'center', '&:hover':{backgroundColor: '#9C9FA5'}}}
                         >
                             Next
                         </Button>
@@ -53,7 +53,7 @@ function SuccesfullModal({ open, onClose, onClick, description }) {
 
 
 SuccesfullModal.propTypes = {
-  open: PropTypes.boolean,
+ // open: PropTypes.boolean,
   onClose: PropTypes.func,
   onClick: PropTypes.func,
   description: PropTypes.string

@@ -16,7 +16,7 @@ const MixEventsList = () => {
     fetchMixEventsData()
     async function fetchMixEventsData() {
       try {
-        const response = await axios.get('http://localhost:4000/events/eventsByOrganizer')//modificar ruta
+        const response = await axios.get('http://localhost:4000/events')//modificar ruta
         
         const data = response.data
         setMixEventsData(data)
