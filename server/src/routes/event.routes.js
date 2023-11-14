@@ -5,6 +5,9 @@ import { eventSchema } from "../schemas/event.schema.js";
 import {
   putEventByOrganizer,
   getEventByOrganizer,
+  eventsById,
+  updateEvent,
+  eventByTypeofactivity,
 } from "../controllers/event.controllers.js";
 const router = Router();
 
@@ -15,5 +18,7 @@ router.put(
   putEventByOrganizer
 );
 router.get("/eventsByOrganizer", authenticateToken, getEventByOrganizer);
-
+router.get("/events-organizer", authenticateToken, eventsById);
+router.put("/event-update", authenticateToken, updateEvent);
+router.get("/events-factivity/:type", eventByTypeofactivity);
 export default router;
