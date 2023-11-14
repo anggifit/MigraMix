@@ -9,7 +9,7 @@ import { PropTypes } from "prop-types";
 const ArtistForm = ({artistProfilePic}) => {  
    const {register, handleSubmit, formState: { isValid, errors },} = useForm({defaultValues: {artistbio: "",},
   });
-  console.log(errors);
+  
 
   const token = localStorage.getItem("token");
   

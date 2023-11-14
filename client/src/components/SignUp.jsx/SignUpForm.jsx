@@ -67,9 +67,7 @@ const SignUpForm = () => {
     setValue('dateOfBirth', date);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleOpen = () => setOpen(true);
 
   const onSubmit = (data) => {
     if (isValid) {
@@ -384,5 +382,8 @@ const SignUpForm = () => {
     </div>
   );
 };
+
+
+
 
 export default SignUpForm;
