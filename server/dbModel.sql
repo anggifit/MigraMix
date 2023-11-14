@@ -17,7 +17,7 @@ CREATE TABLE artists(artist_id INT UNIQUE references users(id));
 
 CREATE TABLE artists(
     id INT REFERENCES users(id),
-    ArtistsProfilePicture 
+    ArtistsProfilePicture  VARCHAR(250),
     ArtistBio VARCHAR(500) NOT NULL,
     ArtistMainLink VARCHAR(50),
     ArtistSecundaryLink VARCHAR(50),
@@ -31,11 +31,18 @@ CREATE TABLE artists(
 CREATE TABLE events_organiser(organiser_id INT UNIQUE references users(id)); 
 
 CREATE TABLE events(
-    id SERIAL PRIMARY KEY,
-    organiser_id INT references events_organiser(organiser_id),
-    start_date DATE NOT NULL,
-    location VARCHAR(100) NOT NULL
-);
+	id SERIAL PRIMARY KEY,
+    organizer_id INT UNIQUE REFERENCES users(id),
+	location VARCHAR(100) NOT NULL,
+    eventTitle VARCHAR(100) NOT NULL,
+    eventDescription VARCHAR(100) NOT NULL,
+    urlEvent VARCHAR(100) NOT NULL,
+    typeOfActivity VARCHAR(100) NOT NULL,
+    artistEvent VARCHAR(100) NOT NULL,
+    initialDate DATE NOT NULL,
+    finalDate DATE,
+    eventImage VARCHAR(250)
+); 
 
 CREATE TABLE event_by_artist(
     id SERIAL PRIMARY KEY,

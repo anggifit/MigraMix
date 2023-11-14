@@ -46,6 +46,10 @@ const App = () => {
       element: <EventPlannerDashboard/>
     },
     {
+      path:"/events/events",
+      element: <EventPlannerDashboard/>
+    },
+    {
       path: "/events",
       element: <PublicEvents/>
     }
