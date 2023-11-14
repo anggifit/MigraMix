@@ -1,6 +1,3 @@
-
-
-
 const ArtistPersonalInfo = () => {
   return (
     <div>
@@ -15,7 +12,6 @@ const ArtistPersonalInfo = () => {
         //   {...register("name", { required: true, maxLength: 15 })}
         />
       </div>
-
       <div className="form-item">
         <label className="text-lg "></label>
         <input
@@ -25,7 +21,6 @@ const ArtistPersonalInfo = () => {
           //{...register("Lastname", { required: true, maxLength: 15 })}
         />
       </div>
-
       <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-2">
         <div className="form-item w-full">
           <label className="text-lg "></label>
@@ -36,7 +31,6 @@ const ArtistPersonalInfo = () => {
             //{...register("username", { required: true, maxLength: 25 })}
           />
         </div>
-
         <div className="form-item w-full">
           <label className="text-lg "></label>
           <input

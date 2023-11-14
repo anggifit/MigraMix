@@ -2,7 +2,7 @@ import { useState } from "react";
 import ArtistProfile from "./ArtistProfile";
 import PropTypes from "prop-types";
 
-const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPerformance}) => {
+const ArtistCard = ({ image, user, bio, mainLink, musicGenre, performance, typeOfPerformance}) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -18,20 +18,20 @@ const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPe
                 <img src={image} className='h-full w-full object-cover'/>
             </div>
             <div className="p-8">
-                <h6 
+                <span
                     className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-[#FF4B4B] antialiased"
                     style={{ fontFamily: "Helvetica, sans-serif" }}
                 >
                     {musicGenre}
-                </h6>
+                </span>
                 <h4 
                     className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
                 >
                     {user}
                 </h4>
-                <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+                <span className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                     {bio.length > 120 ? shortBio(bio) + '...' : bio}                
-                </p>
+                </span>
                 <a>
                     <button 
                             type="button" 
@@ -43,7 +43,7 @@ const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPe
                     <ArtistProfile 
                         image={image} 
                         user={user} 
-                        email={email} 
+                        mainLink={mainLink} 
                         musicGenre={musicGenre}
                         performance={performance}
                         typeOfPerformance={typeOfPerformance}
@@ -58,10 +58,10 @@ const ArtistCard = ({ image, user, bio, email, musicGenre, performance, typeOfPe
 
 ArtistCard.propTypes = {
     image: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
+    genre: PropTypes.string,
     user: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    link: PropTypes.string,
+    mainLink: PropTypes.string.isRequired,
     musicGenre: PropTypes.string.isRequired,
     performance: PropTypes.string.isRequired,
     typeOfPerformance: PropTypes.string.isRequired,

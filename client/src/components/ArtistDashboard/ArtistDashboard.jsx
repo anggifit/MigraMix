@@ -1,11 +1,15 @@
 import ArtistForm from "./ArtistForm"
+import PropTypes from "prop-types";
 
-const ArtistDashboard = () => {
+const ArtistDashboard = ({artistProfilePic}) => {
   return (
     <div>
-      <ArtistForm />     
+      <ArtistForm artistProfilePic={artistProfilePic}/>     
     </div>
   );
 }
+ArtistDashboard.propTypes = {
+  artistProfilePic: PropTypes.func,
+};
 
 export default ArtistDashboard; 

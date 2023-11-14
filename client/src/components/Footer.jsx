@@ -1,16 +1,10 @@
 const Footer = () => {
-  const FooterStyle = {
-    backgroundImage: `url('/footer.png')`,
-    backgroundSize: "cover", // Adjust as needed
-    backgroundRepeat: "no-repeat", // Adjust as needed
-    backgroundPosition: "center", // Adjust as needed
-   
-  };
+ 
   return (
     <div>
       <footer
         className="py-24 p-16 w-full h-full"
-        style={FooterStyle}
+        
       >
         <h2 className="pb-3 text-3xl text-center font-semibold font-custom text-[#F70808]">
           Frequently Asked Questions

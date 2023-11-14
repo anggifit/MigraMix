@@ -2,26 +2,26 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ButtonExplore from "./ButtonExplore";
 import ButtonLogin from "./ButtonLogin";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+// import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
+// let theme = createTheme();
+// theme = responsiveFontSizes(theme);
 
 
 const Header = () => {
-  const HeaderStyle = {
-    backgroundImage: `url('/header.png')`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-  };
+  // const HeaderStyle = {
+  //   backgroundImage: `url('/header.png')`,
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundPosition: "center",
+  //   backgroundColor: "rgba(255, 255, 255, 0.5)",
+  // };
 
   return (
-    <div className="p-12 text-center bg-cover bg-center" style={HeaderStyle}>
+    <div className="p-12 text-center bg-cover bg-center">
       <ButtonLogin />
       <Typography
-        theme={theme}
+        // theme={theme}
         variant="h1"
         classes={{
           root: "text-sm sm:text-sm text-center text-[#F70808] outline-black transition duration-500 ease-in-out hover:scale-90",
@@ -43,9 +43,9 @@ const Header = () => {
           className="mt-6 text-base md:text-lg lg:text-lg text-gray-900 text-custom"
         >
           Welcome to a vibrant platform showcasing emerging migrant artists in
-          Barcelona`s electronic music scene.
+          Barcelona`s electronic music scene. 
+          Let`s unite through music, creativity, and cultural diversity.
         </Typography>
-        Let`s unite through music, creativity, and cultural diversity.
       </div>
       <Stack className="mt-6">
         <ButtonExplore />

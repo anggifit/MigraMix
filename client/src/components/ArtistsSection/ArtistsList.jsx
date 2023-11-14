@@ -42,8 +42,7 @@ const ArtistsList = () => {
                                 image={person.artistsprofilepicture}
                                 user={person.username}
                                 bio={person.artistbio}
-                                link={person.artistmainlink}
-                                email={person.contactnumber}
+                                mainLink={person.artistmainlink}
                                 musicGenre={person.musicgenre}
                                 performance={person.performance}
                                 typeOfPerformance={person.type_of_performance}

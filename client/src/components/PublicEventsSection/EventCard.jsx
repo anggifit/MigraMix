@@ -12,6 +12,7 @@ const EventCard = ({image,title,description,initialDate,finalDate, urlEvent,pric
   };
 
   return (
+    <>
     <CardFlip isFlipped={isFlipped} flipDirection="horizontal">
       <div onClick={handleFlip}>
         <FrontSideCard 
@@ -33,6 +34,7 @@ const EventCard = ({image,title,description,initialDate,finalDate, urlEvent,pric
         />
       </div>
     </CardFlip>
+    </>
   )
 }
 
@@ -41,7 +43,7 @@ EventCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   initialDate: PropTypes.string.isRequired,
-  finalDate: PropTypes.string.isRequired,
+  finalDate: PropTypes.string,
   urlEvent: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   artist: PropTypes.string

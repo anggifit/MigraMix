@@ -27,7 +27,7 @@ const FilterByEvent = ({onSearch}) => {
 }
 
 FilterByEvent.propTypes = {
-    onSearch: PropTypes.func.isRequired, 
+    onSearch: PropTypes.func, 
 }
 
 export default FilterByEvent
