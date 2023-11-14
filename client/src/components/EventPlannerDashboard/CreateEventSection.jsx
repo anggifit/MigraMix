@@ -12,8 +12,6 @@ import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
 import RedButton from "../RedButton"
 import SelectOptions from "../SelectOptions";
-import artists from '../ArtistsSection/ArtistsList.json';
-
 
 const defaultTheme = createTheme();
 
@@ -32,6 +30,7 @@ const CreateEventSection = () => {
     })
     
     const token = localStorage.getItem('token');
+
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
     const [artistData, setArtistData] = useState([])
@@ -100,10 +99,10 @@ const CreateEventSection = () => {
             data.finalDate = finalDateSelected
             console.log(data)
             axios
-            .put('/events/events', data, { //verificar la ruta con dante
+            .put('/events/events', data, { 
                 headers: {
-            Authorization: `Bearer ${token}`,
-          },
+                    Authorization: `Bearer ${token}`,
+                },
             })
             .then((response) => {console.log(response.data)})
             .catch((error) => {console.log(error.data);})

@@ -33,9 +33,8 @@ CREATE TABLE events_organiser(organiser_id INT UNIQUE references users(id));
 CREATE TABLE events(
 	id SERIAL PRIMARY KEY,
     organizer_id INT UNIQUE REFERENCES users(id),
-	location VARCHAR(100) NOT NULL,
     eventTitle VARCHAR(100) NOT NULL,
-    eventDescription VARCHAR(100) NOT NULL,
+    eventDescription VARCHAR(400) NOT NULL,
     urlEvent VARCHAR(100) NOT NULL,
     typeOfActivity VARCHAR(100) NOT NULL,
     artistEvent VARCHAR(100) NOT NULL,
