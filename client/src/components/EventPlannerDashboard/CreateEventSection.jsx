@@ -31,11 +31,11 @@ const CreateEventSection = () => {
         }
     })
     
-    /*  const token = localStorage.getItem('token'); */
+    const token = localStorage.getItem('token');
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
     const [artistData, setArtistData] = useState([])
-    const [selectedArtist, setSelectedArtist] = useState('')
+    const [selectedArtist, setSelectedArtist] = useState([])
     const [initialDateSelected, setInitialDateSelected] = useState(null)
     const [finalDateSelected, setFinalDateSelected] = useState(null)
     const [error, setError] = useState(null);
@@ -95,13 +95,15 @@ const CreateEventSection = () => {
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
-            data.artist = selectedArtist
+            data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
             console.log(data)
             axios
-            .post('/organizers/organizer', data, { //verificar la ruta con dante
-                headers: { 'Content-Type': 'application/json' },
+            .put('/events/events', data, { //verificar la ruta con dante
+                headers: {
+            Authorization: `Bearer ${token}`,
+          },
             })
             .then((response) => {console.log(response.data)})
             .catch((error) => {console.log(error.data);})
@@ -185,15 +187,15 @@ const CreateEventSection = () => {
                         </Grid>
                         <Grid item xs={12}>
                         <TextField
-                            {...register("eventPlannerMainLink", {validate:UrlValidation})}
+                            {...register("urlEvent", {validate:UrlValidation})}
                             fullWidth
-                            id="eventPlannerMainLink"
+                            id="urlEvent"
                             label="Website"
                             autoComplete="Website"
-                            error={!!errors.eventPlannerMainLink}
-                            helperText={errors.eventPlannerMainLink && (
+                            error={!!errors.urlEvent}
+                            helperText={errors.urlEvent && (
                                 <Typography variant="caption" color="error">
-                                    {errors.eventPlannerMainLink.message}
+                                    {errors.urlEvent.message}
                                 </Typography>
                             )}
                             InputProps={{ style: { fontSize: '16px' } }} 
