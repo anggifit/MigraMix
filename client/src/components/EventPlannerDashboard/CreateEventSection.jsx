@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
-import { useForm} from "react-hook-form";
-import axios from "axios"
-import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import {
+  Avatar,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  Stack,
+} from "@mui/material";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import UploadProfilePhoto from './UploadProfilePhoto';
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import UploadProfilePhoto from "./UploadProfilePhoto";
 import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
-import RedButton from "../RedButton"
+import RedButton from "../RedButton";
 import SelectOptions from "../SelectOptions";
-import artists from '../ArtistsSection/ArtistsList.json';
+import SuccesfullModal from '../SignUp/SuccesfullModal'
 
 
 const defaultTheme = createTheme();
@@ -20,7 +29,7 @@ const defaultTheme = createTheme();
 const CreateEventSection = () => {
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
-            eventTitle: '',
+            eventTitle: '', 
             eventDescription: '',
             urlEvent: '',  
             typeOfActivity: '',
@@ -32,13 +41,15 @@ const CreateEventSection = () => {
     })
     
     const token = localStorage.getItem('token');
+
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
     const [artistData, setArtistData] = useState([])
-    const [selectedArtist, setSelectedArtist] = useState([])
+    const [selectedArtist, setSelectedArtist] = useState(artistData.length > 0 ? artistData[0].username : '')
     const [initialDateSelected, setInitialDateSelected] = useState(null)
     const [finalDateSelected, setFinalDateSelected] = useState(null)
     const [error, setError] = useState(null);
+    const [open, setOpen] = useState(false);
     
     dayjs.extend(isSameOrAfter)
     dayjs.extend(isSameOrBefore)
@@ -67,19 +78,22 @@ const CreateEventSection = () => {
             setError('The final date should be the same or after the initial date.')
         }
     }
-    
-    const onImageUpload = (url) => {
-        setEventProfilePictureURL(url); 
-    };
+  };
 
-    useEffect(() => {
-        fetchArtistData()
-        async function fetchArtistData() {
-            try {
-                const response = await axios.get('http://localhost:4000/artists/artistsList')
-                if (response.status !== 200) {
-                    throw new Error("Network response was not ok")
-                }
+  const onImageUpload = (url) => {
+    setEventProfilePictureURL(url);
+  };
+
+  useEffect(() => {
+    fetchArtistData();
+    async function fetchArtistData() {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/artists/artistsList"
+        );
+        if (response.status !== 200) {
+          throw new Error("Network response was not ok");
+        }
 
                 const data = response.data
                 setArtistData(data)
@@ -90,8 +104,11 @@ const CreateEventSection = () => {
         }
     }, [])
 
+    const handleExitClick = () => {
+        setOpen(false)
+    }
+
     const onSubmit = (data) => {
-        console.log(data)
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
@@ -100,16 +117,23 @@ const CreateEventSection = () => {
             data.finalDate = finalDateSelected
             console.log(data)
             axios
-            .put('/events/events', data, { //verificar la ruta con dante
+            .put('/events/events', data, { 
                 headers: {
-            Authorization: `Bearer ${token}`,
-          },
+                    Authorization: `Bearer ${token}`,
+                },
             })
-            .then((response) => {console.log(response.data)})
+            .then((response) => {
+                console.log(response.data)
+                if (response.status === 200) {
+                    setOpen(true);
+                }
+            })
             .catch((error) => {console.log(error.data);})
         }
         console.log(data)
     }
+
+
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
@@ -258,7 +282,7 @@ const CreateEventSection = () => {
                                 alignItems="center"
                                 spacing={1}
                             >
-                                <p>fecha final</p>
+                                <p>Final Date</p>
                                 <DateRangeEvent 
                                     onChange={(date) => {
                                         setValue('finalDate', date)
@@ -275,9 +299,18 @@ const CreateEventSection = () => {
                         </Grid>
                     </Grid>
                     <Stack 
+                        direction="row"
                         alignItems="center"
+                        justifyContent="center"
+                        spacing={8}
                     >
-                        <RedButton info="Save Event" widen size="large"/>
+                        <RedButton info="Save Event" widen size="large" type="submit"/>
+                        <SuccesfullModal
+                                open={open}
+                                onClose={() => setOpen(false)}
+                                onClick={handleExitClick}
+                                description= "The event has been created successfully."
+                        />
                     </Stack>
                     </Box>
                 </Box>
@@ -287,4 +320,4 @@ const CreateEventSection = () => {
     )
 }
 
-export default CreateEventSection; 
+export default CreateEventSection;

@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UploadProfilePhoto from './UploadProfilePhoto';
 import RedButton from "../RedButton"
 import UrlValidation from "./UrlValidation";
+import SuccesfullModal from '../SignUp/SuccesfullModal'
 import PropTypes from "prop-types";
 
 
@@ -24,12 +25,13 @@ const EditProfile = () => {
     const token = localStorage.getItem('token');
     
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
+    const [open, setOpen] = useState(false);
 
 
     const onImageUpload = (url) => {
         setEventProfilePictureURL(url);  
     };
-
+    
     const onSubmit = (data) => {
         if (isValid){
             data.eventProfilePicture = eventProfilePictureURL;
@@ -40,11 +42,18 @@ const EditProfile = () => {
             }})
             .then(response => {
                 console.log(response.data)
+                if (response.status === 201) {
+                    setOpen(true);
+                }
             })
             .catch(error => {console.log(error.response.data)})
         }
     }
-
+    
+    const handleExitClick = () => {
+        setOpen(false)
+    }
+    
     return (
         <div>
             <ThemeProvider theme={defaultTheme}>
@@ -126,13 +135,24 @@ const EditProfile = () => {
                             </Grid>
                         </Grid>
                         <Stack 
+                            direction="row"
                             alignItems="center"
+                            justifyContent="center"
+                            spacing={8}
                         >
                             <RedButton 
                                 info="Save" 
                                 widen 
                                 size="large"
                                 type="submit" 
+                            />
+                           {/* <RedButton info="Delete User" widen size="large" onClick={handleDeleteClick}/> */}
+
+                            <SuccesfullModal
+                                open={open}
+                                onClose={() => setOpen(false)}
+                                onClick={handleExitClick}
+                                description= "The profile has been edited successfully."
                             />
                         </Stack>
                     </Box>
