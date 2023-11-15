@@ -27,6 +27,7 @@ const MyEventsSection = () => {
         
         const data = response.data
         setMixEventsData(data)
+        console.log(data[0].id);
         setLoading(false)
 
       } catch (error) {

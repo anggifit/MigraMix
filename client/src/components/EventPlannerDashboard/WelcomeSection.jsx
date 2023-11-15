@@ -26,10 +26,25 @@ const WelcomeSection = () => {
             Welcome to Migramix!
           </Typography>
           <Typography
-            variant="body1"
-            className="mt-6 text-base md:text-lg lg:text-lg text-gray-900 text-custom"
+            variant="h6"
+            className="text-base md:text-md lg:text-lg text-gray-900 text-center"
+            style={{ lineHeight: '2' , marginTop: 18}}
           >
-            Your personalized space to connect, create and celebrate! Here, you will not only be able to put your unique touch on your profile, but also host amazing events with talented artists. Edit, adjust and show the world the best version of yourself in your versatile profile. Also, stay up to date with their events and discover the wonders that other members are preparing. Welcome to Migramix, where your creativity comes to life and the fun never ends!
+            Your personalized space to connect, create and celebrate! 
+          </Typography>
+          <Typography
+            variant="body1"
+            className="mt-6 text-base md:text-md lg:text-lg text-gray-900 text-center"
+            style={{ lineHeight: '2' }}
+          >
+            Here, you will not only be able to put your unique touch on your profile, but also host amazing events with talented artists. Edit, adjust and show the world the best version of yourself in your versatile profile.
+          </Typography>
+          <Typography
+            variant="body1"
+            className="mt-6 text-base md:text-md lg:text-lg text-gray-900 text-center"
+            style={{ lineHeight: '2' }}
+          >
+            Also, stay up to date with their events and discover the wonders that other members are preparing. Welcome to Migramix, where your creativity comes to life and the fun never ends!
           </Typography>
         </Box>
       </Container>

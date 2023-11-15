@@ -84,13 +84,13 @@ const BackSideCard = ({
 };
 
 BackSideCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  initialDate: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  initialDate: PropTypes.string,
   finalDate: PropTypes.string,
-  urlEvent: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  urlEvent: PropTypes.string,
+  price: PropTypes.string,
 };
 
 export default BackSideCard;

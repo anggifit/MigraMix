@@ -154,7 +154,7 @@ export const getEventByOrganizer = async (req, res) => {
 export const getAllEvents = async (req, res) => {
   const result = await pool.query("SELECT * FROM events");
   try {
-    console.log(result.rows[0].id);
+    /* console.log(result.rows[0].id); */
     console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (error) {
