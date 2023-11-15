@@ -20,7 +20,7 @@ const defaultTheme = createTheme();
 const CreateEventSection = () => {
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
-            eventTitle: '',
+            eventTitle: '', 
             eventDescription: '',
             urlEvent: '',  
             typeOfActivity: '',
@@ -36,7 +36,7 @@ const CreateEventSection = () => {
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
     const [artistData, setArtistData] = useState([])
-    const [selectedArtist, setSelectedArtist] = useState([])
+    const [selectedArtist, setSelectedArtist] = useState(artistData.length > 0 ? artistData[0].username : '')
     const [initialDateSelected, setInitialDateSelected] = useState(null)
     const [finalDateSelected, setFinalDateSelected] = useState(null)
     const [error, setError] = useState(null);
@@ -97,7 +97,6 @@ const CreateEventSection = () => {
     }
 
     const onSubmit = (data) => {
-        console.log(data)
         if (isValid) {
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
@@ -271,7 +270,7 @@ const CreateEventSection = () => {
                                 alignItems="center"
                                 spacing={1}
                             >
-                                <p>fecha final</p>
+                                <p>Final Date</p>
                                 <DateRangeEvent 
                                     onChange={(date) => {
                                         setValue('finalDate', date)
