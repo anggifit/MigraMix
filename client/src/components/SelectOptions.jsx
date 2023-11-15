@@ -1,4 +1,5 @@
 import { TextField, MenuItem } from "@mui/material"
+import PropTypes from "prop-types";
 
 const SelectOptions = ({label, idField, value, onChange, options}) => {
   return (
@@ -8,8 +9,8 @@ const SelectOptions = ({label, idField, value, onChange, options}) => {
         fullWidth
         label={label}
         id={idField}
-        value={value}//  const [selectedValue, setSelectedValue] = useState('none');
-        onChange={onChange} //(e) => setSelectedValue(e.target.value)}
+        value={value}
+        onChange={onChange} 
         InputProps={{ style: { fontSize: '16px' } }}
         InputLabelProps={{ style: { fontSize: '16px' } }}
         sx={{
@@ -28,5 +29,11 @@ const SelectOptions = ({label, idField, value, onChange, options}) => {
     </TextField>
   )
 }
-
+SelectOptions.propTypes = {
+  label: PropTypes.string,
+  idField: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+};
 export default SelectOptions
