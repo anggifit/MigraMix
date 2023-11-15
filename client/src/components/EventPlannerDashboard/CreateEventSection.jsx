@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
-import { useForm} from "react-hook-form";
-import axios from "axios"
-import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import {
+  Avatar,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  Stack,
+} from "@mui/material";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import UploadProfilePhoto from './UploadProfilePhoto';
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import UploadProfilePhoto from "./UploadProfilePhoto";
 import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
-import RedButton from "../RedButton"
+import RedButton from "../RedButton";
 import SelectOptions from "../SelectOptions";
 import SuccesfullModal from '../SignUp/SuccesfullModal'
 
@@ -69,19 +78,22 @@ const CreateEventSection = () => {
             setError('The final date should be the same or after the initial date.')
         }
     }
-    
-    const onImageUpload = (url) => {
-        setEventProfilePictureURL(url); 
-    };
+  };
 
-    useEffect(() => {
-        fetchArtistData()
-        async function fetchArtistData() {
-            try {
-                const response = await axios.get('http://localhost:4000/artists/artistsList')
-                if (response.status !== 200) {
-                    throw new Error("Network response was not ok")
-                }
+  const onImageUpload = (url) => {
+    setEventProfilePictureURL(url);
+  };
+
+  useEffect(() => {
+    fetchArtistData();
+    async function fetchArtistData() {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/artists/artistsList"
+        );
+        if (response.status !== 200) {
+          throw new Error("Network response was not ok");
+        }
 
                 const data = response.data
                 setArtistData(data)
@@ -308,4 +320,4 @@ const CreateEventSection = () => {
     )
 }
 
-export default CreateEventSection; 
+export default CreateEventSection;
