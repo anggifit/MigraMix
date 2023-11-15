@@ -78,30 +78,29 @@ const CreateEventSection = () => {
             setError('The final date should be the same or after the initial date.')
         }
     }
-  };
 
-  const onImageUpload = (url) => {
-    setEventProfilePictureURL(url);
-  };
+    const onImageUpload = (url) => {
+        setEventProfilePictureURL(url);
+    };
 
-  useEffect(() => {
-    fetchArtistData();
-    async function fetchArtistData() {
-      try {
-        const response = await axios.get(
-          "http://localhost:4000/artists/artistsList"
-        );
-        if (response.status !== 200) {
-          throw new Error("Network response was not ok");
-        }
-
-                const data = response.data
-                setArtistData(data)
+    useEffect(() => {
+        fetchArtistData();
+        async function fetchArtistData() {
+        try {
+            const response = await axios.get(
+            "http://localhost:4000/artists/artistsList"
+            );
+            if (response.status !== 200) {
+            throw new Error("Network response was not ok");
             }
-            catch (error) {
-                setError(error)
+
+                    const data = response.data
+                    setArtistData(data)
+                }
+                catch (error) {
+                    setError(error)
+                }
             }
-        }
     }, [])
 
     const handleExitClick = () => {
@@ -117,7 +116,7 @@ const CreateEventSection = () => {
             data.finalDate = finalDateSelected
             console.log(data)
             axios
-            .put('/events/events', data, { 
+            .post('/events/events', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -132,7 +131,6 @@ const CreateEventSection = () => {
         }
         console.log(data)
     }
-
 
     return (
         <div>
