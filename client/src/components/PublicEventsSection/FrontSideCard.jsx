@@ -53,13 +53,13 @@ const isFreeStyle = {
 }
 
 FrontSideCard.propTypes = {
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    title: PropTypes.string,
     description: PropTypes.string,
     initialDate: PropTypes.string,
     finalDate: PropTypes.string,
     urlEvent: PropTypes.string,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.string,
     artist:PropTypes.string
 };
 

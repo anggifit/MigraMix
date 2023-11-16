@@ -49,6 +49,10 @@ const App = () => {
       path:"/events/events",
       element: <EventPlannerDashboard/>
     },
+   /*  {
+      path:"/events/edit-event/:eventId",
+      element: <EventPlannerDashboard/>
+    }, */
     {
       path: "/events",
       element: <PublicEvents/>

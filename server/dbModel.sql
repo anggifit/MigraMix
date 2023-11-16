@@ -30,9 +30,9 @@ CREATE TABLE artists(
 
 CREATE TABLE events_organiser(organiser_id INT UNIQUE references users(id)); 
 
-CREATE TABLE events(
-	id SERIAL PRIMARY KEY,
-    organizer_id INT UNIQUE REFERENCES users(id),
+CREATE TABLE events (
+    id SERIAL PRIMARY KEY,
+    organizer_id INT REFERENCES users(id), /* Ajuste en la tabla de events para que pueda aceptar varios eventos por orgganizador*/
     eventTitle VARCHAR(100) NOT NULL,
     eventDescription VARCHAR(400) NOT NULL,
     urlEvent VARCHAR(100) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE events(
     initialDate DATE NOT NULL,
     finalDate DATE,
     eventImage VARCHAR(250)
-); 
+);
 
 CREATE TABLE event_by_artist(
     id SERIAL PRIMARY KEY,

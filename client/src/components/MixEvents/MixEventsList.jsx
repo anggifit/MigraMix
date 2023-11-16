@@ -16,7 +16,7 @@ const MixEventsList = () => {
     fetchMixEventsData()
     async function fetchMixEventsData() {
       try {
-        const response = await axios.get('http://localhost:4000/events')//modificar ruta
+        const response = await axios.get('http://localhost:4000/events/allEvents')
         
         const data = response.data
         setMixEventsData(data)
@@ -40,23 +40,23 @@ const MixEventsList = () => {
               ) : (
                 mixEventsData.map((event) => (
                   <Grid item xs={4} key={event.id}>
-                    <EventCard
+                    <EventCard /* Pendiente de como estan los campos en la tabla */
                       image={
-                        event.eventImage && event.eventImage.length > 0
-                          ? event.eventImage
+                        event.eventimage && event.eventimage.length > 0
+                          ? event.eventimage
                           : imgExample
                       }
-                      title={event.eventTitle}
-                      description={event.eventDescription}
-                      initialDate={event.initialDate}
-                      finalDate={event.finalDate}
-                      urlEvent={event.urlEvent}
+                      title={event.eventtitle}
+                      description={event.eventdescription}
+                      initialDate={event.initialdate}
+                      finalDate={event.finaldate}
+                      urlEvent={event.urlevent}
                       price={
-                        event.typeOfActivity === "free"
+                        event.typeofactivity === "Free"
                           ? "Free"
                           : "Paid Activity"
                       }
-                      artist={event.artistEvent}
+                      artist={event.artistevent}
                     />
                   </Grid>
                 ))
