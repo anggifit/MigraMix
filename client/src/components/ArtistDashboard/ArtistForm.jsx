@@ -4,7 +4,7 @@ import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 import SelectOptions from "../SelectOptions";
 import { PropTypes } from "prop-types";
-import artistsList from "./artistsList.json";
+
 
 const ArtistForm = ({artistProfilePic}) => {  
    const {register, handleSubmit, formState: { isValid, errors },} = useForm({defaultValues: {artistbio: "",},
