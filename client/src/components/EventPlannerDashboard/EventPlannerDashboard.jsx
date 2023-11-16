@@ -8,11 +8,11 @@ import PropTypes from "prop-types";
 import UpdateEventSection from './UpdateEventSection'
 
 
-const EventPlannerDashboard = ({username, fullname, profilePhoto }) => {
+const EventPlannerDashboard = ({ username, fullname, profilePhoto }) => {
   const [activeSection, setActiveSection] = useState('')
   const [activeEventId, setActiveEventId] = useState(null);
-  
-  const handlerMenuClick = (section, eventId) => {
+    
+  const handlerMenuClick = (section, eventId = null) => {
     setActiveSection(section)
     setActiveEventId(eventId)
 /*     if (section === 'updateEvent') {
@@ -39,9 +39,15 @@ const EventPlannerDashboard = ({username, fullname, profilePhoto }) => {
         {activeSection === 'editProfile' && <EditProfile />}
         {activeSection === 'createEvent' && <CreateEventSection />}
         {activeSection === 'myEvents' && (
-          <MyEventsSection /* onEditClick={(eventId) => handlerMenuClick('updateEvent', eventId)} */ />
-        )}
-        {activeSection === 'updateEvent' && <UpdateEventSection eventId={activeEventId}  />}
+          <MyEventsSection 
+              onEditClick={(eventId) => {
+                console.log(eventId);
+                handlerMenuClick('updateEvent', eventId);
+              }} 
+          />)}
+        {activeSection === 'updateEvent' && 
+          <UpdateEventSection activeEventId={activeEventId}/>
+        }
     </div>
   )
 }

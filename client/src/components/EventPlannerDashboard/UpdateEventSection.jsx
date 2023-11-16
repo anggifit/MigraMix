@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from 'react-router-dom'; 
 import axios from "axios";
 import {
     Avatar,
@@ -27,10 +26,8 @@ import SuccesfullModal from '../SignUp/SuccesfullModal'
 
 const defaultTheme = createTheme();
 
-const UpdateEventSection = () => {
-    const { eventId } = useParams()
-    console.log(eventId)
-    
+const UpdateEventSection = ({activeEventId}) => {
+
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventTitle: '', 
@@ -50,7 +47,7 @@ const UpdateEventSection = () => {
         fetchEventData()
         async function fetchEventData() {
             try {
-                const response = await axios.get(`http://localhost:4000/events/${eventId}`, {
+                const response = await axios.get(`http://localhost:4000/events/eventsById/${activeEventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, 
                         'Cache-Control': 'no-cache',
@@ -58,19 +55,19 @@ const UpdateEventSection = () => {
                 })  
                 const eventData = response.data
 
-                setValue("eventTitle", eventData.eventTitle);
-                setValue("eventDescription", eventData.eventDescription);
-                setValue("urlEvent", eventData.urlEvent);
-                setValue("typeOfActivity", eventData.typeOfActivity);
-                setValue("artistEvent", eventData.artistEvent);
-                setValue("initialDate", eventData.initialDate);
-                setValue("finalDate", eventData.finalDate);
-                setValue("eventImage", eventData.eventImage);
+                setValue("eventTitle", eventData[0].eventtitle);
+                setValue("eventDescription", eventData[0].eventdescription);
+                setValue("urlEvent", eventData[0].urlevent);
+                setValue("typeOfActivity", eventData[0].typeofactivity);
+                setValue("artistEvent", eventData[0].artistevent);
+                setValue("initialDate", eventData[0].initialdate);
+                setValue("finalDate", eventData[0].finaldate);
+                setValue("eventImage", eventData[0].eventimage);
             } catch (error) {
                 console.error("Error fetching event data:", error);
             }
         }
-    }, [eventId, setValue, token])
+    }, [activeEventId, setValue, token])
 
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
@@ -335,7 +332,7 @@ const UpdateEventSection = () => {
                                 open={open}
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
-                                description= "The event has been created successfully."
+                                description= "eventos pepe"
                         />
                     </Stack>
                     </Box>

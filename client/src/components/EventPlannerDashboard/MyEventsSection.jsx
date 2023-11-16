@@ -111,6 +111,7 @@ const MyEventsSection = ({onEditClick}) => {
                               info="Edit Event" 
                               size="small"
                               onClick={() => {
+                                console.log(`Este es el eventId: ${event.id}`)
                                 onEditClick(event.id)
                               }}
                           />

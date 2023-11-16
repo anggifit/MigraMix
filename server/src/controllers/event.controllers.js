@@ -156,6 +156,46 @@ export const getEventByOrganizer = async (req, res) => {
   }
 };
 
+export const getEventById = async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Token de autorización no proporcionado" });
+    }
+
+    const userId = req.userId;
+    const eventId = req.params.eventId;
+    
+    console.log(`Este es el id del usuario: ${userId}`);
+    console.log(`Este es el id del evento: ${eventId}` );
+
+    const userResult = await pool.query(
+      "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
+      [userId]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(401).json({
+        message: "Debe ser organizador para poder editar un evento.",
+      });
+    } else {
+      
+      const response = await pool.query("SELECT * FROM events WHERE id = $1", [eventId]);
+  
+      console.log("Evento traido correctamente:", response.rows);
+      res.status(200).json(response.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error de servidor");
+    
+  }
+  
+};
+
 export const getAllEvents = async (req, res) => {
   const result = await pool.query("SELECT * FROM events");
   try {
@@ -218,3 +258,4 @@ export const getEventByArtist = async (req, res) => {
     return res.sendStatus(403);
   }
 };
+
