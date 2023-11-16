@@ -6,9 +6,11 @@ import {
   createEventByOrganizer,
   editEventByOrganizer,
   getEventByOrganizer,
+  getEventById,
   getAllEvents,
   deleteEventByOrganizer,
 } from "../controllers/event.controllers.js";
+
 const router = Router();
 
 router.post(
@@ -24,6 +26,7 @@ router.put(
   editEventByOrganizer
 );
 router.get("/eventsByOrganizer", authenticateToken, getEventByOrganizer);
+router.get("/eventsById/:eventId", authenticateToken, getEventById);
 router.get("/allEvents", getAllEvents);
 router.delete(
   "/delete-event/:eventId",

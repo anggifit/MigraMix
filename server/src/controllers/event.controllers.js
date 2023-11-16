@@ -136,25 +136,70 @@ export const editEventByOrganizer = async (req, res) => {
 export const getEventByOrganizer = async (req, res) => {
   const userId = req.userId;
 
-  const result = await pool.query(
-    "SELECT * FROM events INNER JOIN organizer ON id_user = organizer_id WHERE organizer_id = $1;",
-    [userId]
-  );
-  //console.log(result.rows[0].first_name, `texto 1`);
   try {
-    console.log(result.rows[1].id);
-    res.status(200).json(result.rows);
-  } catch (error) {
+    const result = await pool.query(
+      "SELECT * FROM events INNER JOIN organizer ON id_user = organizer_id WHERE organizer_id = $1;",
+      [userId]
+      );
+
+    if (result.rows && result.rows.length > 0) {
+      console.log(result.rows[0].id)
+      res.status(200).json(result.rows);  
+    } else {
+      res.status(404).json({message: "No se encontraron eventos para el organizador"})
+    } 
+
+    } 
+  catch (error) {
     console.log("Error query insert : ", error);
-    res.status(500).json(error.detail);
-    return res.sendStatus(403);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
+};
+
+export const getEventById = async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Token de autorización no proporcionado" });
+    }
+
+    const userId = req.userId;
+    const eventId = req.params.eventId;
+    
+    console.log(`Este es el id del usuario: ${userId}`);
+    console.log(`Este es el id del evento: ${eventId}` );
+
+    const userResult = await pool.query(
+      "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
+      [userId]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(401).json({
+        message: "Debe ser organizador para poder editar un evento.",
+      });
+    } else {
+      
+      const response = await pool.query("SELECT * FROM events WHERE id = $1", [eventId]);
+  
+      console.log("Evento traido correctamente:", response.rows);
+      res.status(200).json(response.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error de servidor");
+    
+  }
+  
 };
 
 export const getAllEvents = async (req, res) => {
   const result = await pool.query("SELECT * FROM events");
   try {
-    console.log(result.rows[0].id);
+    /* console.log(result.rows[0].id); */
     console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (error) {
@@ -212,3 +257,4 @@ export const getEventByArtist = async (req, res) => {
     return res.sendStatus(403);
   }
 };
+

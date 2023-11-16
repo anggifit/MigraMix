@@ -7,6 +7,7 @@ import axios from "axios"
 
 const AdminDashboard = () => {
     const {role} = useContext(UserContext)
+    
     const [organizerUsername, setOrganizerUsername] = useState('')
     const [organizerFistName, setOrganizerFirstName] = useState(null)
     const [organizerLastName, setOrganizerLastName] = useState(null)

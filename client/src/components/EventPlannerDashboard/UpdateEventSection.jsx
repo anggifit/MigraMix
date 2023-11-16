@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
-  Avatar,
-  CssBaseline,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  Stack,
+    Avatar,
+    CssBaseline,
+    TextField,
+    Grid,
+    Box,
+    Typography,
+    Container,
+    Stack,
 } from "@mui/material";
-import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import UpdateIcon from '@mui/icons-material/Update';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
@@ -26,7 +26,8 @@ import SuccesfullModal from '../SignUp/SuccesfullModal'
 
 const defaultTheme = createTheme();
 
-const CreateEventSection = () => {
+const UpdateEventSection = ({activeEventId}) => {
+
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventTitle: '', 
@@ -39,8 +40,34 @@ const CreateEventSection = () => {
             eventImage: null      
         }
     })
-    
+
     const token = localStorage.getItem('token');
+
+    useEffect(() => {
+        fetchEventData()
+        async function fetchEventData() {
+            try {
+                const response = await axios.get(`http://localhost:4000/events/eventsById/${activeEventId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`, 
+                        'Cache-Control': 'no-cache',
+                    }
+                })  
+                const eventData = response.data
+
+                setValue("eventTitle", eventData[0].eventtitle);
+                setValue("eventDescription", eventData[0].eventdescription);
+                setValue("urlEvent", eventData[0].urlevent);
+                setValue("typeOfActivity", eventData[0].typeofactivity);
+                setValue("artistEvent", eventData[0].artistevent);
+                setValue("initialDate", eventData[0].initialdate);
+                setValue("finalDate", eventData[0].finaldate);
+                setValue("eventImage", eventData[0].eventimage);
+            } catch (error) {
+                console.error("Error fetching event data:", error);
+            }
+        }
+    }, [activeEventId, setValue, token])
 
     const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null)
     const [selectedTypeOfActivity, setSelectedTypeOfActivity] = useState('Free');
@@ -87,20 +114,17 @@ const CreateEventSection = () => {
         fetchArtistData();
         async function fetchArtistData() {
         try {
-            const response = await axios.get(
-            "http://localhost:4000/artists/artistsList"
-            );
+            const response = await axios.get("http://localhost:4000/artists/artistsList");
             if (response.status !== 200) {
-            throw new Error("Network response was not ok");
+                throw new Error("Network response was not ok");
             }
-
-                    const data = response.data
-                    setArtistData(data)
-                }
-                catch (error) {
-                    setError(error)
-                }
+                const data = response.data
+                setArtistData(data)
             }
+            catch (error) {
+                setError(error)
+            }
+        }
     }, [])
 
     const handleExitClick = () => {
@@ -116,7 +140,7 @@ const CreateEventSection = () => {
             data.finalDate = finalDateSelected
             console.log(data)
             axios
-            .post('/events/events', data, { 
+            .put('/events/edit-event', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -131,6 +155,7 @@ const CreateEventSection = () => {
         }
         console.log(data)
     }
+
 
     return (
         <div>
@@ -148,10 +173,10 @@ const CreateEventSection = () => {
                     }}
                 >
                     <Avatar sx={{ m: 2, bgcolor: '#FF4B4B' }}>
-                    <EditCalendarIcon/>
+                        <UpdateIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5" sx={{ color: '#2B2D42', fontWeight: 'bold'}}>
-                    Create Event
+                    Update Event
                     </Typography>
                     <p className="mb-3 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                     This information will be displayed publicly so be careful what you share.
@@ -307,7 +332,7 @@ const CreateEventSection = () => {
                                 open={open}
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
-                                description= "The event has been created successfully."
+                                description= "eventos pepe"
                         />
                     </Stack>
                     </Box>
@@ -318,4 +343,4 @@ const CreateEventSection = () => {
     )
 }
 
-export default CreateEventSection;
+export default UpdateEventSection;
