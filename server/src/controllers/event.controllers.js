@@ -173,9 +173,9 @@ export const deleteEventByOrganizer = async (req, res) => {
       .json({ message: "Token de autorización no proporcionado" });
   }
   const userId = req.userId;
-  const eventId = req.eventId;
+  const eventIdToDelete = req.params.eventId;
   console.log(userId);
-  console.log(eventId);
+  console.log(eventIdToDelete);
   try {
     const userResult = await pool.query(
       "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
@@ -187,17 +187,16 @@ export const deleteEventByOrganizer = async (req, res) => {
         message: "Debe ser organizador para poder eliminar un evento.",
       });
     } else {
-      await pool.query("DELETE FROM events WHERE id = $1", [eventId]);
+      await pool.query("DELETE FROM events WHERE id = $1", [eventIdToDelete]);
 
-      console.log("Evento eliminado correctamente:", eventId);
-      res.json(`Event ${eventId} eliminado exitosamente.`);
+      console.log("Evento eliminado correctamente:", eventIdToDelete);
+      res.json(`Event ${eventIdToDelete} eliminado exitosamente.`);
     }
   } catch (error) {
     console.error(error);
     res.status(500).send("Error de servidor");
   }
 };
-
 export const getEventByArtist = async (req, res) => {
   const userId = req.userId;
   const result = await pool.query(

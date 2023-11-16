@@ -25,6 +25,10 @@ router.put(
 );
 router.get("/eventsByOrganizer", authenticateToken, getEventByOrganizer);
 router.get("/allEvents", getAllEvents);
-router.delete("/delete-event", authenticateToken, deleteEventByOrganizer);
+router.delete(
+  "/delete-event/:eventId",
+  authenticateToken,
+  deleteEventByOrganizer
+);
 
 export default router;
