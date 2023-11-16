@@ -5,7 +5,7 @@ import EventCard from "../PublicEventsSection/EventCard";
 import RedButton from "../RedButton";
 import axios from "axios";
 
-const MyEventsSection = () => {
+const MyEventsSection = ({onEditClick}) => {
 
   const [mixEventsData, setMixEventsData] = useState([])
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ const MyEventsSection = () => {
           headers: {
             Authorization: `Bearer ${token}`, 
             'Cache-Control': 'no-cache',
-        }
+          }
         })
         
         const data = response.data
@@ -36,6 +36,21 @@ const MyEventsSection = () => {
       }
     }
   }, [token])
+
+  const deleteEvent = (eventId) => {
+    axios.delete(`http://localhost:4000/events/delete-event/${eventId}`, { 
+      headers: {
+          Authorization: `Bearer ${token}`,
+      }
+  })
+  .then((response) => {
+      console.log(response.data)
+      if (response.status === 200) {
+          console.log("evento eliminado");
+      }
+  })
+  .catch((error) => {console.log(error.data);})
+  }
 
   return (
     <div style={{ height: '100%', width: '100%'}}> 
@@ -85,26 +100,34 @@ const MyEventsSection = () => {
                         }
                         artist={event.artistevent}
                       />
+                      <Stack 
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="center"
+                        spacing={8}
+                        sx={{ padding: 2 }}
+                      >
+                          <RedButton 
+                              info="Edit Event" 
+                              size="small"
+                              onClick={() => {
+                                onEditClick(event.id)
+                              }}
+                          />
+                          <RedButton 
+                              info="Delete Event" 
+                              size="small" 
+                              type="submit"
+                              onClick={() => { 
+                                console.log(`Este es el eventId: ${event.id}`)
+                                deleteEvent(event.id)  
+                              }}
+                          />
+                        </Stack>
                     </Grid>
                   ))
                 )}
             </Grid>
-            <Stack 
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
-              spacing={8}
-            >
-                <RedButton 
-                    info="Edit Event" 
-                    size="small"
-                />
-                <RedButton 
-                    info="Delete Event" 
-                    size="small" 
-                    //onClick={handleDeleteClick}
-                />
-              </Stack>
                         
           </Box>
         </Container>

@@ -5,19 +5,20 @@ import CreateEventSection from './CreateEventSection'
 import MyEventsSection from './MyEventsSection'
 import WelcomeSection from './WelcomeSection'
 import PropTypes from "prop-types";
+import UpdateEventSection from './UpdateEventSection'
 
 
 const EventPlannerDashboard = ({username, fullname, profilePhoto }) => {
   const [activeSection, setActiveSection] = useState('')
-/*   const [profilePhoto, setProfilePhoto] = useState('https://i.pinimg.com/736x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg');
- */
-  const handlerMenuClick = (section) => {
+  const [activeEventId, setActiveEventId] = useState(null);
+  
+  const handlerMenuClick = (section, eventId) => {
     setActiveSection(section)
-  }
-
-  /* const handleUpdateProfilePhoto = (url) => {
-    setProfilePhoto(url)
+    setActiveEventId(eventId)
+/*     if (section === 'updateEvent') {
+      navigate(`/events/edit-event/${eventId}`);  
   } */
+}
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -31,12 +32,16 @@ const EventPlannerDashboard = ({username, fullname, profilePhoto }) => {
         {activeSection !== 'editProfile' 
           && activeSection !== 'createEvent' 
           && activeSection !== 'myEvents' 
+          && activeSection !== 'updateEvent'
           && <WelcomeSection />
         }
       
-        {activeSection === 'editProfile' && <EditProfile /* onUpdateProfilePhoto={handleUpdateProfilePhoto} *//>}
-        {activeSection === 'createEvent' && <CreateEventSection/>}
-        {activeSection === 'myEvents' && <MyEventsSection/>}
+        {activeSection === 'editProfile' && <EditProfile />}
+        {activeSection === 'createEvent' && <CreateEventSection />}
+        {activeSection === 'myEvents' && (
+          <MyEventsSection /* onEditClick={(eventId) => handlerMenuClick('updateEvent', eventId)} */ />
+        )}
+        {activeSection === 'updateEvent' && <UpdateEventSection eventId={activeEventId}  />}
     </div>
   )
 }

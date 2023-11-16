@@ -136,18 +136,23 @@ export const editEventByOrganizer = async (req, res) => {
 export const getEventByOrganizer = async (req, res) => {
   const userId = req.userId;
 
-  const result = await pool.query(
-    "SELECT * FROM events INNER JOIN organizer ON id_user = organizer_id WHERE organizer_id = $1;",
-    [userId]
-  );
-  //console.log(result.rows[0].first_name, `texto 1`);
   try {
-    console.log(result.rows[1].id);
-    res.status(200).json(result.rows);
-  } catch (error) {
+    const result = await pool.query(
+      "SELECT * FROM events INNER JOIN organizer ON id_user = organizer_id WHERE organizer_id = $1;",
+      [userId]
+      );
+
+    if (result.rows && result.rows.length > 0) {
+      console.log(result.rows[0].id)
+      res.status(200).json(result.rows);  
+    } else {
+      res.status(404).json({message: "No se encontraron eventos para el organizador"})
+    } 
+
+    } 
+  catch (error) {
     console.log("Error query insert : ", error);
-    res.status(500).json(error.detail);
-    return res.sendStatus(403);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 };
 
@@ -173,9 +178,9 @@ export const deleteEventByOrganizer = async (req, res) => {
       .json({ message: "Token de autorización no proporcionado" });
   }
   const userId = req.userId;
-  const eventId = req.eventId;
+  const eventIdToDelete = req.params.eventId;
   console.log(userId);
-  console.log(eventId);
+  console.log(eventIdToDelete);
   try {
     const userResult = await pool.query(
       "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
@@ -187,10 +192,10 @@ export const deleteEventByOrganizer = async (req, res) => {
         message: "Debe ser organizador para poder eliminar un evento.",
       });
     } else {
-      await pool.query("DELETE FROM events WHERE id = $1", [eventId]);
+      await pool.query("DELETE FROM events WHERE id = $1", [eventIdToDelete]);
 
-      console.log("Evento eliminado correctamente:", eventId);
-      res.json(`Event ${eventId} eliminado exitosamente.`);
+      console.log("Evento eliminado correctamente:", eventIdToDelete);
+      res.json(`Event ${eventIdToDelete} eliminado exitosamente.`);
     }
   } catch (error) {
     console.error(error);
