@@ -71,6 +71,8 @@ export const editEventByOrganizer = async (req, res) => {
   }
 
   const userId = req.userId;
+  const eventId = req.params.eventId
+
   try {
     const userResult = await pool.query(
       "SELECT * FROM users WHERE id = $1 AND role='Organizer'",

@@ -12,7 +12,7 @@ function MenuBar({onMenuClick, profilePhoto, username, fullname}) {
 
     const handleLogOut = async () => {
         try {
-            await axios.post('/api/logout') 
+            /* await axios.post('/api/logout')  */
             localStorage.removeItem(`${token}`)
             window.location.href = '/'
         } catch (error) {
