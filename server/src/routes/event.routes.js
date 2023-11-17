@@ -3,12 +3,14 @@ import { validateSchemaRequest } from "../middleware/validator.requestBody.js";
 import { authenticateToken } from "../middleware/auth.middleware.js";
 import { eventSchema } from "../schemas/event.schema.js";
 import {
+  createEventByOrganizer,
   editEventByOrganizer,
   getEventByOrganizer,
   getEventById,
+  getEventByArtist,
   getAllEvents,
+  filterEventByString,
   deleteEventByOrganizer,
-  createEventByOrganizer,
 } from "../controllers/event.controllers.js";
 
 const router = Router();
@@ -27,7 +29,9 @@ router.put(
 );
 router.get("/eventsByOrganizer", authenticateToken, getEventByOrganizer);
 router.get("/eventsById/:eventId", authenticateToken, getEventById);
+router.get("/eventsByArtist", authenticateToken, getEventByArtist);
 router.get("/allEvents", getAllEvents);
+router.get("/allEvents/:filterString", filterEventByString);
 router.delete(
   "/delete-event/:eventId",
   authenticateToken,

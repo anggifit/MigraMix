@@ -200,6 +200,22 @@ export const getEventById = async (req, res) => {
   }
 };
 
+export const getEventByArtist = async (req, res) => {
+  const userId = req.userId;
+  const result = await pool.query(
+    "SELECT * FROM event_by_artist INNER JOIN artists  on artists.id= event_by_artist.event_by_artist_id INNER JOIN events  on events.id = event_by_artist.event_id WHERE event_by_artist_id = $1",
+    [userId]
+  );
+  try {
+    console.log(result.rows);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log("Error query insert : ", error);
+    res.status(500).json(error.detail);
+    return res.sendStatus(403);
+  }
+};
+
 export const getAllEvents = async (req, res) => {
   const result = await pool.query("SELECT * FROM events");
   try {
@@ -210,6 +226,25 @@ export const getAllEvents = async (req, res) => {
     console.log("Error query insert : ", error);
     res.status(500).json(error.detail);
     return res.sendStatus(403);
+  }
+};
+
+export const filterEventByString = async (req, res) => {
+  try {
+    const filterString = req.params.filterString;
+
+    console.log(`La palabra a filtrar es: ${filterString}`);
+
+    const response = await pool.query(
+      "SELECT * FROM events WHERE events.eventtitle LIKE $1 OR events.eventdescription LIKE $1",
+      [`%${filterString}%`]
+    );
+
+    console.log("Eventos filtrados correctamente:", response.rows);
+    res.status(200).json(response.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error de servidor");
   }
 };
 
@@ -244,20 +279,5 @@ export const deleteEventByOrganizer = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error de servidor");
-  }
-};
-export const getEventByArtist = async (req, res) => {
-  const userId = req.userId;
-  const result = await pool.query(
-    "SELECT * FROM events INNER JOIN artists ON id_user = organizer_id WHERE organizer_id = $1;",
-    [userId]
-  );
-  try {
-    console.log(result.rows);
-    res.status(200).json(result.rows);
-  } catch (error) {
-    console.log("Error query insert : ", error);
-    res.status(500).json(error.detail);
-    return res.sendStatus(403);
   }
 };
