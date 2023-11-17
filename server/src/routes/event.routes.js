@@ -7,8 +7,10 @@ import {
   editEventByOrganizer,
   getEventByOrganizer,
   getEventById,
+  getEventByArtist,
   getAllEvents,
-  deleteEventByOrganizer
+  filterEventByString,
+  deleteEventByOrganizer,
 } from "../controllers/event.controllers.js";
 
 const router = Router();
@@ -27,7 +29,13 @@ router.put(
 );
 router.get("/eventsByOrganizer", authenticateToken, getEventByOrganizer);
 router.get("/eventsById/:eventId", authenticateToken, getEventById);
+router.get("/eventsByArtist", authenticateToken, getEventByArtist);
 router.get("/allEvents", getAllEvents);
-router.delete("/delete-event/:eventId", authenticateToken, deleteEventByOrganizer);
+router.get("/allEvents/:filterString", filterEventByString);
+router.delete(
+  "/delete-event/:eventId",
+  authenticateToken,
+  deleteEventByOrganizer
+);
 
 export default router;
