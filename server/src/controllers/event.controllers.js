@@ -33,7 +33,7 @@ export const createEventByOrganizer = async (req, res) => {
       } = req.body;
 
       let query = `INSERT INTO events (organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
-  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9)`;
+  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9) RETURNING *`;
 
       try {
         const { rows } = await pool.query(query, [
@@ -47,8 +47,8 @@ export const createEventByOrganizer = async (req, res) => {
           finalDate,
           eventImage,
         ]);
-
-        res.status(200).send("Evento creado / actualizado.").json(rows[0]);
+        res.status(200).json({ message: "Evento creado.", event: rows[0] });
+        console.log(rows[0].id); // id del evento creado
       } catch (error) {
         console.log("Error query insert : ", error);
         res.status(500).json(error.detail);
@@ -83,6 +83,7 @@ export const editEventByOrganizer = async (req, res) => {
         .json({ message: "Debe ser organizador para poder crear un evento." });
     } else {
       const {
+        eventId,
         eventTitle,
         eventDescription,
         urlEvent,
@@ -93,8 +94,8 @@ export const editEventByOrganizer = async (req, res) => {
         eventImage,
       } = req.body;
 
-      let query = `INSERT INTO events (organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
-  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9) 
+      let query = `INSERT INTO events (id,organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
+  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9, $10) 
   ON CONFLICT (id) DO UPDATE 
   SET  
   eventTitle=EXCLUDED.eventTitle, 
@@ -105,10 +106,11 @@ export const editEventByOrganizer = async (req, res) => {
   initialDate=EXCLUDED.initialDate, 
   finalDate=EXCLUDED.finalDate, 
   eventImage=EXCLUDED.eventImage
-`;
+ RETURNING *`;
 
       try {
         const { rows } = await pool.query(query, [
+          eventId,
           userId,
           eventTitle,
           eventDescription,
@@ -119,8 +121,11 @@ export const editEventByOrganizer = async (req, res) => {
           finalDate,
           eventImage,
         ]);
-
-        res.status(200).send("Evento creado / actualizado.").json(rows[0]);
+        console.log("Filas devueltas:", rows);
+        console.log("Evento creado / actualizado:", rows[0].id);
+        res
+          .status(200)
+          .json({ message: "Evento creado / actualizado.", event: rows[0] });
       } catch (error) {
         console.log("Error query insert : ", error);
         res.status(500).json(error.detail);
@@ -140,17 +145,17 @@ export const getEventByOrganizer = async (req, res) => {
     const result = await pool.query(
       "SELECT * FROM events INNER JOIN organizer ON id_user = organizer_id WHERE organizer_id = $1;",
       [userId]
-      );
+    );
 
     if (result.rows && result.rows.length > 0) {
-      console.log(result.rows[0].id)
-      res.status(200).json(result.rows);  
+      console.log(result.rows[0].id);
+      res.status(200).json(result.rows);
     } else {
-      res.status(404).json({message: "No se encontraron eventos para el organizador"})
-    } 
-
-    } 
-  catch (error) {
+      res
+        .status(404)
+        .json({ message: "No se encontraron eventos para el organizador" });
+    }
+  } catch (error) {
     console.log("Error query insert : ", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
@@ -159,7 +164,7 @@ export const getEventByOrganizer = async (req, res) => {
 export const getEventById = async (req, res) => {
   try {
     const token = req.headers.authorization;
-    
+
     if (!token) {
       return res
         .status(401)
@@ -168,9 +173,9 @@ export const getEventById = async (req, res) => {
 
     const userId = req.userId;
     const eventId = req.params.eventId;
-    
+
     console.log(`Este es el id del usuario: ${userId}`);
-    console.log(`Este es el id del evento: ${eventId}` );
+    console.log(`Este es el id del evento: ${eventId}`);
 
     const userResult = await pool.query(
       "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
@@ -182,18 +187,17 @@ export const getEventById = async (req, res) => {
         message: "Debe ser organizador para poder editar un evento.",
       });
     } else {
-      
-      const response = await pool.query("SELECT * FROM events WHERE id = $1", [eventId]);
-  
+      const response = await pool.query("SELECT * FROM events WHERE id = $1", [
+        eventId,
+      ]);
+
       console.log("Evento traido correctamente:", response.rows);
       res.status(200).json(response.rows);
     }
   } catch (error) {
     console.error(error);
     res.status(500).send("Error de servidor");
-    
   }
-  
 };
 
 export const getAllEvents = async (req, res) => {
@@ -257,4 +261,3 @@ export const getEventByArtist = async (req, res) => {
     return res.sendStatus(403);
   }
 };
-

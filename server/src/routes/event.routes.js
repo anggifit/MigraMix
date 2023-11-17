@@ -3,12 +3,12 @@ import { validateSchemaRequest } from "../middleware/validator.requestBody.js";
 import { authenticateToken } from "../middleware/auth.middleware.js";
 import { eventSchema } from "../schemas/event.schema.js";
 import {
-  createEventByOrganizer,
   editEventByOrganizer,
   getEventByOrganizer,
   getEventById,
   getAllEvents,
   deleteEventByOrganizer,
+  createEventByOrganizer,
 } from "../controllers/event.controllers.js";
 
 const router = Router();
