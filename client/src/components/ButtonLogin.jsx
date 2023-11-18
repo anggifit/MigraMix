@@ -30,7 +30,7 @@ const ButtonLogin = () => {
         </Button>
         <Button
           style={{ color: "black", border: "none", textTransform: 'none'}}
-          className="bg-gradient-to-r from-red-200 via-red-300 to-red-400 hover:from-red-500 hover:via-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80"
+          // className="bg-gradient-to-r from-red-200 via-red-300 to-red-400 hover:from-red-500 hover:via-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80"
           startIcon={<AccountBoxIcon />}
           disabled={false}
           size="medium"
