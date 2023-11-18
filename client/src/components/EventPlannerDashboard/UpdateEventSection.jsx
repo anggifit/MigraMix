@@ -27,7 +27,6 @@ import SuccesfullModal from '../SignUp/SuccesfullModal'
 const defaultTheme = createTheme();
 
 const UpdateEventSection = ({activeEventId}) => {
-
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventTitle: '', 
@@ -54,7 +53,7 @@ const UpdateEventSection = ({activeEventId}) => {
                     }
                 })  
                 const eventData = response.data
-
+                
                 setValue("eventTitle", eventData[0].eventtitle);
                 setValue("eventDescription", eventData[0].eventdescription);
                 setValue("urlEvent", eventData[0].urlevent);
@@ -132,7 +131,9 @@ const UpdateEventSection = ({activeEventId}) => {
     }
 
     const onSubmit = (data) => {
+        console.log(`este es el id del evento: ${activeEventId}`)
         if (isValid) {
+            data.eventId = activeEventId
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
             data.artistEvent = selectedArtist
@@ -153,7 +154,6 @@ const UpdateEventSection = ({activeEventId}) => {
             })
             .catch((error) => {console.log(error.data);})
         }
-        console.log(data)
     }
 
 
@@ -332,7 +332,7 @@ const UpdateEventSection = ({activeEventId}) => {
                                 open={open}
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
-                                description= "eventos pepe"
+                                description= "The event has been updated successfully."
                         />
                     </Stack>
                     </Box>

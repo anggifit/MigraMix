@@ -73,10 +73,6 @@ const SignUpForm = () => {
       navigate("/api/sign-in")
   }
 
-/*   const handleOpen = () => {
-    setOpen(true);
-  }; */
-
   const onSubmit = (data) => {
     if (isValid) {
       data.dateOfBirth = selectedDate;

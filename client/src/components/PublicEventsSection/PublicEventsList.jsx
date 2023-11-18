@@ -49,18 +49,19 @@ function PublicEventsList() {
   }, []);
 
   const filteredData = data.filter((event) => {
-    if (filterType === '') {
-      return true; 
-    } else if (filterType === 'free') {
-      return event.preu === 'Activitat gratuïta'; 
+    if (filterType === 'free') {
+      return event.preu.toLowerCase() === 'activitat gratuïta';
     } else if (filterType === 'paid') {
-      return event.preu !== 'Activitat gratuïta';
-    }
-
-    if (searchTerm.trim() === '') {
+      return event.preu.toLowerCase() !== 'activitat gratuïta';
+    } else {
       return true;
     }
-    return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
+  }).filter((event) => {
+    if (searchTerm.trim() === '') {
+      return true;
+    } else {
+      return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
+    }
   });
 
  return (

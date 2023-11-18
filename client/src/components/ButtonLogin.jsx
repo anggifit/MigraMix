@@ -13,6 +13,7 @@ const ButtonLogin = () => {
     }
     const handleSignUpClick = () => {
         navigate("/api/sign-up")
+
     }
 
     return (
