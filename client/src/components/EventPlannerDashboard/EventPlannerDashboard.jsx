@@ -7,7 +7,6 @@ import WelcomeSection from './WelcomeSection'
 import PropTypes from "prop-types";
 import UpdateEventSection from './UpdateEventSection'
 
-
 const EventPlannerDashboard = ({ username, fullname, profilePhoto }) => {
   const [activeSection, setActiveSection] = useState('')
   const [activeEventId, setActiveEventId] = useState(null);
@@ -15,9 +14,6 @@ const EventPlannerDashboard = ({ username, fullname, profilePhoto }) => {
   const handlerMenuClick = (section, eventId = null) => {
     setActiveSection(section)
     setActiveEventId(eventId)
-/*     if (section === 'updateEvent') {
-      navigate(`/events/edit-event/${eventId}`);  
-  } */
 }
 
   return (

@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Container, Grid, Avatar, Typography, Box, Stack} from "@mui/material";
 import FestivalIcon from '@mui/icons-material/Festival';
 import EventCard from "../PublicEventsSection/EventCard";
 import RedButton from "../RedButton";
 import axios from "axios";
+import SuccesfullModal from "../SignUp/SuccesfullModal";
 
 const MyEventsSection = ({onEditClick}) => {
 
   const [mixEventsData, setMixEventsData] = useState([])
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); 
+  const [open, setOpen] = useState(false);
+  const [eventDeleted, setEventDeleted] = useState(false)
 
   const token = localStorage.getItem('token');
   const imgExample = `https://images.unsplash.com/photo-1663245467127-2520ec7bf0ca?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`
@@ -44,13 +47,24 @@ const MyEventsSection = ({onEditClick}) => {
       }
   })
   .then((response) => {
-      console.log(response.data)
+      /* console.log(response.data) */
       if (response.status === 200) {
-          console.log("evento eliminado");
+          console.log("Event deleted");
+          setEventDeleted(true)
       }
   })
   .catch((error) => {console.log(error.data);})
   }
+
+  useEffect(() => {
+    if (eventDeleted) {
+      setOpen(true)
+    }
+  }, [eventDeleted])
+
+  const errorsCache = useMemo(() => {
+    return error;
+  }, [error]);
 
   return (
     <div style={{ height: '100%', width: '100%'}}> 
@@ -77,8 +91,8 @@ const MyEventsSection = ({onEditClick}) => {
             <Grid container spacing={3} justifyContent="center" sx={{ padding: 5 }}>
               {loading ? (
                 <p>Loading data..</p>
-              ) : error ? (
-                <p>Error: {error.message}</p>
+              ) : errorsCache ? (
+                <p>Error: {errorsCache.message}</p>
                 ) : (
                   mixEventsData.map((event) => (
                     <Grid item xs={4} key={event.id}>
@@ -125,6 +139,11 @@ const MyEventsSection = ({onEditClick}) => {
                               }}
                           />
                         </Stack>
+                          <SuccesfullModal
+                            open={open}
+                            onClose={() => setOpen(false)}
+                            description= "The event has been delete succesfully"
+                          />
                     </Grid>
                   ))
                 )}

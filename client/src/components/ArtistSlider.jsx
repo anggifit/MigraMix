@@ -4,10 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../assets/Slide.css";
 import axios from 'axios';
 
-/* import data from './ArtistsSection/ArtistsList.json';
- */
-
-const ArtistProfile = () => {
+const ArtistSlider = () => {
   const [artistData, setArtistData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -36,7 +33,7 @@ const ArtistProfile = () => {
   },[])
 
   return (
-    <div className="w-4/6 mx-auto ">
+    <div className="w-4/6 mx-auto rounded-xl overflow-hidden ">
       <Carousel showThumbs={false}>
         {loading ? (
           <p>
@@ -75,4 +72,4 @@ const ArtistProfile = () => {
   );
 };
 
-export default ArtistProfile;
+export default ArtistSlider;

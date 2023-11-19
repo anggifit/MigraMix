@@ -59,7 +59,6 @@ export default function SignInForm() {
       [name]: value,
     });
 
-    // Clear the error message for this input field
     setErrors({
       ...errors,
       [name]: "",

@@ -5,20 +5,17 @@ import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import FestivalIcon from '@mui/icons-material/Festival';
 import EventPlannerHeader from './EventPlannerHeader'
 import PropTypes from "prop-types";
-import axios from "axios"
 
 function MenuBar({onMenuClick, profilePhoto, username, fullname}) {
     const token = localStorage.getItem('token');
 
     const handleLogOut = async () => {
         try {
-            /* await axios.post('/api/logout')  */
             localStorage.removeItem(`${token}`)
             window.location.href = '/'
         } catch (error) {
             console.error("Logout Failed")
         }
-
     }
         return (
         <Card className="h-[calc(100vh-1rem)] w-full max-w-[20rem] p-4 bg-gradient-to-t from-red-300 to-neutral-50 shadow-lg shadow-red-300">

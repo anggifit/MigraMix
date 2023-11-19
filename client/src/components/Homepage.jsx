@@ -1,4 +1,4 @@
-import ArtistProfile from "../components/ArtistProfile";
+import ArtistSlider from "../components/ArtistSlider";
 import Header from "../components/Header";
 import Footer from "./Footer";
 import MixEventsSection from "./MixEvents/MixEventsSection";
@@ -9,7 +9,7 @@ const Homepage = () => {
       <div></div>
       <div className="relative">
         <Header />
-        <ArtistProfile/>
+        <ArtistSlider/>
         <MixEventsSection/>
         <Footer />
       </div>
