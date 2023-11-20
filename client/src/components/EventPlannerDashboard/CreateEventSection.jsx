@@ -295,6 +295,7 @@ const CreateEventSection = () => {
                             onClose={() => setOpen(false)}
                             onClick={handleExitClick}
                             description= "The event has been created successfully."
+                            infoButton="Close" 
                         />
                     </Stack>
                     </Box>

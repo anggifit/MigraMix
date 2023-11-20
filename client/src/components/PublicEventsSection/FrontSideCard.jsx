@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Typography, Card, CardActionArea, CardMedia, CardContent} from "@mui/material";
 
-
 const FrontSideCard = ({ image,title, price, artist}) => {
   const cardStyle = {
     width: '100%',

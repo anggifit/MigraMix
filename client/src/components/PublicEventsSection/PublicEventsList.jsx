@@ -15,10 +15,6 @@ const formattedDate = `${year}-${month}`;
 const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_inici-like/${formattedDate}`;
 const randomImage = imagesExample[Math.floor(Math.random() * imagesExample.length)];
 
-/* 
-const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80`; 
-*/
-
 function PublicEventsList() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -68,7 +64,6 @@ function PublicEventsList() {
       return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
     }
   });
-
 
  return (
     <div className="font-sans p-8">

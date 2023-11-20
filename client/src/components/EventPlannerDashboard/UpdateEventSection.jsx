@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
@@ -339,5 +340,9 @@ const UpdateEventSection = ({activeEventId}) => {
         </div>
     )
 }
+
+UpdateEventSection.propTypes = {
+    activeEventId: PropTypes.string,
+  };
 
 export default UpdateEventSection;

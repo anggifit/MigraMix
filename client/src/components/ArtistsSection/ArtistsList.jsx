@@ -16,7 +16,6 @@ const ArtistsList = () => {
                 if (response.status !== 200) {
                     throw new Error("Network response was not ok")
                 }
-
                 const data = response.data
                 setArtistData(data)
                 setLoading(false)
@@ -38,7 +37,7 @@ const ArtistsList = () => {
                 ) : (
                     artistData.map((person) =>(
                         <Grid key={person.id} item xs={6}>
-                            <ArtistCard /* pendiente con el nombre que se recibe de la tabla */
+                            <ArtistCard 
                                 image={person.artistsprofilepicture}
                                 user={person.username}
                                 bio={person.artistbio}

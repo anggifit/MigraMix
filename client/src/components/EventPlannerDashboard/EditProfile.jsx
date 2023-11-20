@@ -153,6 +153,7 @@ const EditProfile = () => {
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
                                 description= "The profile has been edited successfully."
+                                infoButton="Close"
                             />
                         </Stack>
                     </Box>

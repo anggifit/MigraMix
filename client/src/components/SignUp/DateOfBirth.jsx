@@ -58,7 +58,7 @@ const DateOfBirth = ({onChange}) => {
                     }}
                     minDate={minDateAllowed}
                     maxDate={maxDateAllowed}
-                    disableOpenPicker={false}//tuve que deshabilitar por que no me funciona el picker
+                    disableOpenPicker={false}
                     InputProps={{ style: { fontSize: '16px' } }} 
                     InputLabelProps={{ style: { fontSize: '16px' } }}
                     sx={{

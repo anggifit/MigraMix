@@ -1,19 +1,6 @@
-import {
-  Box,
-  Button,
-  Typography,
-  Modal,
-  Stack,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
+import { Box, Button, Typography, Modal, Stack, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PropTypes from "prop-types";
-/* 
-import { useNavigate} from "react-router-dom";
-import { Link as RouterLink } from "react-router-dom";
- */
 
 const style = {
   position: "absolute",
@@ -37,7 +24,7 @@ const ArtistProfile = ({
   bio,
   mainLink,
 }) => {
-  //const navigate = useNavigate()
+  
   const protocol = "http://";
 
   return (
@@ -73,7 +60,10 @@ const ArtistProfile = ({
                   >
                     {user}
                   </Typography>
-                  <div className="flex justify-between items-center my-5 px-6">
+                  <div 
+                    className="flex justify-between items-center my-5 px-6"
+                    style={{ alignItems: 'baseline' }}  
+                  >
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
