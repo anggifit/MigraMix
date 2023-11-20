@@ -222,7 +222,7 @@ export const getAllEvents = async (req, res) => {
   const result = await pool.query("SELECT * FROM events");
   try {
     /* console.log(result.rows[0].id); */
-    console.log(result.rows);
+    /* console.log(result.rows); */
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("Error query insert : ", error);

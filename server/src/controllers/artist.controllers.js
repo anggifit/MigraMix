@@ -106,6 +106,6 @@ export const getArtistList = async (req, res) => {
   FROM artists a
   INNER JOIN users u ON a.id = u.id
 `);
-  console.log(response.rows);
+  /* console.log(response.rows); */
   res.status(200).json(response.rows);
 };

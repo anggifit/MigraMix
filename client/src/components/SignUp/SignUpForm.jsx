@@ -70,7 +70,7 @@ const SignUpForm = () => {
 
   const navigate = useNavigate()
   const handleNextClick = () => {
-      navigate("/api/sign-in")
+      navigate("/sign-in")
   }
 
   const onSubmit = (data) => {
@@ -78,7 +78,7 @@ const SignUpForm = () => {
       data.dateOfBirth = selectedDate;
       data.role = selectedRole;
       axios
-        .post('/api/sign-up', data, {
+        .post('/sign-up', data, {
           headers: { 'Content-Type': 'application/json' },
         })
         .then((response) => {

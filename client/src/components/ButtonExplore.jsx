@@ -16,7 +16,7 @@ const ButtonExplore = () => {
         navigate("/events")
     }
     const handleExploreArtistsClick = () => {
-        navigate("/api/artistsPage")
+        navigate("/artistsPage")
     }
 
     const handleMixEventsClick = () => {
@@ -26,7 +26,7 @@ const ButtonExplore = () => {
 
     return (
         <Stack spacing={3} direction="row" justifyContent='center'>
-            <RouterLink to="/api/artistsPage">
+            <RouterLink to="/artistsPage">
                 <CustomButton 
                     style={{ backgroundColor: '#F70808', color: 'white' }}
                     disabled={false}

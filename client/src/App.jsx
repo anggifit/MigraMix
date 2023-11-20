@@ -22,15 +22,15 @@ const App = () => {
       element: <Homepage/>,
     },
     {
-      path: "/api/artistsPage",
+      path: "/artistsPage", //aca quite el api
       element: <ArtistsPage/>
     },
     {
-      path: "/api/sign-in",
+      path: "/sign-in",
       element: <SignInForm/>,
     },
     {
-      path: "/api/sign-up",
+      path: "/sign-up",
       element: <SignUpForm />
     },
     {

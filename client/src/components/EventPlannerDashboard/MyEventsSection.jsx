@@ -22,7 +22,7 @@ const MyEventsSection = ({onEditClick}) => {
     fetchMixEventsData()
     async function fetchMixEventsData() {
       try {
-        const response = await axios.get('http://localhost:4000/events/eventsByOrganizer', {
+        const response = await axios.get('http://localhost:4000/api/events/eventsByOrganizer', {
           headers: {
             Authorization: `Bearer ${token}`, 
             'Cache-Control': 'no-cache',

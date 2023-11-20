@@ -111,7 +111,7 @@ export default function SignInForm() {
     if (email && password) {
       axios
       .post(
-          "/api/sign-in",
+          "/sign-in",
           { email, password }, // Use the extracted email and password
           {
             headers: { "Content-Type": "application/json" },
