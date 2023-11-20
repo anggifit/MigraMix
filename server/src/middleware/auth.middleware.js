@@ -13,7 +13,6 @@ export const authenticateToken = (req, res, next) => {
 
   jwt.verify(bearerToken, process.env.TOKEN_SECRET, (err, user) => {
     if (err) {
-      console.log(bearerToken); // Aquí puedes imprimir el token para ayudar en la depuración
       return res.status(403).json({ message: "Token inválido." });
     }
 

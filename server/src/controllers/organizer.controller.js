@@ -2,10 +2,7 @@ import pool from "../db.js";
 
 export const newOrganizer = async (req, res) => {
   console.log(req.body);
-  // const { id, eventPlannerBio, eventPlannerMainLink, eventProfilePicture } =
 
-  // let query = `INSERT INTO organizer (id_user,biography,main_link,picture)
-  // VALUES ($1,$2,$3,$4) RETURNING * `;
   const { eventPlannerBio, eventPlannerMainLink, eventProfilePicture } =
     req.body;
 
@@ -31,10 +28,8 @@ export const newOrganizer = async (req, res) => {
       console.log("error: Failed to register organizer");
       return res.sendStatus(422);
     }
-    console.log(rows);
     return res.sendStatus(201);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(400);
   }
 };
@@ -54,11 +49,9 @@ export const getPerfilOrganizer = async (req, res) => {
       console.log("error: Failed to register organizer");
       return res.sendStatus(422);
     }
-    console.log(rows);
     return res.status(200).json(rows[0]);
 
   } catch (error) {
-      console.log(error);
       return res.sendStatus(400);
   }
 };
