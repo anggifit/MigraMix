@@ -36,7 +36,7 @@ const EditProfile = () => {
         if (isValid){
             data.eventProfilePicture = eventProfilePictureURL;
             axios
-            .post(`/organizers/organizer`, data, 
+            .post(`/api/organizers/organizer`, data, 
             {headers: {
                 Authorization: `Bearer ${token}`
             }})

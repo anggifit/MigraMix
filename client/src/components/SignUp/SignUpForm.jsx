@@ -78,7 +78,7 @@ const SignUpForm = () => {
       data.dateOfBirth = selectedDate;
       data.role = selectedRole;
       axios
-        .post('/sign-up', data, {
+        .post('/api/sign-up', data, {
           headers: { 'Content-Type': 'application/json' },
         })
         .then((response) => {

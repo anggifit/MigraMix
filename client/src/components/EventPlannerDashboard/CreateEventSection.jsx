@@ -82,16 +82,15 @@ const CreateEventSection = () => {
             "http://localhost:4000/api/artists/artistsList"
             );
             if (response.status !== 200) {
-            throw new Error("Network response was not ok");
+                throw new Error("Network response was not ok");
             }
-
-                    const data = response.data
-                    setArtistData(data)
-                }
-                catch (error) {
-                    setError(error)
-                }
-            }
+                const data = response.data
+                setArtistData(data)
+        }                
+        catch (error) {
+            setError(error)
+        }  
+        }
     }, [])
 
     const handleExitClick = () => {
@@ -105,22 +104,19 @@ const CreateEventSection = () => {
             data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
-            console.log(data)
             axios
-            .post('/events/events', data, { 
+            .post('/api/events/events', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.status === 200) {
                     setOpen(true);
                 }
             })
             .catch((error) => {console.log(error.data);})
         }
-        console.log(data)
     }
 
     return (
@@ -295,10 +291,10 @@ const CreateEventSection = () => {
                     >
                         <RedButton info="Save Event" widen size="large" type="submit"/>
                         <SuccesfullModal
-                                open={open}
-                                onClose={() => setOpen(false)}
-                                onClick={handleExitClick}
-                                description= "The event has been created successfully."
+                            open={open}
+                            onClose={() => setOpen(false)}
+                            onClick={handleExitClick}
+                            description= "The event has been created successfully."
                         />
                     </Stack>
                     </Box>

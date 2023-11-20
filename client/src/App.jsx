@@ -55,17 +55,6 @@ const App = () => {
     }
   ])
 
-/*   const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const currentPath = location.pathname;
-
-    if (currentPath === "/api/sign-up" || currentPath === "/api/sign-in") {
-      navigate("/"); // Redirect to the root path
-    }
-  }, [location.pathname, navigate]); */
-
   return (
     <UserContext.Provider value={{role, setRole}}>
         <RouterProvider router={router}>

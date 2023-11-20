@@ -131,7 +131,6 @@ const UpdateEventSection = ({activeEventId}) => {
     }
 
     const onSubmit = (data) => {
-        console.log(`este es el id del evento: ${activeEventId}`)
         if (isValid) {
             data.eventId = activeEventId
             data.eventImage = eventProfilePictureURL
@@ -139,15 +138,13 @@ const UpdateEventSection = ({activeEventId}) => {
             data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
-            console.log(data)
             axios
-            .put('/events/edit-event', data, { 
+            .put('/api/events/edit-event', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.status === 200) {
                     setOpen(true);
                 }

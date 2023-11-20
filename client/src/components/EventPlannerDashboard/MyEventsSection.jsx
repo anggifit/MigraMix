@@ -42,7 +42,7 @@ const MyEventsSection = ({onEditClick}) => {
   }, [token])
 
   const deleteEvent = (eventId) => {
-    axios.delete(`http://localhost:4000/events/delete-event/${eventId}`, { 
+    axios.delete(`http://localhost:4000/api/events/delete-event/${eventId}`, { 
       headers: {
           Authorization: `Bearer ${token}`,
       }

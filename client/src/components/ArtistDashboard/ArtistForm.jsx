@@ -33,7 +33,7 @@ const ArtistForm = ({artistProfilePic}) => {
       data.Performance = selectedPerformance;
       data.Type_of_performance = selectedTypeOfPerformance;
       axios
-        .put(`/artists/artists`, data, {
+        .put(`/api/artists/artists`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
