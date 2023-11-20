@@ -4,6 +4,7 @@ import FestivalIcon from '@mui/icons-material/Festival';
 import EventCard from "../PublicEventsSection/EventCard";
 import RedButton from "../RedButton";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const MyEventsSection = ({onEditClick}) => {
 
@@ -135,5 +136,7 @@ const MyEventsSection = ({onEditClick}) => {
     </div>
   )
 }
-
+MyEventsSection.propTypes = {
+  onEditClick: PropTypes.func
+};
 export default MyEventsSection
