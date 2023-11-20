@@ -3,8 +3,8 @@ import Stack from '@mui/material/Stack';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useNavigate } from "react-router-dom";
-import BotonProvisorio from './BotonProvisorio';
-import BotonProvisorio2 from './BotonProvisorio2';
+/* import BotonProvisorio from './BotonProvisorio';
+import BotonProvisorio2 from './BotonProvisorio2'; */
 
 const ButtonLogin = () => {
     const navigate = useNavigate()
@@ -39,8 +39,8 @@ const ButtonLogin = () => {
         >
           Sign in
         </Button>
-        <BotonProvisorio/>
-        <BotonProvisorio2/>
+{/*         <BotonProvisorio/>
+        <BotonProvisorio2/> */}
       </Stack>
     );
 }

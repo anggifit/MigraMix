@@ -55,7 +55,7 @@ const EditProfile = () => {
     }
     
     return (
-        <div>
+        <div className="w-5/6">
             <ThemeProvider theme={defaultTheme}>
                 <Container maxWidth="xl">
                 <CssBaseline />
