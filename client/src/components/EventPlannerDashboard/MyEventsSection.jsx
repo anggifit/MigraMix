@@ -5,6 +5,7 @@ import EventCard from "../PublicEventsSection/EventCard";
 import RedButton from "../RedButton";
 import axios from "axios";
 import SuccesfullModal from "../SignUp/SuccesfullModal";
+import PropTypes from "prop-types";
 
 const MyEventsSection = ({onEditClick}) => {
 
