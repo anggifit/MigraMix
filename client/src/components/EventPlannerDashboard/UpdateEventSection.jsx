@@ -331,6 +331,7 @@ const UpdateEventSection = ({activeEventId}) => {
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
                                 description= "The event has been updated successfully."
+                                infoButton="Close"
                         />
                     </Stack>
                     </Box>
