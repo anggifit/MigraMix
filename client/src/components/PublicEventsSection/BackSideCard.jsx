@@ -1,16 +1,5 @@
 import PropTypes from "prop-types";
-import {
-  Typography,
-  Button,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Stack,
-  Chip,
-} from "@mui/material";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import { Typography, Button, Card, CardActionArea, CardMedia, CardContent, CardActions, Stack} from "@mui/material";
 import moment from "moment";
 
 const BackSideCard = ({
@@ -37,6 +26,15 @@ const BackSideCard = ({
     backgroundImage: `url(${image})`,
   };
 
+  const isPaidStyle = {
+    background: price === "Free" ? "#84CC14" : "#FF4B4B",
+    color: "white",
+    padding: "5px 10px",
+    borderRadius: "4px",
+    position: "absolute",
+    right: "10px", // Puedes ajustar la posición según tus necesidades
+  };
+
   return (
     <div>
       <Card sx={cardStyle}>
@@ -61,7 +59,7 @@ const BackSideCard = ({
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Stack spacing={12} direction="row" justifyContent="space-between">
+          <Stack spacing={12} direction="row" justifyContent="space-between" alignItems="flex-end">
             <Button
               size="small"
               color="primary"
@@ -71,11 +69,9 @@ const BackSideCard = ({
             >
               Link to event
             </Button>
-            <Chip
-              icon={<MonetizationOnIcon />}
-              label={price || "N/A"}
-              color={price === "Free" ? "success" : "primary"}
-            />
+            <div style={isPaidStyle}>
+              {price === "Free" ? "Free" : "Paid"}
+            </div>
           </Stack>
         </CardActions>
       </Card>
