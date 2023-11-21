@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {Container, Grid} from "@mui/material";
 import SearchEventsBar from "./SearchEventsBar";
 import EventCard from "./EventCard";
+import imagesExample from "./ImagesExample"
 
 const dateNow = new Date();
 const year = dateNow.getFullYear();
@@ -12,8 +13,7 @@ if (month < 10) {
 
 const formattedDate = `${year}-${month}`;
 const eventDate = `https://do.diba.cat/api/dataset/actesturisme_es/camp-data_inici-like/${formattedDate}`;
-const imgExample = `https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80`;
-
+const randomImage = imagesExample[Math.floor(Math.random() * imagesExample.length)];
 
 function PublicEventsList() {
   const [data, setData] = useState([]);
@@ -21,46 +21,48 @@ function PublicEventsList() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('')
   const [filterType, setFilterType] = useState('')
-
+  
   const handleSearch = (term) => {
     setSearchTerm (term)
   }
-
+  
   const handleFilterChange = (type) => {
     setFilterType(type)
   }
-
+  
   useEffect(() => {
     fetch(eventDate)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data.elements);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setData(data.elements);
+      setLoading(false);
+    })
+    .catch((error) => {
+      setError(error);
+      setLoading(false);
+    });
   }, []);
+  
 
   const filteredData = data.filter((event) => {
-    if (filterType === '') {
-      return true; 
-    } else if (filterType === 'free') {
-      return event.preu === 'Activitat gratuïta'; 
+    if (filterType === 'free') {
+      return event.preu.toLowerCase() === 'activitat gratuïta';
     } else if (filterType === 'paid') {
-      return event.preu !== 'Activitat gratuïta';
-    }
-
-    if (searchTerm.trim() === '') {
+      return event.preu.toLowerCase() !== 'activitat gratuïta';
+    } else {
       return true;
     }
-    return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
+  }).filter((event) => {
+    if (searchTerm.trim() === '') {
+      return true;
+    } else {
+      return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
+    }
   });
 
  return (
@@ -81,7 +83,7 @@ function PublicEventsList() {
                     image={
                       event.imatge && event.imatge.length > 0
                         ? event.imatge
-                        : imgExample
+                        : randomImage
                     }
                     title={event.titol}
                     description={event.descripcio}

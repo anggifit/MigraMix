@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
@@ -27,7 +28,6 @@ import SuccesfullModal from '../SignUp/SuccesfullModal'
 const defaultTheme = createTheme();
 
 const UpdateEventSection = ({activeEventId}) => {
-
     const { register, setValue, handleSubmit, formState: { isValid, errors } } = useForm({
         defaultValues: {
             eventTitle: '', 
@@ -47,14 +47,14 @@ const UpdateEventSection = ({activeEventId}) => {
         fetchEventData()
         async function fetchEventData() {
             try {
-                const response = await axios.get(`http://localhost:4000/events/eventsById/${activeEventId}`, {
+                const response = await axios.get(`http://localhost:4000/api/events/eventsById/${activeEventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, 
                         'Cache-Control': 'no-cache',
                     }
                 })  
                 const eventData = response.data
-
+                
                 setValue("eventTitle", eventData[0].eventtitle);
                 setValue("eventDescription", eventData[0].eventdescription);
                 setValue("urlEvent", eventData[0].urlevent);
@@ -114,7 +114,7 @@ const UpdateEventSection = ({activeEventId}) => {
         fetchArtistData();
         async function fetchArtistData() {
         try {
-            const response = await axios.get("http://localhost:4000/artists/artistsList");
+            const response = await axios.get("http://localhost:4000/api/artists/artistsList");
             if (response.status !== 200) {
                 throw new Error("Network response was not ok");
             }
@@ -133,27 +133,25 @@ const UpdateEventSection = ({activeEventId}) => {
 
     const onSubmit = (data) => {
         if (isValid) {
+            data.eventId = activeEventId
             data.eventImage = eventProfilePictureURL
             data.typeOfActivity = selectedTypeOfActivity
             data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
-            console.log(data)
             axios
-            .put('/events/edit-event', data, { 
+            .put('/api/events/edit-event', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.status === 200) {
                     setOpen(true);
                 }
             })
             .catch((error) => {console.log(error.data);})
         }
-        console.log(data)
     }
 
 
@@ -332,7 +330,8 @@ const UpdateEventSection = ({activeEventId}) => {
                                 open={open}
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
-                                description= "eventos pepe"
+                                description= "The event has been updated successfully."
+                                infoButton="Close"
                         />
                     </Stack>
                     </Box>
@@ -342,5 +341,9 @@ const UpdateEventSection = ({activeEventId}) => {
         </div>
     )
 }
+
+UpdateEventSection.propTypes = {
+    activeEventId: PropTypes.string,
+  };
 
 export default UpdateEventSection;

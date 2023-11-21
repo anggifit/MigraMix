@@ -4,13 +4,12 @@ import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 import SelectOptions from "../SelectOptions";
 import { PropTypes } from "prop-types";
-import artistsList from "./artistsList.json";
+
 
 const ArtistForm = ({artistProfilePic}) => {  
    const {register, handleSubmit, formState: { isValid, errors },} = useForm({defaultValues: {artistbio: "",},
   });
   
-
   const token = localStorage.getItem("token");
   
   const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
@@ -21,10 +20,10 @@ const ArtistForm = ({artistProfilePic}) => {
   const socialMediaRegex =
     /^((https?|ftp|smtp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
 
-
   const onImageUpload = (url) => {
     setEventProfilePictureURL(url);    
   };
+
   const onSubmit = (data) => {
     console.log(data)
 
@@ -34,7 +33,7 @@ const ArtistForm = ({artistProfilePic}) => {
       data.Performance = selectedPerformance;
       data.Type_of_performance = selectedTypeOfPerformance;
       axios
-        .put(`/artists/artists`, data, {
+        .put(`/api/artists/artists`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -48,6 +47,15 @@ const ArtistForm = ({artistProfilePic}) => {
     }
   }
   
+  const handleLogOut = async () => {
+    try {
+        localStorage.removeItem(`${token}`)
+        window.location.href = '/'
+    } catch (error) {
+        console.error("Logout Failed")
+    }
+}
+
   return (
     <div className="w-full relative  shadow-2xl rounded overflow-hidden">
       <div className="top h-full w-full bg-blue-600 overflow-hidden relative">
@@ -78,6 +86,7 @@ const ArtistForm = ({artistProfilePic}) => {
           <a
             href="#"
             className="text-sm p-2 bg-white text-center rounded shadow-xl font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
+            onClick={handleLogOut}
           >
             Log-out 🔒
           </a>

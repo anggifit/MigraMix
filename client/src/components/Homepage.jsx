@@ -1,16 +1,20 @@
-import ArtistProfile from "../components/ArtistProfile";
+import { lazy, Suspense } from 'react';
+import ArtistSlider from "../components/ArtistSlider";
 import Header from "../components/Header";
 import Footer from "./Footer";
-import MixEventsSection from "./MixEvents/MixEventsSection";
+
 
 const Homepage = () => {
+  const MixEventsSection = lazy(() => import('./MixEvents/MixEventsSection'));
   return (
     <div>
       <div></div>
       <div className="relative">
         <Header />
-        <ArtistProfile/>
-        <MixEventsSection/>
+        <ArtistSlider/>
+        <Suspense fallback={<p>Loading...</p>}>
+          <MixEventsSection/>
+        </Suspense>
         <Footer />
       </div>
     </div>

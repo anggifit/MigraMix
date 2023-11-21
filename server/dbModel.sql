@@ -35,7 +35,6 @@ CREATE TABLE artists(
     ContactNumber INT NOT NULL   
 );
 
-
 CREATE TABLE events (
     id serial unique PRIMARY KEY,
     organizer_id INT REFERENCES users(id), 

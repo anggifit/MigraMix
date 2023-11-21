@@ -1,15 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-} from '@mui/material';
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
@@ -70,12 +61,8 @@ const SignUpForm = () => {
 
   const navigate = useNavigate()
   const handleNextClick = () => {
-      navigate("/api/sign-in")
+      navigate("/sign-in")
   }
-
-/*   const handleOpen = () => {
-    setOpen(true);
-  }; */
 
   const onSubmit = (data) => {
     if (isValid) {
@@ -370,6 +357,7 @@ const SignUpForm = () => {
                   onClose={() => setOpen(false)}
                   onClick={handleNextClick}
                   description= "Succesfull Registration"
+                  infoButton="Next"
                 />
                 <Grid container justifyContent="flex-end">
                   <Grid item>

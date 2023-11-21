@@ -9,7 +9,7 @@ const ArtistDashboard = ({artistProfilePic}) => {
   );
 }
 ArtistDashboard.propTypes = {
-  artistProfilePic: PropTypes.func,
+  artistProfilePic: PropTypes.string,
 };
 
 export default ArtistDashboard; 

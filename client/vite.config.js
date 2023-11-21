@@ -14,23 +14,23 @@ export default defineConfig({
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
-      "/organizers/organizer": {
+      "/api/organizers/organizer": {
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
-      "/events/events": {
+      "/api/events/events": {
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
-      "/events/edit-event": {
+      "/api/events/edit-event": {
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
-      "/events/delete-event/:eventId": {
+      "/api/events/delete-event/:eventId": {
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },    
-      "/artists/artists": {
+      "/api/artists/artists": {
         target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },

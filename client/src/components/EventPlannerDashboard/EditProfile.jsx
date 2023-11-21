@@ -36,7 +36,7 @@ const EditProfile = () => {
         if (isValid){
             data.eventProfilePicture = eventProfilePictureURL;
             axios
-            .post(`/organizers/organizer`, data, 
+            .post(`/api/organizers/organizer`, data, 
             {headers: {
                 Authorization: `Bearer ${token}`
             }})
@@ -55,7 +55,7 @@ const EditProfile = () => {
     }
     
     return (
-        <div>
+        <div className="w-5/6">
             <ThemeProvider theme={defaultTheme}>
                 <Container maxWidth="xl">
                 <CssBaseline />
@@ -153,6 +153,7 @@ const EditProfile = () => {
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
                                 description= "The profile has been edited successfully."
+                                infoButton="Close"
                             />
                         </Stack>
                     </Box>

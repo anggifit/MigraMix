@@ -1,25 +1,16 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import {
-  Avatar,
-  CssBaseline,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  Stack,
-} from "@mui/material";
-import EditCalendarIcon from "@mui/icons-material/EditCalendar";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useForm} from "react-hook-form";
+import axios from "axios"
+import {Avatar, CssBaseline, TextField, Grid, Box, Typography, Container, Stack} from '@mui/material';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
-import UploadProfilePhoto from "./UploadProfilePhoto";
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import UploadProfilePhoto from './UploadProfilePhoto';
 import DateRangeEvent from "./DateRangeEvent";
 import UrlValidation from "./UrlValidation";
-import RedButton from "../RedButton";
+import RedButton from "../RedButton"
 import SelectOptions from "../SelectOptions";
 import SuccesfullModal from '../SignUp/SuccesfullModal'
 
@@ -88,19 +79,18 @@ const CreateEventSection = () => {
         async function fetchArtistData() {
         try {
             const response = await axios.get(
-            "http://localhost:4000/artists/artistsList"
+            "http://localhost:4000/api/artists/artistsList"
             );
             if (response.status !== 200) {
-            throw new Error("Network response was not ok");
+                throw new Error("Network response was not ok");
             }
-
-                    const data = response.data
-                    setArtistData(data)
-                }
-                catch (error) {
-                    setError(error)
-                }
-            }
+                const data = response.data
+                setArtistData(data)
+        }                
+        catch (error) {
+            setError(error)
+        }  
+        }
     }, [])
 
     const handleExitClick = () => {
@@ -114,22 +104,19 @@ const CreateEventSection = () => {
             data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
-            console.log(data)
             axios
-            .post('/events/events', data, { 
+            .post('/api/events/events', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.status === 200) {
                     setOpen(true);
                 }
             })
             .catch((error) => {console.log(error.data);})
         }
-        console.log(data)
     }
 
     return (
@@ -304,10 +291,11 @@ const CreateEventSection = () => {
                     >
                         <RedButton info="Save Event" widen size="large" type="submit"/>
                         <SuccesfullModal
-                                open={open}
-                                onClose={() => setOpen(false)}
-                                onClick={handleExitClick}
-                                description= "The event has been created successfully."
+                            open={open}
+                            onClose={() => setOpen(false)}
+                            onClick={handleExitClick}
+                            description= "The event has been created successfully."
+                            infoButton="Close" 
                         />
                     </Stack>
                     </Box>
@@ -318,4 +306,4 @@ const CreateEventSection = () => {
     )
 }
 
-export default CreateEventSection;
+export default CreateEventSection; 
