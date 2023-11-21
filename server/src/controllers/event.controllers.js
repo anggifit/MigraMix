@@ -32,31 +32,31 @@ export const createEventByOrganizer = async (req, res) => {
         eventImage,
       } = req.body;
 
-      let query = `INSERT INTO events (organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
-  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9) 
-  RETURNING id`;
-
       try {
-        const { rows } = await pool.query(query, [
-          userId,
-          eventTitle,
-          eventDescription,
-          urlEvent,
-          typeOfActivity,
-          artistEvent,
-          initialDate,
-          finalDate,
-          eventImage,
-        ]);
-        const eventId = rows[0].id;
+        const eventResult = await pool.query(
+          `INSERT INTO events (organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
+  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9) 
+  RETURNING id`,
+          [
+            userId,
+            eventTitle,
+            eventDescription,
+            urlEvent,
+            typeOfActivity,
+            artistEvent,
+            initialDate,
+            finalDate,
+            eventImage,
+          ]
+        );
+        const eventId = eventResult.rows[0].id;
 
         await pool.query(
           `INSERT INTO event_by_artist (event_id, event_by_artist_id)
-            SELECT $1, users.id
-            FROM users
-            WHERE users.username = $2
-              AND $2 LIKE '%artistEvent%'
-            RETURNING *`,
+   SELECT $1, users.id
+   FROM users
+   WHERE users.username LIKE $2
+   RETURNING *`,
           [eventId, artistEvent]
         );
         res.status(200).json({ message: "Evento creado." });
@@ -134,13 +134,12 @@ export const editEventByOrganizer = async (req, res) => {
           eventImage,
         ]);
 
-        res.status(200).json(rows);
+        res.status(200).json({ message: "Evento editado exitosamente." });
         await pool.query(
           `INSERT INTO event_by_artist (event_id, event_by_artist_id)
             SELECT $1, users.id
             FROM users
-            WHERE users.username = $2
-              AND $2 LIKE '%artistEvent%'
+            WHERE users.username LIKE $2
             RETURNING *`,
           [eventId, artistEvent]
         );
