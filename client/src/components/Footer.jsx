@@ -2,11 +2,8 @@ const Footer = () => {
  
   return (
     <div>
-      <footer
-        className="py-24 p-16 w-full h-full"
-        
-      >
-        <h2 className="pb-3 text-3xl text-center font-semibold font-custom text-[#F70808]">
+      <footer className="py-24 p-16 w-full h-full">
+        <h2 className="pb-3 text-3xl text-center font-semibold font-Gayathri text-[#DA0707]">
           Frequently Asked Questions
         </h2>
         <div className="container px-auto mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
@@ -17,7 +14,7 @@ const Footer = () => {
                 href="#"
                 className="flex justify-center space-x-3 md:justify-start"
               >
-                <span className="self-center text-2xl font-custom text-[#F70808]"></span>
+                <span className="self-center text-2xl font-custom text-[#DA0707]"></span>
               </a>
             </div>
             <div className="text-left">

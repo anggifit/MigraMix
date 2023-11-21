@@ -14,6 +14,7 @@ const ButtonHome = () => {
             variant="text" 
             startIcon={<HomeIcon />} 
             onClick={handleHomeClick}
+            style={{color:"red"}}
         >
             MIGRAMIX
         </Button>

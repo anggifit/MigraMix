@@ -3,8 +3,8 @@ import Stack from '@mui/material/Stack';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useNavigate } from "react-router-dom";
-/* import BotonProvisorio from './BotonProvisorio';
-import BotonProvisorio2 from './BotonProvisorio2'; */
+ import BotonProvisorio from './BotonProvisorio';
+import BotonProvisorio2 from './BotonProvisorio2'; 
 
 const ButtonLogin = () => {
     const navigate = useNavigate()
@@ -17,30 +17,37 @@ const ButtonLogin = () => {
     }
 
     return (
-      <Stack direction="row" spacing={3} justifyContent="right">
+      <Stack direction="row" spacing={4} justifyContent="right" marginBottom="25px">
         <Button
-          style={{ color: "black", border: "none", textTransform: 'none'}}
+          style={{
+            color: "#DA0707",
+            textTransform: "none",
+            borderColor: "#DA0707",
+          }}
           startIcon={<PersonAddAltIcon />}
           disabled={false}
-          size="medium"
+          size="small"
           variant="outlined"
           onClick={handleSignUpClick}
         >
           Sign up
         </Button>
         <Button
-          style={{ color: "black", border: "none", textTransform: 'none'}}
-          // className="bg-gradient-to-r from-red-200 via-red-300 to-red-400 hover:from-red-500 hover:via-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80"
+          style={{
+            color: "#DA0707",
+            textTransform: "none",
+            borderColor: "#DA0707",
+          }}
           startIcon={<AccountBoxIcon />}
           disabled={false}
-          size="medium"
+          size="small"
           variant="outlined"
           onClick={handleSignInClick}
         >
           Sign in
         </Button>
-{/*         <BotonProvisorio/>
-        <BotonProvisorio2/> */}
+                 <BotonProvisorio/>
+        <BotonProvisorio2/> 
       </Stack>
     );
 }
