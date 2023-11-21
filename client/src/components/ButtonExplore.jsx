@@ -26,7 +26,7 @@ const ButtonExplore = () => {
 
   return (
     <>
-      <Stack spacing={3} direction="row" justifyContent="center">
+      {/* <Stack spacing={3} direction="row" justifyContent="center">
         <RouterLink to="/artistsPage">
           <CustomButton
             style={{ backgroundColor: "#F70808", color: "white" }}
@@ -58,7 +58,7 @@ const ButtonExplore = () => {
             More Events
           </CustomButton>
         </RouterLink>
-      </Stack>
+      </Stack> */}
       <Stack spacing={3} direction="row" justifyContent="center">
         <RouterLink to="/api/artistsPage">
           <CustomButton
@@ -67,6 +67,7 @@ const ButtonExplore = () => {
               color: "#DA0707",
               borderColor: "#DA0707",
               borderRadius: "7px",
+              borderWidth: "2px",
             }}
             disabled={false}
             size="large"
@@ -78,7 +79,7 @@ const ButtonExplore = () => {
         </RouterLink>
         <CustomButton
           style={{
-            backgroundColor: "#DA0707",
+            backgroundColor: "#F70808",
             color: "white",
             borderColor: "#DA0707",
             borderRadius: "7px",
@@ -97,6 +98,7 @@ const ButtonExplore = () => {
               color: "#DA0707",
               borderColor: "#DA0707",
               borderRadius: "7px",
+              borderWidth: "2px",
             }}
             disabled={false}
             size="large"

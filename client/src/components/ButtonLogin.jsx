@@ -17,12 +17,17 @@ const ButtonLogin = () => {
     }
 
     return (
-      <Stack direction="row" spacing={4} justifyContent="right" marginBottom="25px">
+      <Stack
+        direction="row"
+        spacing={4}
+        justifyContent="right"
+        marginBottom="25px"
+      >
         <Button
           style={{
-            color: "#DA0707",
+            color: "#F70808",
             textTransform: "none",
-            borderColor: "#DA0707",
+            borderColor: "#F70808",
           }}
           startIcon={<PersonAddAltIcon />}
           disabled={false}
@@ -34,9 +39,9 @@ const ButtonLogin = () => {
         </Button>
         <Button
           style={{
-            color: "#DA0707",
+            color: "#F70808",
             textTransform: "none",
-            borderColor: "#DA0707",
+            borderColor: "#F70808",
           }}
           startIcon={<AccountBoxIcon />}
           disabled={false}
@@ -46,8 +51,8 @@ const ButtonLogin = () => {
         >
           Sign in
         </Button>
-                 <BotonProvisorio/>
-        <BotonProvisorio2/> 
+        <BotonProvisorio />
+        <BotonProvisorio2 />
       </Stack>
     );
 }

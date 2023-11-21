@@ -12,7 +12,7 @@ const Header = () => {
         // theme={theme}
         variant="h1"
         classes={{
-          root: "text-sm sm:text-sm text-center text-[#DA0707] transition duration-500 ease-in-out hover:scale-90",
+          root: "text-sm sm:text-sm text-center text-[#F70808] transition duration-500 ease-in-out hover:scale-90",
         }}
         style={{
           fontFamily: "Gayathri, sans-serif",
@@ -46,7 +46,6 @@ const Header = () => {
         <Typography
           variant="body1"
           style={{
-            
             fontWeight: 400,
             margin: "10px",
             color: "#2D3142",

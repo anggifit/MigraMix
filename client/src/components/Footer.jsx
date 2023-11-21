@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <div>
       <footer className="py-24 p-16 w-full h-full">
-        <h2 className="pb-3 text-3xl text-center font-semibold font-Gayathri text-[#DA0707]">
+        <h2 className="pb-3 text-3xl text-center font-semibold font-Gayathri text-[#F70808]">
           Frequently Asked Questions
         </h2>
         <div className="container px-auto mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
