@@ -102,10 +102,10 @@ const SignUpForm = () => {
         backgroundSize: 'cover',
       }}
     >
-      <div className="opacity-75 bg-white absolute inset-0 min-h-screen"></div>
+      <div className="opacity-75 bg-black absolute inset-0 min-h-screen"></div>
       <div className="relative mt-15">
         <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs">
+          <Container component="main" maxWidth="xs" >
             <CssBaseline />
             <Box
               sx={{
@@ -114,6 +114,7 @@ const SignUpForm = () => {
                 alignItems: 'center',
                 padding: '20px',
                 backgroundColor: 'white',
+                borderRadius:5,
               }}
             >
               <Avatar sx={{ m: 1, bgcolor: '#FF4B4B' }}>
