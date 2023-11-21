@@ -18,7 +18,6 @@ const UploadProfilePhoto = ({ onImageUpload }) => {
 
         try {
           await uploadBytes(storageRef, selectedPhoto);
-          console.log("Imagen cargada con éxito");
 
           try {
             const imageUrl = await getDownloadURL(storageRef);

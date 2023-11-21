@@ -49,8 +49,8 @@ CREATE TABLE events (
 );
 
 CREATE TABLE event_by_artist(
-    event_id INT references events(id),
-    event_by_artist_id INT references users(id)
+    event_id INT UNIQUE references events(id),
+    event_by_artist_id INT  references users(id)
 );
 
 

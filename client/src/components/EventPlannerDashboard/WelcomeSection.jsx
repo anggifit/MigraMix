@@ -9,11 +9,8 @@ const WelcomeSection = () => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            //alignItems: 'center',
-            //justifyContent: 'center',
             padding: '200px',
             backgroundColor: 'white',
-            //height: '100%', // Añadido para ocupar la altura completa del contenedor
           }}
         >
           <Typography

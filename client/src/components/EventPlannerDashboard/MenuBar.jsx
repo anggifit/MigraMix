@@ -48,7 +48,6 @@ function MenuBar({onMenuClick, profilePhoto, username, fullname}) {
             <ListItem 
                 className="mb-2 p-4"
                 onClick={() => onMenuClick('myEvents')}
-
             >
                 <ListItemPrefix>
                     <FestivalIcon/>

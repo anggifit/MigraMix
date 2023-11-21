@@ -25,8 +25,8 @@ server.use(
 server.use(express.json());
 
 server.use("/api", authRouter);
-server.use("/organizers", organizerRoutes);
-server.use("/artists", artistRoutes);
-server.use("/events", eventsRoutes);
+server.use("/api/organizers", organizerRoutes);
+server.use("/api/artists", artistRoutes);
+server.use("/api/events", eventsRoutes);
 
 export default server;

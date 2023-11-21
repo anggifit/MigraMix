@@ -9,10 +9,10 @@ import BotonProvisorio2 from './BotonProvisorio2';
 const ButtonLogin = () => {
     const navigate = useNavigate()
     const handleSignInClick = () => {
-        navigate("/api/sign-in")
+        navigate("/sign-in")
     }
     const handleSignUpClick = () => {
-        navigate("/api/sign-up")
+        navigate("/sign-up")
 
     }
 

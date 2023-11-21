@@ -1,15 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-} from '@mui/material';
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
@@ -70,7 +61,7 @@ const SignUpForm = () => {
 
   const navigate = useNavigate()
   const handleNextClick = () => {
-      navigate("/api/sign-in")
+      navigate("/sign-in")
   }
 
   const onSubmit = (data) => {
@@ -115,7 +106,7 @@ const SignUpForm = () => {
  
       <div className="relative mt-15">
         <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs">
+          <Container component="main" maxWidth="xs" >
             <CssBaseline />
             <Box
               sx={{

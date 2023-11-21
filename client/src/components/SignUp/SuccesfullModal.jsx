@@ -15,7 +15,7 @@ const style = {
     };
 
 
-function SuccesfullModal({ open, onClose, onClick, description }) {
+function SuccesfullModal({ open, onClose, onClick, description, infoButton }) {
 
     return (
         <div>
@@ -33,7 +33,7 @@ function SuccesfullModal({ open, onClose, onClick, description }) {
                         spacing={2}
                     >
                         <CheckCircleIcon fontSize='large' className='text-lime-500'/>
-                        <Typography id="modal-modal-title" variant='h5' component="h2">
+                        <Typography id="modal-modal-title" variant='h5' component="h2" sx={{textAlign: 'center'}}>
                             {description}
                         </Typography>
                         <Button
@@ -42,7 +42,7 @@ function SuccesfullModal({ open, onClose, onClick, description }) {
                             onClick={onClick}
                             sx={{ backgroundColor: '#2B2D42', color: 'white', textAlign: 'center', '&:hover':{backgroundColor: '#9C9FA5'}}}
                         >
-                            Next
+                            {infoButton}
                         </Button>
                     </Stack>
                 </Box>
@@ -53,10 +53,11 @@ function SuccesfullModal({ open, onClose, onClick, description }) {
 
 
 SuccesfullModal.propTypes = {
- // open: PropTypes.boolean,
-  onClose: PropTypes.func,
-  onClick: PropTypes.func,
-  description: PropTypes.string
+    open: PropTypes.bool,
+    onClose: PropTypes.func,
+    onClick: PropTypes.func,
+    description: PropTypes.string,
+    infoButton:  PropTypes.string
 };
 export default SuccesfullModal
 

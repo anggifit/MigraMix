@@ -3,7 +3,7 @@ import SignUpForm from "./SignUp/SignUpForm";
 
 class SignUpRoute extends React.Component {
     componentDidMount() {
-        if (window.location.pathname === "/api/sign-up") {
+        if (window.location.pathname === "/sign-up") {
         window.location.reload();
         }
     }

@@ -16,7 +16,7 @@ const ButtonExplore = () => {
         navigate("/events")
     }
     const handleExploreArtistsClick = () => {
-        navigate("/api/artistsPage")
+        navigate("/artistsPage")
     }
 
     const handleMixEventsClick = () => {
@@ -24,7 +24,41 @@ const ButtonExplore = () => {
         mixEventsElement.scrollIntoView({behavior : 'smooth'})
     } 
 
-    return (
+  return (
+    <>
+      <Stack spacing={3} direction="row" justifyContent="center">
+        <RouterLink to="/artistsPage">
+          <CustomButton
+            style={{ backgroundColor: "#F70808", color: "white" }}
+            disabled={false}
+            size="large"
+            variant="contained"
+            onClick={handleExploreArtistsClick}
+          >
+            Explore Artists
+          </CustomButton>
+        </RouterLink>
+        <CustomButton
+          style={{ backgroundColor: "#2D3142", color: "white" }}
+          disabled={false}
+          size="large"
+          variant="contained"
+          onClick={handleMixEventsClick}
+        >
+          Discover MixBarcelona Events
+        </CustomButton>
+        <RouterLink to="/events">
+          <CustomButton
+            style={{ backgroundColor: "#9C9FA5", color: "white" }}
+            disabled={false}
+            size="large"
+            variant="contained"
+            onClick={handleDiscoverEventClick}
+          >
+            More Events
+          </CustomButton>
+        </RouterLink>
+      </Stack>
       <Stack spacing={3} direction="row" justifyContent="center">
         <RouterLink to="/api/artistsPage">
           <CustomButton
@@ -73,7 +107,8 @@ const ButtonExplore = () => {
           </CustomButton>
         </RouterLink>
       </Stack>
-    );
+    </>
+  );
 }
 
 export default ButtonExplore

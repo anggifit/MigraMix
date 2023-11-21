@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import EventCard from "../PublicEventsSection/EventCard";
-
+import PropTypes from 'prop-types';
 
 const MixEventsList = ({ mixEventsData, loading, error }) => {
 
@@ -17,7 +17,7 @@ const MixEventsList = ({ mixEventsData, loading, error }) => {
                 ) : (
                   mixEventsData.map((event) => (
                     <Grid item xs={4} key={event.id}>
-                      <EventCard /* Pendiente de como estan los campos en la tabla */
+                      <EventCard 
                         image={
                           event.eventimage && event.eventimage.length > 0
                             ? event.eventimage
@@ -43,5 +43,23 @@ const MixEventsList = ({ mixEventsData, loading, error }) => {
       </div>
   )
 }
+
+MixEventsList.propTypes = {
+  mixEventsData: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    eventimage: PropTypes.string,
+    eventtitle: PropTypes.string.isRequired,
+    eventdescription: PropTypes.string.isRequired,
+    initialdate: PropTypes.string.isRequired,
+    finaldate: PropTypes.string.isRequired,
+    urlevent: PropTypes.string.isRequired,
+    typeofactivity: PropTypes.string.isRequired,
+    artistevent: PropTypes.string.isRequired,
+  })).isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }),
+};
 
 export default MixEventsList

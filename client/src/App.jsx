@@ -22,15 +22,15 @@ const App = () => {
       element: <Homepage/>,
     },
     {
-      path: "/api/artistsPage",
+      path: "/artistsPage", //aca quite el api
       element: <ArtistsPage/>
     },
     {
-      path: "/api/sign-in",
+      path: "/sign-in",
       element: <SignInForm/>,
     },
     {
-      path: "/api/sign-up",
+      path: "/sign-up",
       element: <SignUpForm />
     },
     {
@@ -54,17 +54,6 @@ const App = () => {
       element: <PublicEvents/>
     }
   ])
-
-/*   const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const currentPath = location.pathname;
-
-    if (currentPath === "/api/sign-up" || currentPath === "/api/sign-in") {
-      navigate("/"); // Redirect to the root path
-    }
-  }, [location.pathname, navigate]); */
 
   return (
     <UserContext.Provider value={{role, setRole}}>

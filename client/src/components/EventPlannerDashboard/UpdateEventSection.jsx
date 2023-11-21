@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
@@ -46,7 +47,7 @@ const UpdateEventSection = ({activeEventId}) => {
         fetchEventData()
         async function fetchEventData() {
             try {
-                const response = await axios.get(`http://localhost:4000/events/eventsById/${activeEventId}`, {
+                const response = await axios.get(`http://localhost:4000/api/events/eventsById/${activeEventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, 
                         'Cache-Control': 'no-cache',
@@ -113,7 +114,7 @@ const UpdateEventSection = ({activeEventId}) => {
         fetchArtistData();
         async function fetchArtistData() {
         try {
-            const response = await axios.get("http://localhost:4000/artists/artistsList");
+            const response = await axios.get("http://localhost:4000/api/artists/artistsList");
             if (response.status !== 200) {
                 throw new Error("Network response was not ok");
             }
@@ -131,7 +132,6 @@ const UpdateEventSection = ({activeEventId}) => {
     }
 
     const onSubmit = (data) => {
-        console.log(`este es el id del evento: ${activeEventId}`)
         if (isValid) {
             data.eventId = activeEventId
             data.eventImage = eventProfilePictureURL
@@ -139,15 +139,13 @@ const UpdateEventSection = ({activeEventId}) => {
             data.artistEvent = selectedArtist
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
-            console.log(data)
             axios
-            .put('/events/edit-event', data, { 
+            .put('/api/events/edit-event', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 if (response.status === 200) {
                     setOpen(true);
                 }
@@ -333,6 +331,7 @@ const UpdateEventSection = ({activeEventId}) => {
                                 onClose={() => setOpen(false)}
                                 onClick={handleExitClick}
                                 description= "The event has been updated successfully."
+                                infoButton="Close"
                         />
                     </Stack>
                     </Box>
@@ -342,5 +341,9 @@ const UpdateEventSection = ({activeEventId}) => {
         </div>
     )
 }
+
+UpdateEventSection.propTypes = {
+    activeEventId: PropTypes.number,
+  };
 
 export default UpdateEventSection;
