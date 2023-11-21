@@ -33,7 +33,8 @@ export const createEventByOrganizer = async (req, res) => {
       } = req.body;
 
       let query = `INSERT INTO events (organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
-  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9) RETURNING *`;
+  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9) 
+  RETURNING id`;
 
       try {
         const { rows } = await pool.query(query, [
@@ -47,12 +48,21 @@ export const createEventByOrganizer = async (req, res) => {
           finalDate,
           eventImage,
         ]);
-        res.status(200).json({ message: "Evento creado.", event: rows[0] });
-        console.log(rows[0].id); // id del evento creado
+        const eventId = rows[0].id;
+
+        await pool.query(
+          `INSERT INTO event_by_artist (event_id, event_by_artist_id)
+            SELECT $1, users.id
+            FROM users
+            WHERE users.username = $2
+              AND $2 LIKE '%artistEvent%'
+            RETURNING *`,
+          [eventId, artistEvent]
+        );
+        res.status(200).json({ message: "Evento creado." });
       } catch (error) {
-        console.log("Error query insert : ", error);
-        res.status(500).json(error.detail);
-        return res.sendStatus(500);
+        console.error("Error en la creación del evento:", error);
+        res.status(500).json({ message: "Error interno del servidor." });
       }
     }
   } catch (error) {
@@ -106,7 +116,7 @@ export const editEventByOrganizer = async (req, res) => {
   initialDate=EXCLUDED.initialDate, 
   finalDate=EXCLUDED.finalDate, 
   eventImage=EXCLUDED.eventImage
- RETURNING *`;
+  RETURNING *`;
 
       try {
         const { rows } = await pool.query(query, [
@@ -121,15 +131,20 @@ export const editEventByOrganizer = async (req, res) => {
           finalDate,
           eventImage,
         ]);
-        console.log("Filas devueltas:", rows);
-        console.log("Evento creado / actualizado:", rows[0].id);
-        res
-          .status(200)
-          .json({ message: "Evento creado / actualizado.", event: rows[0] });
+
+        res.status(200).json(rows);
+        await pool.query(
+          `INSERT INTO event_by_artist (event_id, event_by_artist_id)
+            SELECT $1, users.id
+            FROM users
+            WHERE users.username = $2
+              AND $2 LIKE '%artistEvent%'
+            RETURNING *`,
+          [eventId, artistEvent]
+        );
       } catch (error) {
-        console.log("Error query insert : ", error);
-        res.status(500).json(error.detail);
-        return res.sendStatus(500);
+        console.error("Error en la edición del evento:", error);
+        res.status(500).json({ message: "Error interno del servidor." });
       }
     }
   } catch (error) {
@@ -148,7 +163,6 @@ export const getEventByOrganizer = async (req, res) => {
     );
 
     if (result.rows && result.rows.length > 0) {
-      console.log(result.rows[0].id);
       res.status(200).json(result.rows);
     } else {
       res
@@ -174,9 +188,6 @@ export const getEventById = async (req, res) => {
     const userId = req.userId;
     const eventId = req.params.eventId;
 
-    console.log(`Este es el id del usuario: ${userId}`);
-    console.log(`Este es el id del evento: ${eventId}`);
-
     const userResult = await pool.query(
       "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
       [userId]
@@ -191,7 +202,6 @@ export const getEventById = async (req, res) => {
         eventId,
       ]);
 
-      console.log("Evento traido correctamente:", response.rows);
       res.status(200).json(response.rows);
     }
   } catch (error) {
@@ -207,7 +217,6 @@ export const getEventByArtist = async (req, res) => {
     [userId]
   );
   try {
-    console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("Error query insert : ", error);
@@ -219,8 +228,6 @@ export const getEventByArtist = async (req, res) => {
 export const getAllEvents = async (req, res) => {
   const result = await pool.query("SELECT * FROM events");
   try {
-    /* console.log(result.rows[0].id); */
-    console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("Error query insert : ", error);
@@ -233,14 +240,11 @@ export const filterEventByString = async (req, res) => {
   try {
     const filterString = req.params.filterString;
 
-    console.log(`La palabra a filtrar es: ${filterString}`);
-
     const response = await pool.query(
       "SELECT * FROM events WHERE events.eventtitle LIKE $1 OR events.eventdescription LIKE $1",
       [`%${filterString}%`]
     );
 
-    console.log("Eventos filtrados correctamente:", response.rows);
     res.status(200).json(response.rows);
   } catch (error) {
     console.error(error);
@@ -258,23 +262,40 @@ export const deleteEventByOrganizer = async (req, res) => {
   }
   const userId = req.userId;
   const eventIdToDelete = req.params.eventId;
-  console.log(userId);
-  console.log(eventIdToDelete);
+
   try {
-    const userResult = await pool.query(
-      "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
-      [userId]
+    const eventResult = await pool.query(
+      "SELECT * FROM event_by_artist WHERE event_id = $1",
+      [eventIdToDelete]
     );
 
-    if (userResult.rows.length === 0) {
-      return res.status(401).json({
-        message: "Debe ser organizador para poder eliminar un evento.",
-      });
+    if (eventResult.rows.length === 0) {
+      return res.status(401).json({ message: "El evento no existe." });
     } else {
-      await pool.query("DELETE FROM events WHERE id = $1", [eventIdToDelete]);
+      try {
+        const userResult = await pool.query(
+          "SELECT * FROM users WHERE id = $1 AND role='Organizer'",
+          [userId]
+        );
 
-      console.log("Evento eliminado correctamente:", eventIdToDelete);
-      res.json(`Event ${eventIdToDelete} eliminado exitosamente.`);
+        if (userResult.rows.length === 0) {
+          return res.status(401).json({
+            message: "Debe ser organizador para poder eliminar un evento.",
+          });
+        } else {
+          await pool.query("DELETE FROM event_by_artist WHERE event_id = $1", [
+            eventIdToDelete,
+          ]);
+          await pool.query("DELETE FROM events WHERE id = $1", [
+            eventIdToDelete,
+          ]);
+
+          res.json(`Event ${eventIdToDelete} eliminado exitosamente.`);
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Error de servidor");
+      }
     }
   } catch (error) {
     console.error(error);

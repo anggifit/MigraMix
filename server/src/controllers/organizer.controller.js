@@ -1,7 +1,7 @@
 import pool from "../db.js";
 
 export const newOrganizer = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   // const { id, eventPlannerBio, eventPlannerMainLink, eventProfilePicture } =
 
   // let query = `INSERT INTO organizer (id_user,biography,main_link,picture)
@@ -42,7 +42,7 @@ export const newOrganizer = async (req, res) => {
 export const getPerfilOrganizer = async (req, res) => {
   const id = req.userId;
   console.log(id);
-  
+
   let query = `SELECT u.first_name, u.last_name, u.username, o.picture
   FROM users u
   INNER JOIN organizer o
@@ -56,9 +56,8 @@ export const getPerfilOrganizer = async (req, res) => {
     }
     console.log(rows);
     return res.status(200).json(rows[0]);
-
   } catch (error) {
-      console.log(error);
-      return res.sendStatus(400);
+    console.log(error);
+    return res.sendStatus(400);
   }
 };
