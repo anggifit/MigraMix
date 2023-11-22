@@ -6,7 +6,7 @@ import ButtonLogin from "./ButtonLogin";
 const Header = () => {
   
   return (
-    <div className="p-7 text-center bg-cover bg-center ">
+    <div className="p-7 m-auto">
       <ButtonLogin />
       <Typography
         // theme={theme}
@@ -15,10 +15,13 @@ const Header = () => {
           root: "text-sm sm:text-sm text-center text-[#F70808] transition duration-500 ease-in-out hover:scale-90",
         }}
         style={{
+          fontSize: {
+            xs: "1rem", // Adjust the font size for extra-small screens
+            sm: "3rem", // Default font size for small and larger screens
+          },
           fontFamily: "Gayathri, sans-serif",
           fontWeight: "bold",
-          letterSpacing: "9px",
-          fontSize: "6rem",
+          letterSpacing: "9px",          
         }}
       >
         MIGRAMIX
@@ -30,7 +33,7 @@ const Header = () => {
       >
         Amplify Culture, Harmonize Art
       </Typography> */}
-      <div className="mt-6 text-base md:text-lg lg:text-lg text-blue text-custom p-10">
+      <div className="mt-6 text-base md:text-lg lg:text-lg text-blue text-custom p-7">
         <Typography
           variant="body1"
           style={{
