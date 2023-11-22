@@ -3,6 +3,8 @@ import Stack from '@mui/material/Stack';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useNavigate } from "react-router-dom";
+ import BotonProvisorio from './BotonProvisorio';
+import BotonProvisorio2 from './BotonProvisorio2'; 
 
 const ButtonLogin = () => {
     const navigate = useNavigate()
@@ -15,27 +17,42 @@ const ButtonLogin = () => {
     }
 
     return (
-      <Stack direction="row" spacing={3} justifyContent="right">
+      <Stack
+        direction="row"
+        spacing={4}
+        justifyContent="right"
+        marginBottom="25px"
+      >
         <Button
-          style={{ color: "black", border: "none", textTransform: 'none'}}
+          style={{
+            color: "#F70808",
+            textTransform: "none",
+            borderColor: "#F70808",
+          }}
           startIcon={<PersonAddAltIcon />}
           disabled={false}
-          size="medium"
+          size="small"
           variant="outlined"
           onClick={handleSignUpClick}
         >
           Sign up
         </Button>
         <Button
-          style={{ color: "black", border: "none", textTransform: 'none'}}
+          style={{
+            color: "#F70808",
+            textTransform: "none",
+            borderColor: "#F70808",
+          }}
           startIcon={<AccountBoxIcon />}
           disabled={false}
-          size="medium"
+          size="small"
           variant="outlined"
           onClick={handleSignInClick}
         >
           Sign in
         </Button>
+        <BotonProvisorio />
+        <BotonProvisorio2 />
       </Stack>
     );
 }

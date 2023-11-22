@@ -343,7 +343,7 @@ const UpdateEventSection = ({activeEventId}) => {
 }
 
 UpdateEventSection.propTypes = {
-    activeEventId: PropTypes.string,
+    activeEventId: PropTypes.number,
   };
 
 export default UpdateEventSection;
