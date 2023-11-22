@@ -8,17 +8,26 @@ const FilterByTypeOfActivity = ({onFilterChange}) => {
     };
 
     return (
-        <div>
+      <div htmlFor="filterByType">
         <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="demo-simple-select-helper-label">By Type</InputLabel>
-            <Select value="" onChange={handleFilterChange}>
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="free">Free</MenuItem>
-                <MenuItem value="paid">Paid</MenuItem>
-            </Select>
+          <InputLabel
+            id="demo-simple-select-helper-label"          
+          >
+            By Type
+          </InputLabel>
+          <Select
+            value=""
+            labelId="filterByType"
+            id="filterByType"           
+            onChange={handleFilterChange}
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="free">Free</MenuItem>
+            <MenuItem value="paid">Paid</MenuItem>
+          </Select>
         </FormControl>
-        </div>
-    )
+      </div>
+    );
 }
 
 FilterByTypeOfActivity.propTypes = {

@@ -6,34 +6,36 @@ import SelectOptions from "../SelectOptions";
 import { PropTypes } from "prop-types";
 import MyEventsModal from "./MyEventsModal";
 
-
-const ArtistForm = ({artistProfilePic}) => {  
-  const { register, handleSubmit, formState: { isValid, errors }, } = useForm({
-    defaultValues: { artistbio: "", },
-     
+const ArtistForm = ({ artistProfilePic }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm({
+    defaultValues: { artistbio: "" },
   });
-  
+
   const token = localStorage.getItem("token");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
-  const [selectedMusicGenre, setSelectedMusicGenre] = useState('');
-  const [selectedPerformance, setSelectedPerformance] = useState('');
-  const [selectedTypeOfPerformance, setSelectedTypeOfPerformance] = useState('');
+  const [selectedMusicGenre, setSelectedMusicGenre] = useState("");
+  const [selectedPerformance, setSelectedPerformance] = useState("");
+  const [selectedTypeOfPerformance, setSelectedTypeOfPerformance] =
+    useState("");
 
   const handleMyEventsClick = () => {
     setIsModalOpen(true);
   };
 
-
   const socialMediaRegex =
     /^((https?|ftp|smtp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
 
   const onImageUpload = (url) => {
-    setEventProfilePictureURL(url);    
+    setEventProfilePictureURL(url);
   };
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
 
     if (isValid) {
       data.ArtistsProfilePicture = eventProfilePictureURL;
@@ -53,16 +55,16 @@ const ArtistForm = ({artistProfilePic}) => {
           console.log(error.response.data);
         });
     }
-  }
-  
+  };
+
   const handleLogOut = async () => {
     try {
-        localStorage.removeItem(`${token}`)
-        window.location.href = '/'
+      localStorage.removeItem(`${token}`);
+      window.location.href = "/";
     } catch (error) {
-        console.error("Logout Failed")
+      console.error("Logout Failed");
     }
-}
+  };
 
   return (
     <div className="w-full relative  shadow-2xl rounded overflow-hidden">
@@ -115,10 +117,7 @@ const ArtistForm = ({artistProfilePic}) => {
               className="flex flex-col space-y-2 "
               action="#"
             >
-              {/* Aqui van los campos comentados de name, username etc */}
-
               <div className="form-item w-full">
-                {/* <label className="text-sm "></label> */}
                 <textarea
                   cols="10"
                   rows="5"
@@ -138,6 +137,7 @@ const ArtistForm = ({artistProfilePic}) => {
               <div className="md:grid md:grid-cols-3 md:gap-4 pb-3 shadow-md">
                 <div>
                   <SelectOptions
+                    id="musicGenre"
                     label="Music Genre"
                     idField="musicGenre"
                     value={selectedMusicGenre}
@@ -153,6 +153,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 </div>
                 <div>
                   <SelectOptions
+                    id="performance"
                     label="Performance"
                     idField="performance"
                     value={selectedPerformance}
@@ -166,6 +167,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 </div>
                 <div>
                   <SelectOptions
+                    id="typeOfPerformance"
                     label="Music Version"
                     idField="typeOfPerformance"
                     value={selectedTypeOfPerformance}
@@ -188,7 +190,7 @@ const ArtistForm = ({artistProfilePic}) => {
               </div>
 
               <div className="form-item">
-                <label className="text-xl "></label>
+                <label className="text-xl" htmlFor="ArtistMainLink"></label>
                 <input
                   type="text"
                   placeholder="Instagram"
@@ -226,7 +228,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 )}
               </div>
               <div className="form-item">
-                <label className="text-xl "></label>
+                <label className="text-xl" htmlFor="other"></label>
                 <input
                   type="text"
                   placeholder="Other"
@@ -245,7 +247,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 )}
               </div>
               <div className="form-item">
-                <label className="text-xl"></label>
+                <label className="text-xl" htmlFor="ContactNumber"></label>
                 <input
                   type="number"
                   placeholder="Contact Number"
@@ -270,7 +272,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 <UploadProfilePhoto onImageUpload={onImageUpload} />
               </div>
               <button className="flex flex-auto items-left max-w-1xl justify-center p-0.5 mb-2 mr-2 overflow-hidden text-lg font-medium text-gray-900 rounded-sm group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-600">
-                <input type="submit" placeholder="send" />
+                <input type="submit" placeholder="submit" />
                 {} 📤
               </button>
             </form>
@@ -284,6 +286,5 @@ const ArtistForm = ({artistProfilePic}) => {
 ArtistForm.propTypes = {
   artistProfilePic: PropTypes.string,
 };
-
 
 export default ArtistForm;

@@ -227,6 +227,7 @@ const SignUpForm = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <SelectOptions
+                      id="role"
                       label="Role"
                       idField="role"
                       value={selectedRole}
