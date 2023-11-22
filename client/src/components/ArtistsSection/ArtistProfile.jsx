@@ -48,6 +48,7 @@ const ArtistProfile = ({
                   <img
                     src={image}
                     className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+                    loading="lazy"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
