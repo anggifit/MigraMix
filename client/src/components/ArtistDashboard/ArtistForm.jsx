@@ -79,13 +79,13 @@ const ArtistForm = ({artistProfilePic}) => {
         <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
           <a
             href="#"
-            className="text-sm p-2 bg-indigo-900 shadow-xl text-white text-center rounded font-bold"
+            className="text-sm p-2 bg-indigo-900 shadow-md text-white text-center rounded font-bold"
           >
             Edit Profile 🖼
           </a>
           <a
             href="#"
-            className="text-sm p-2 bg-white text-center rounded shadow-xl font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
+            className="text-sm p-2 bg-white text-center rounded shadow-md font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
             onClick={handleLogOut}
           >
             Log-out 🔒
@@ -106,7 +106,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 <textarea
                   cols="10"
                   rows="5"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-md py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   placeholder="Bio"
                   maxLength={350}
                   minLength={50}
@@ -119,7 +119,7 @@ const ArtistForm = ({artistProfilePic}) => {
                   </p>
                 )}
               </div>
-              <div className="md:grid md:grid-cols-3 md:gap-4 pb-3 shadow-xl">
+              <div className="md:grid md:grid-cols-3 md:gap-4 pb-3 shadow-md">
                 <div>
                   <SelectOptions
                     label="Music Genre"
@@ -137,7 +137,7 @@ const ArtistForm = ({artistProfilePic}) => {
 
                   {/* <label
                     htmlFor="HeadlineAct"
-                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
+                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-md"
                     {...register("genre", {
                       required: "Please select a genre",
                     })}
@@ -177,7 +177,7 @@ const ArtistForm = ({artistProfilePic}) => {
 
                   {/* <label
                     htmlFor="HeadlineAct"
-                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
+                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-md"
                   >
                     Performance
                   </label>
@@ -215,7 +215,7 @@ const ArtistForm = ({artistProfilePic}) => {
 
                   {/* <label
                     htmlFor="HeadlineAct"
-                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-xl"
+                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-md"
                   >
                     Music Version
                   </label>
@@ -238,7 +238,7 @@ const ArtistForm = ({artistProfilePic}) => {
                   type="text"
                   placeholder="Instagram"
                   id="ArtistMainLink"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-md py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("ArtistMainLink", {
                     pattern: {
                       value: socialMediaRegex,
@@ -256,7 +256,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 <input
                   type="text"
                   placeholder="Soundcloud"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-md py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("soundcloud", {
                     pattern: {
                       value: socialMediaRegex,
@@ -275,7 +275,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 <input
                   type="text"
                   placeholder="Other"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-md py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
                   {...register("other", {
                     pattern: {
                       value: socialMediaRegex,
@@ -295,7 +295,7 @@ const ArtistForm = ({artistProfilePic}) => {
                   type="number"
                   placeholder="Contact Number"
                   id="ContactNumber"
-                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-xl py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                  className="w-full appearance-none text-black text-opacity-50 rounded shadow-md py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                   {...register("ContactNumber", {
                     /* pattern: {
                       value:

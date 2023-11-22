@@ -2,49 +2,57 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ButtonExplore from "./ButtonExplore";
 import ButtonLogin from "./ButtonLogin";
-// import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-
-// let theme = createTheme();
-// theme = responsiveFontSizes(theme);
-
 
 const Header = () => {
-  // const HeaderStyle = {
-  //   backgroundImage: `url('/header.png')`,
-  //   backgroundSize: "cover",
-  //   backgroundRepeat: "no-repeat",
-  //   backgroundPosition: "center",
-  //   backgroundColor: "rgba(255, 255, 255, 0.5)",
-  // };
-
+  
   return (
-    <div className="p-12 text-center bg-cover bg-center">
+    <div className="p-7 text-center bg-cover bg-center ">
       <ButtonLogin />
       <Typography
         // theme={theme}
         variant="h1"
         classes={{
-          root: "text-sm sm:text-sm text-center text-[#F70808] outline-black transition duration-500 ease-in-out hover:scale-90",
+          root: "text-sm sm:text-sm text-center text-[#F70808] transition duration-500 ease-in-out hover:scale-90",
         }}
-        style={{ fontFamily: "Audiowide, sans-serif" }}
+        style={{
+          fontFamily: "Gayathri, sans-serif",
+          fontWeight: "bold",
+          letterSpacing: "9px",
+          fontSize: "6rem",
+        }}
       >
         MIGRAMIX
       </Typography>
-      <Typography
+      {/* <Typography
         variant="h4"
-        className="mt-6 text-bold text-xl md:text-2xl lg:text-3xl p-7 text-gray-900 "
+        className="mt-6 text-bold text-xl md:text-2xl lg:text-3xl p-7 text-white "
         style={{ fontFamily: "Helvetica, sans-serif" }}
       >
         Amplify Culture, Harmonize Art
-      </Typography>
-      <div>
+      </Typography> */}
+      <div className="mt-6 text-base md:text-lg lg:text-lg text-blue text-custom p-10">
         <Typography
           variant="body1"
-          className="mt-6 text-base md:text-lg lg:text-lg text-gray-900 text-custom"
+          style={{
+            fontWeight: 400,
+            margin: "10px",
+            color: "#2D3142",
+            letterSpacing: "1px",
+          }}
         >
           Welcome to a vibrant platform showcasing emerging migrant artists in
-          Barcelona`s electronic music scene. 
-          Let`s unite through music, creativity, and cultural diversity.
+          Barcelona`s electronic music scene.{" "}
+        </Typography>
+        <Typography
+          variant="body1"
+          style={{
+            fontWeight: 400,
+            margin: "10px",
+            color: "#2D3142",
+            letterSpacing: "1px",
+          }}
+        >
+          <a>Let`s unite through music, creativity, and cultural diversity.</a>
         </Typography>
       </div>
       <Stack className="mt-6">

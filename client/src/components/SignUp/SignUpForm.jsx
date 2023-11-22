@@ -99,31 +99,31 @@ const SignUpForm = () => {
       className="min-h-screen flex items-center justify-center"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1529068726703-d4dfa1c99b99?auto=format&fit=crop&q=80&w=3538&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
-        backgroundSize: 'cover',
+        backgroundSize: "cover",
       }}
     >
-      <div className="opacity-75 bg-black absolute inset-0 min-h-screen"></div>
+      <div className="opacity-40 bg-gray-800 absolute inset-0 min-h-screen"></div>
+ 
       <div className="relative mt-15">
         <ThemeProvider theme={defaultTheme}>
           <Container component="main" maxWidth="xs" >
             <CssBaseline />
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                padding: '20px',
-                backgroundColor: 'white',
-                borderRadius:5,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "20px",
+                backgroundColor: "white",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: '#FF4B4B' }}>
+              <Avatar sx={{ m: 1, bgcolor: "#FF4B4B" }}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography
                 component="h1"
                 variant="h5"
-                sx={{ color: '#2B2D42', fontWeight: 'bold' }}
+                sx={{ color: "#2B2D42", fontWeight: "bold" }}
               >
                 Sign up
               </Typography>
@@ -135,11 +135,11 @@ const SignUpForm = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      {...register('firstName', {
-                        required: 'First Name is required',
+                      {...register("firstName", {
+                        required: "First Name is required",
                         pattern: {
                           value: /^[A-Za-z]+$/i,
-                          message: 'invalid Name',
+                          message: "invalid Name",
                         },
                       })}
                       required
@@ -152,23 +152,23 @@ const SignUpForm = () => {
                         errorsCache.firstName.message.toString()
                       }
                       autoFocus
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
+                      InputProps={{ style: { fontSize: "16px" } }}
+                      InputLabelProps={{ style: { fontSize: "16px" } }}
                       sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
+                        "& .MuiInputBase-root": {
+                          borderWidth: "0.8px",
+                          borderColor: "#2B2D42",
                         },
                       }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      {...register('lastName', {
-                        required: 'Last Name is required',
+                      {...register("lastName", {
+                        required: "Last Name is required",
                         pattern: {
                           value: /^[A-Za-z]+$/i,
-                          message: 'invalid Last Name',
+                          message: "invalid Last Name",
                         },
                       })}
                       required
@@ -182,27 +182,27 @@ const SignUpForm = () => {
                         errorsCache.lastName &&
                         errorsCache.lastName.message.toString()
                       }
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
+                      InputProps={{ style: { fontSize: "16px" } }}
+                      InputLabelProps={{ style: { fontSize: "16px" } }}
                       sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
+                        "& .MuiInputBase-root": {
+                          borderWidth: "0.8px",
+                          borderColor: "#2B2D42",
                         },
                       }}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      {...register('username', {
-                        required: 'Username is required',
+                      {...register("username", {
+                        required: "Username is required",
                         minLength: {
                           value: 1,
-                          message: 'Must be at least 1 character',
+                          message: "Must be at least 1 character",
                         },
                         maxLength: {
                           value: 20,
-                          message: 'Maximum 20 characters',
+                          message: "Maximum 20 characters",
                         },
                       })}
                       required
@@ -215,12 +215,12 @@ const SignUpForm = () => {
                       helperText={
                         errorsCache.username && errorsCache.username.toString()
                       }
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
+                      InputProps={{ style: { fontSize: "16px" } }}
+                      InputLabelProps={{ style: { fontSize: "16px" } }}
                       sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
+                        "& .MuiInputBase-root": {
+                          borderWidth: "0.8px",
+                          borderColor: "#2B2D42",
                         },
                       }}
                     />
@@ -232,26 +232,26 @@ const SignUpForm = () => {
                       value={selectedRole}
                       onChange={(e) => setSelectedRole(e.target.value)}
                       options={[
-                        {value: 'Artist', label: 'Artist'},
-                        {value: 'Organizer', label: 'Organizer'}
+                        { value: "Artist", label: "Artist" },
+                        { value: "Organizer", label: "Organizer" },
                       ]}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <DateOfBirth
                       onChange={(date) => {
-                        setValue('dateOfBirth', date);
+                        setValue("dateOfBirth", date);
                         handleDateChange(date);
                       }}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      {...register('email', {
-                        required: 'Email is required',
+                      {...register("email", {
+                        required: "Email is required",
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                          message: 'invalid email address',
+                          message: "invalid email address",
                         },
                       })}
                       required
@@ -264,27 +264,27 @@ const SignUpForm = () => {
                         errorsCache.email &&
                         errorsCache.email.message.toString()
                       }
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
+                      InputProps={{ style: { fontSize: "16px" } }}
+                      InputLabelProps={{ style: { fontSize: "16px" } }}
                       sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
+                        "& .MuiInputBase-root": {
+                          borderWidth: "0.8px",
+                          borderColor: "#2B2D42",
                         },
                       }}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      {...register('password', {
-                        required: 'Password is required',
+                      {...register("password", {
+                        required: "Password is required",
                         minLength: {
                           value: 8,
-                          message: 'Must be at least 8 characters',
+                          message: "Must be at least 8 characters",
                         },
                         maxLength: {
                           value: 20,
-                          message: 'Maximum 20 characters',
+                          message: "Maximum 20 characters",
                         },
                       })}
                       required
@@ -298,23 +298,23 @@ const SignUpForm = () => {
                         errorsCache.password &&
                         errorsCache.password.message.toString()
                       }
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
+                      InputProps={{ style: { fontSize: "16px" } }}
+                      InputLabelProps={{ style: { fontSize: "16px" } }}
                       sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
+                        "& .MuiInputBase-root": {
+                          borderWidth: "0.8px",
+                          borderColor: "#2B2D42",
                         },
                       }}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      {...register('repeatPassword', {
-                        required: 'Repeat Password is required',
+                      {...register("repeatPassword", {
+                        required: "Repeat Password is required",
                         validate: (value) =>
                           value === getValues().password ||
-                          'The passwords do not match',
+                          "The passwords do not match",
                       })}
                       required
                       fullWidth
@@ -328,12 +328,12 @@ const SignUpForm = () => {
                         errorsCache.repeatPassword &&
                         errorsCache.repeatPassword.message.toString()
                       }
-                      InputProps={{ style: { fontSize: '16px' } }}
-                      InputLabelProps={{ style: { fontSize: '16px' } }}
+                      InputProps={{ style: { fontSize: "16px" } }}
+                      InputLabelProps={{ style: { fontSize: "16px" } }}
                       sx={{
-                        '& .MuiInputBase-root': {
-                          borderWidth: '0.8px',
-                          borderColor: '#2B2D42',
+                        "& .MuiInputBase-root": {
+                          borderWidth: "0.8px",
+                          borderColor: "#2B2D42",
                         },
                       }}
                     />
@@ -346,9 +346,9 @@ const SignUpForm = () => {
                   sx={{
                     mt: 3,
                     mb: 2,
-                    backgroundColor: '#020617',
-                    color: 'white',
-                    fontWeight: 'bold',
+                    backgroundColor: "#020617",
+                    color: "white",
+                    fontWeight: "bold",
                   }}
                 >
                   Sign Up
@@ -357,13 +357,12 @@ const SignUpForm = () => {
                   open={open}
                   onClose={() => setOpen(false)}
                   onClick={handleNextClick}
-                  description= "Succesfull Registration"
-                  infoButton="Next"
+                  description="Succesfull Registration"
                 />
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <RouterLink
-                      style={{ textDecoration: 'underline', color: '#1776D1' }}
+                      style={{ textDecoration: "underline", color: "#1776D1" }}
                       to="/sign-in"
                     >
                       Already have an account? Sign in
