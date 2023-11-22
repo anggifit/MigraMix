@@ -81,7 +81,6 @@ export const editEventByOrganizer = async (req, res) => {
   }
 
   const userId = req.userId;
-  const eventId = req.params.eventId;
 
   try {
     const userResult = await pool.query(
@@ -92,38 +91,36 @@ export const editEventByOrganizer = async (req, res) => {
     if (userResult.rows.length === 0) {
       return res
         .status(401)
-        .json({ message: "Debe ser organizador para poder crear un evento." });
-    } else {
-      const {
-        eventId,
-        eventTitle,
-        eventDescription,
-        urlEvent,
-        typeOfActivity,
-        artistEvent,
-        initialDate,
-        finalDate,
-        eventImage,
-      } = req.body;
+        .json({ message: "Debe ser organizador para poder editar un evento." });
+    }
 
-      let query = `INSERT INTO events (id,organizer_id, eventTitle,eventDescription,urlEvent,typeOfActivity,artistEvent,initialDate,finalDate,eventImage) 
-  VALUES ($1,$2,$3,$4,$5,$6, $7, $8, $9, $10) 
-  ON CONFLICT (id) DO UPDATE 
-  SET  
-  eventTitle=EXCLUDED.eventTitle, 
-  eventDescription=EXCLUDED.eventDescription,
-  urlEvent=EXCLUDED.urlEvent, 
-  typeOfActivity=EXCLUDED.typeOfActivity, 
-  artistEvent=EXCLUDED.artistEvent, 
-  initialDate=EXCLUDED.initialDate, 
-  finalDate=EXCLUDED.finalDate, 
-  eventImage=EXCLUDED.eventImage
-  RETURNING *`;
+    const {
+      eventId,
+      eventTitle,
+      eventDescription,
+      urlEvent,
+      typeOfActivity,
+      artistEvent,
+      initialDate,
+      finalDate,
+      eventImage,
+    } = req.body;
 
-      try {
-        const { rows } = await pool.query(query, [
-          eventId,
-          userId,
+    try {
+      const eventResult = await pool.query(
+        `UPDATE events 
+         SET 
+           eventTitle=$1,
+           eventDescription=$2,
+           urlEvent=$3,
+           typeOfActivity=$4,
+           artistEvent=$5,
+           initialDate=$6,
+           finalDate=$7,
+           eventImage=$8
+         WHERE id = $9 AND organizer_id = $10
+         RETURNING *`,
+        [
           eventTitle,
           eventDescription,
           urlEvent,
@@ -132,21 +129,37 @@ export const editEventByOrganizer = async (req, res) => {
           initialDate,
           finalDate,
           eventImage,
-        ]);
+          eventId,
+          userId,
+        ]
+      );
 
-        res.status(200).json({ message: "Evento editado exitosamente." });
-        await pool.query(
-          `INSERT INTO event_by_artist (event_id, event_by_artist_id)
-            SELECT $1, users.id
-            FROM users
-            WHERE users.username LIKE $2
-            RETURNING *`,
-          [eventId, artistEvent]
-        );
-      } catch (error) {
-        console.error("Error en la edición del evento:", error);
-        res.status(500).json({ message: "Error interno del servidor." });
+      if (eventResult.rows.length === 0) {
+        return res.status(404).json({ message: "Evento no encontrado." });
       }
+
+      const updatedEvent = eventResult.rows[0];
+
+      const artistIdResult = await pool.query(
+        "SELECT id FROM users WHERE username LIKE $1",
+        [artistEvent]
+      );
+
+      if (artistIdResult.rows.length === 0) {
+        return res.status(404).json({ message: "Artista no encontrado." });
+      }
+
+      const artistId = artistIdResult.rows[0].id;
+
+      await pool.query(
+        "UPDATE event_by_artist SET event_by_artist_id = $1 WHERE event_id = $2",
+        [artistId, updatedEvent.id]
+      );
+
+      res.status(200).json(updatedEvent);
+    } catch (error) {
+      console.error("Error en la edición del evento:", error);
+      res.status(500).json({ message: "Error interno del servidor." });
     }
   } catch (error) {
     console.error(error);
