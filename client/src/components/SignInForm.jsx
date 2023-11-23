@@ -232,7 +232,7 @@ export default function SignInForm() {
                         to="/sign-up"
                         variant="body2"
                       >
-                        Do not have an account? Sign Up
+                        Do not have an account?  Sign Up
                       </RouterLink>
                     </Grid>
                   </Grid>
