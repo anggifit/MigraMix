@@ -21,7 +21,6 @@ server.use(
   })
 );
 
-/* expres podra convertir request de cliente en json, o se leeran como undefined */
 server.use(express.json());
 
 server.use("/api", authRouter);

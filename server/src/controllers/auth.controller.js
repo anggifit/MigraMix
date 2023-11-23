@@ -19,10 +19,8 @@ export const signUp = async (req, res) => {
       role,
     ]);
     return res.sendStatus(201);
-    // if(!rows) return res.sendStatus(404)
   } catch (error) {
     console.log("Error query insert : ", error);
-    // res.status(500).json(error.detail);'
     console.log(error);
     return res.sendStatus(500);
   }
