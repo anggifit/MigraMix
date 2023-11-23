@@ -91,12 +91,7 @@ export default function SignInForm() {
     if (Object.values(newErrors).some((error) => error !== "")) {
       console.log("Form is invalid. Please fix the errors.");
     } else {
-      // Form is valid; proceed with form submission
-      /* const data = new FormData(event.currentTarget);
-      console.log({
-        email: data.get("email"),
-        password: data.get("password"),
-      }); */
+     
       onSubmit(formData);
     }
   };
@@ -107,7 +102,7 @@ export default function SignInForm() {
     // Extract username and password from the form data
     const { email, password } = data; // Update variable names to match your form fields
     
-    // Check if both email and password are provided
+  
     if (email && password) {
       axios
       .post(
