@@ -27,7 +27,6 @@ export const newOrganizer = async (req, res) => {
     }
     return res.sendStatus(201);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(400);
   }
 };
@@ -46,10 +45,8 @@ export const getPerfilOrganizer = async (req, res) => {
       console.log("error: Failed to register organizer");
       return res.sendStatus(422);
     }
-    console.log(rows);
     return res.status(200).json(rows[0]);
   } catch (error) {
-    console.log(error);
     return res.sendStatus(400);
   }
 };

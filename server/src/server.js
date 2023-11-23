@@ -4,12 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import morgan from "morgan";
-import cors from "cors"; 
+import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 import organizerRoutes from "./routes/organizer.routes.js";
 import artistRoutes from "./routes/artist.routes.js";
 import eventsRoutes from "./routes/event.routes.js";
-
 
 const server = express();
 server.use(morgan("dev"));

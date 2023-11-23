@@ -21,7 +21,6 @@ export const signUp = async (req, res) => {
     return res.sendStatus(201);
   } catch (error) {
     console.log("Error query insert : ", error);
-    console.log(error);
     return res.sendStatus(500);
   }
 };
@@ -41,7 +40,6 @@ export const signIn = async (req, res) => {
     }
 
     const user = result.rows[0];
-    console.log(user);
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
@@ -54,13 +52,15 @@ export const signIn = async (req, res) => {
       res.status(401).json({ message: "Usuario o contraseña no válidos" });
     }
   } catch (error) {
-    console.error(error);
     res.status(500).send("Error de servidor");
   }
 };
 
 export const getUsers = async (re, res) => {
   const response = await pool.query("SELECT * FROM users");
-  console.log(response.rows);
   res.status(200).json(response.rows);
+};
+
+export const logout = (req, res) => {
+  res.status(200).json({ message: "Logout exitosa", token: "", role: "" });
 };

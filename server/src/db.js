@@ -25,3 +25,4 @@ pool.connect((error) => {
 });
 
 export default pool;
+
