@@ -117,7 +117,7 @@ const MyEventsSection = ({onEditClick}) => {
                         finalDate={event.finaldate}
                         urlEvent={event.urlevent}
                         price={
-                          event.typeofactivity === "free"
+                          event.typeofactivity === "Free"
                             ? "Free"
                             : "Paid Activity"
                         }
