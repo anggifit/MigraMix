@@ -26,4 +26,3 @@ pool.connect((error) => {
 
 export default pool;
 
-//https://www.makeuseof.com/node-postgresql-connect-how/
