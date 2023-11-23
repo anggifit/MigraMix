@@ -14,7 +14,7 @@ const EventPlannerDashboard = ({ username, fullname, profilePhoto }) => {
   const handlerMenuClick = (section, eventId = null) => {
     setActiveSection(section)
     setActiveEventId(eventId)
-}
+  }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -37,7 +37,6 @@ const EventPlannerDashboard = ({ username, fullname, profilePhoto }) => {
         {activeSection === 'myEvents' && (
           <MyEventsSection 
               onEditClick={(eventId) => {
-
                 handlerMenuClick('updateEvent', eventId);
               }} 
           />)}

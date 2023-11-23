@@ -1,28 +1,46 @@
-import {Select, MenuItem, FormControl, InputLabel} from '@mui/material';
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  useTheme,
+} from "@mui/material";
 import PropTypes from "prop-types";
 
+const FilterByTypeOfActivity = ({ onFilterChange }) => {
+  const theme = useTheme();
 
-const FilterByTypeOfActivity = ({onFilterChange}) => {
-    const handleFilterChange = (event) => {
-        onFilterChange(event.target.value);
-    };
+  const handleFilterChange = (event) => {
+    onFilterChange(event.target.value);
+  };
 
-    return (
-        <div>
-        <FormControl sx={{ m: 1, minWidth: 200 }}>
-            <InputLabel id="demo-simple-select-helper-label">By Type</InputLabel>
-            <Select value="" onChange={handleFilterChange}>
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="free">Free</MenuItem>
-                <MenuItem value="paid">Paid</MenuItem>
-            </Select>
-        </FormControl>
-        </div>
-    )
-}
+  return (
+    <div htmlFor="filterByType">
+      <FormControl
+        sx={{
+          m: 1,
+          width: "100%",
+          [theme.breakpoints.up("sm")]: { width: 200 },
+        }}
+      >
+        <InputLabel id="demo-simple-select-helper-label">By Type</InputLabel>
+        <Select
+          value=""
+          labelId="filterByType"
+          id="filterByType"
+          onChange={handleFilterChange}
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="free">Free</MenuItem>
+          <MenuItem value="paid">Paid</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  );
+};
 
 FilterByTypeOfActivity.propTypes = {
-    onFilterChange: PropTypes.func,
-}
+  onFilterChange: PropTypes.func,
+};
 
-export default FilterByTypeOfActivity
+export default FilterByTypeOfActivity;

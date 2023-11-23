@@ -4,28 +4,38 @@ import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 import SelectOptions from "../SelectOptions";
 import { PropTypes } from "prop-types";
+import MyEventsModal from "./MyEventsModal";
 
-
-const ArtistForm = ({artistProfilePic}) => {  
-   const {register, handleSubmit, formState: { isValid, errors },} = useForm({defaultValues: {artistbio: "",},
+const ArtistForm = ({ artistProfilePic }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm({
+    defaultValues: { artistbio: "" },
   });
-  
+
   const token = localStorage.getItem("token");
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
-  const [selectedMusicGenre, setSelectedMusicGenre] = useState('');
-  const [selectedPerformance, setSelectedPerformance] = useState('');
-  const [selectedTypeOfPerformance, setSelectedTypeOfPerformance] = useState('');
+  const [selectedMusicGenre, setSelectedMusicGenre] = useState("");
+  const [selectedPerformance, setSelectedPerformance] = useState("");
+  const [selectedTypeOfPerformance, setSelectedTypeOfPerformance] =
+    useState("");
+
+  const handleMyEventsClick = () => {
+    setIsModalOpen(true);
+  };
 
   const socialMediaRegex =
     /^((https?|ftp|smtp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
 
   const onImageUpload = (url) => {
-    setEventProfilePictureURL(url);    
+    setEventProfilePictureURL(url);
   };
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
 
     if (isValid) {
       data.ArtistsProfilePicture = eventProfilePictureURL;
@@ -42,16 +52,16 @@ const ArtistForm = ({artistProfilePic}) => {
           console.log(error.response.data);
         });
     }
-  }
-  
+  };
+
   const handleLogOut = async () => {
     try {
-        localStorage.removeItem(`${token}`)
-        window.location.href = '/'
+      localStorage.removeItem(`${token}`);
+      window.location.href = "/";
     } catch (error) {
-        console.error("Logout Failed")
+      console.error("Logout Failed");
     }
-}
+  };
 
   return (
     <div className="w-full relative  shadow-2xl rounded overflow-hidden">
@@ -60,7 +70,7 @@ const ArtistForm = ({artistProfilePic}) => {
           src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
           alt=""
           className="bg w-full h-full object-cover object-center absolute z-0"
-          />
+        />
         <div className="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
           <img
             src={artistProfilePic}
@@ -84,6 +94,14 @@ const ArtistForm = ({artistProfilePic}) => {
             href="#"
             className="text-sm p-2 bg-white text-center rounded shadow-md font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
             onClick={handleLogOut}
+          >
+            My Events 🎫
+          </a>
+          {isModalOpen && <MyEventsModal />}
+          <a
+            href="#"
+            className="text-sm p-2 bg-white text-center rounded shadow-md font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
+            onClick={handleMyEventsClick}
           >
             Log-out 🔒
           </a>
@@ -116,6 +134,7 @@ const ArtistForm = ({artistProfilePic}) => {
               <div className="md:grid md:grid-cols-3 md:gap-4 pb-3 shadow-md">
                 <div>
                   <SelectOptions
+                    id="musicGenre"
                     label="Music Genre"
                     idField="musicGenre"
                     value={selectedMusicGenre}
@@ -128,36 +147,10 @@ const ArtistForm = ({artistProfilePic}) => {
                       { value: "Other", label: "Other" },
                     ]}
                   />
-
-                  {/* <label
-                    htmlFor="HeadlineAct"
-                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-md"
-                    {...register("genre", {
-                      required: "Please select a genre",
-                    })}
-                  >
-                    Genre
-                  </label>
-                  <select
-                    name="HeadlineAct"
-                    id="HeadlineAct"
-                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-600 sm:text-sm"
-                  >
-                    <option value="">Please select</option>
-                    <option value="JM">Pop</option>
-                    <option value="SRV">Electonic</option>
-                    <option value="JH">Rock</option>
-                    <option value="BBK">Urban</option>
-                    <option value="BBK">Other</option>
-                  </select>
-                  {errors.genre && (
-                    <p className="text-red-500 text-sm">
-                      {errors.genre.message}
-                    </p>
-                  )} */}
                 </div>
                 <div>
                   <SelectOptions
+                    id="performance"
                     label="Performance"
                     idField="performance"
                     value={selectedPerformance}
@@ -171,6 +164,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 </div>
                 <div>
                   <SelectOptions
+                    id="typeOfPerformance"
                     label="Music Version"
                     idField="typeOfPerformance"
                     value={selectedTypeOfPerformance}
@@ -191,8 +185,9 @@ const ArtistForm = ({artistProfilePic}) => {
                   />
                 </div>
               </div>
+
               <div className="form-item">
-                <label className="text-xl "></label>
+                <label className="text-xl" htmlFor="ArtistMainLink"></label>
                 <input
                   type="text"
                   placeholder="Instagram"
@@ -230,7 +225,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 )}
               </div>
               <div className="form-item">
-                <label className="text-xl "></label>
+                <label className="text-xl" htmlFor="other"></label>
                 <input
                   type="text"
                   placeholder="Other"
@@ -249,7 +244,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 )}
               </div>
               <div className="form-item">
-                <label className="text-xl"></label>
+                <label className="text-xl" htmlFor="ContactNumber"></label>
                 <input
                   type="number"
                   placeholder="Contact Number"
@@ -268,7 +263,7 @@ const ArtistForm = ({artistProfilePic}) => {
                 <UploadProfilePhoto onImageUpload={onImageUpload} />
               </div>
               <button className="flex flex-auto items-left max-w-1xl justify-center p-0.5 mb-2 mr-2 overflow-hidden text-lg font-medium text-gray-900 rounded-sm group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-600">
-                <input type="submit" placeholder="send" />
+                <input type="submit" placeholder="submit" />
                 {} 📤
               </button>
             </form>
@@ -282,6 +277,5 @@ const ArtistForm = ({artistProfilePic}) => {
 ArtistForm.propTypes = {
   artistProfilePic: PropTypes.string,
 };
-
 
 export default ArtistForm;
