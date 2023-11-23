@@ -35,9 +35,9 @@ const ButtonExplore = () => {
         <RouterLink to="/api/artistsPage">
           <CustomButton
             style={{
-              backgroundColor: "transparent",
-              color: "#DA0707",
-              borderColor: "#DA0707",
+              backgroundColor: "whitesmoke",
+              color: "#ED0707",
+              borderColor: "#ED0707",
               borderRadius: "7px",
               borderWidth: "2px",
             }}
@@ -51,9 +51,9 @@ const ButtonExplore = () => {
         </RouterLink>
         <CustomButton
           style={{
-            backgroundColor: "#F70808",
+            backgroundColor: "#ED0707",
             color: "white",
-            borderColor: "#DA0707",
+            borderColor: "#ED0707",
             borderRadius: "7px",
           }}
           disabled={false}
@@ -66,9 +66,9 @@ const ButtonExplore = () => {
         <RouterLink to="/events">
           <CustomButton
             style={{
-              backgroundColor: "transparent",
-              color: "#DA0707",
-              borderColor: "#DA0707",
+              backgroundColor: "whitesmoke",
+              color: "#ED0707",
+              borderColor: "#ED0707",
               borderRadius: "7px",
               borderWidth: "2px",
             }}

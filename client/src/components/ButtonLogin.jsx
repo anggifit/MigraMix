@@ -25,9 +25,9 @@ const ButtonLogin = () => {
       >
         <Button
           style={{
-            color: "#F70808",
+            color: "#ED0707",
             textTransform: "none",
-            borderColor: "#F70808",
+            borderColor: "#ED0707",
           }}
           startIcon={<PersonAddAltIcon />}
           disabled={false}
@@ -39,9 +39,9 @@ const ButtonLogin = () => {
         </Button>
         <Button
           style={{
-            color: "#F70808",
+            color: "#ED0707",
             textTransform: "none",
-            borderColor: "#F70808",
+            borderColor: "#ED0707",
           }}
           startIcon={<AccountBoxIcon />}
           disabled={false}

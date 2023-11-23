@@ -2,7 +2,7 @@ const Footer = () => {
  
   return (
     <div>
-      <footer className="py-24 p-16 w-full h-full">
+      <footer className="py-24 p-16 w-full h-full ">
         <h2 className="pb-3 text-3xl text-center font-semibold font-Gayathri text-[#F70808]">
           Frequently Asked Questions
         </h2>
@@ -26,7 +26,7 @@ const Footer = () => {
                 <h3 className="text-left font-semibold pb-1">
                   How can I create an artist profile?
                 </h3>
-                <p className="pb-1">
+                <p className="pb-1 font-semibold">
                   Simply sign up as a MIGRAMIX member and fill out the required
                   fields with your personal information, music links, and artist
                   biography to create your profile.
@@ -42,7 +42,7 @@ const Footer = () => {
                 <h3 className="text-left font-semibold">
                   Can I discover events without signing up?
                 </h3>
-                <p>
+                <p className="pb-1 font-semibold">
                   Absolutely! MIGRAMIX is open to both local and migrant artists
                   who want to explore the electronic music scene in Barcelona.
                   No registration is required to discover events and artists.

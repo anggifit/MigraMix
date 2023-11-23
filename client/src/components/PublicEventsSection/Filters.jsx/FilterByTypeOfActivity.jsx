@@ -20,6 +20,7 @@ const FilterByTypeOfActivity = ({ onFilterChange }) => {
         sx={{
           m: 1,
           width: "100%",
+          bgcolor:"whitesmoke",
           [theme.breakpoints.up("sm")]: { width: 200 },
         }}
       >
