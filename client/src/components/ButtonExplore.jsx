@@ -39,7 +39,7 @@ const ButtonExplore = () => {
               color: "#ED0707",
               borderColor: "#ED0707",
               borderRadius: "7px",
-              borderWidth: "2px",
+              borderWidth: "1px",
             }}
             disabled={false}
             size="medium"
@@ -70,7 +70,7 @@ const ButtonExplore = () => {
               color: "#ED0707",
               borderColor: "#ED0707",
               borderRadius: "7px",
-              borderWidth: "2px",
+              borderWidth: "1px",
             }}
             disabled={false}
             size="medium"
