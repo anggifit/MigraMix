@@ -102,10 +102,11 @@ const SignUpForm = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="opacity-70 bg-gray-800 absolute inset-0 min-h-screen"></div>
+      <div className="opacity-70 bg-gray-800 fixed inset-0"></div>
+
       <div className="relative mt-15">
         <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs" >
+          <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
               sx={{

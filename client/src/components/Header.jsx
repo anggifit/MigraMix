@@ -7,12 +7,11 @@ const Header = () => {
   
   return (
     <div className="p-7 m-auto">
-       <ButtonLogin /> 
+      <ButtonLogin />
       <Typography
-        
         variant="h1"
         classes={{
-          root: "text-sm sm:text-sm text-center text-[#F70808] transition duration-500 ease-in-out hover:scale-90",
+          root: "text-sm sm:text-sm text-center text-[#ED0707] transition duration-500 ease-in-out hover:scale-90",
         }}
         style={{
           fontSize: {
@@ -21,7 +20,7 @@ const Header = () => {
           },
           fontFamily: "Gayathri, sans-serif",
           fontWeight: "bold",
-          letterSpacing: "9px",          
+          letterSpacing: "5px",
         }}
       >
         MIGRAMIX
@@ -37,7 +36,7 @@ const Header = () => {
         <Typography
           variant="body1"
           style={{
-            fontWeight: 400,
+            fontWeight: 600,
             margin: "10px",
             color: "#2D3142",
             letterSpacing: "1px",
@@ -49,7 +48,7 @@ const Header = () => {
         <Typography
           variant="body1"
           style={{
-            fontWeight: 400,
+            fontWeight: 600,
             margin: "10px",
             color: "#2D3142",
             letterSpacing: "1px",
