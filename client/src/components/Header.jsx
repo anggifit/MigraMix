@@ -7,9 +7,9 @@ const Header = () => {
   
   return (
     <div className="p-7 m-auto">
-      <ButtonLogin />
+       <ButtonLogin /> 
       <Typography
-        // theme={theme}
+        
         variant="h1"
         classes={{
           root: "text-sm sm:text-sm text-center text-[#F70808] transition duration-500 ease-in-out hover:scale-90",
@@ -33,7 +33,7 @@ const Header = () => {
       >
         Amplify Culture, Harmonize Art
       </Typography> */}
-      <div className="mt-6 text-base md:text-lg lg:text-lg text-blue text-custom p-7">
+      <div className="mt-auto text-base md:text-lg lg:text-lg text-blue text-custom p-7 text-center">
         <Typography
           variant="body1"
           style={{
@@ -58,7 +58,7 @@ const Header = () => {
           <a>Let`s unite through music, creativity, and cultural diversity.</a>
         </Typography>
       </div>
-      <Stack className="mt-6">
+      <Stack className="mt-6 ">
         <ButtonExplore />
       </Stack>
     </div>
