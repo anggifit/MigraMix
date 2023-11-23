@@ -83,9 +83,8 @@ export default function SignInForm() {
       newErrors.password = "Password must be at least 6 characters";
     }
 
-    setErrors(newErrors); // Update the state with error messages
+    setErrors(newErrors); 
 
-    // Check if there are any errors; if errors exist, the form is invalid
     if (Object.values(newErrors).some((error) => error !== "")) {
       console.log("Form is invalid. Please fix the errors.");
     } else {
@@ -97,15 +96,13 @@ export default function SignInForm() {
   const navigate = useNavigate()
   
   const onSubmit = (data) => {
-    // Extract username and password from the form data
-    const { email, password } = data; // Update variable names to match your form fields
+    const { email, password } = data; 
     
-  
     if (email && password) {
       axios
       .post(
           "/api/sign-in",
-          { email, password }, // Use the extracted email and password
+          { email, password }, 
           {
             headers: { "Content-Type": "application/json" },
           }
@@ -123,7 +120,6 @@ export default function SignInForm() {
           console.log(error.response.data);
         });
     } else {
-      // Handle the case where either email or password is missing
       console.log("Email and password are required");
     }
   };
@@ -140,7 +136,7 @@ export default function SignInForm() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: "url(/images/SignUpImg.jpg)",
+              backgroundImage: "url(/images/sign_in_background.jpg)",
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"
