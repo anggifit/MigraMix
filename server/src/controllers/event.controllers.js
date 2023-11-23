@@ -109,17 +109,17 @@ export const editEventByOrganizer = async (req, res) => {
     try {
       const eventResult = await pool.query(
         `UPDATE events 
-         SET 
-           eventTitle=$1,
-           eventDescription=$2,
-           urlEvent=$3,
-           typeOfActivity=$4,
-           artistEvent=$5,
-           initialDate=$6,
-           finalDate=$7,
-           eventImage=$8
-         WHERE id = $9 AND organizer_id = $10
-         RETURNING *`,
+          SET 
+            eventTitle=$1,
+            eventDescsription=$2,
+            urlEvent=$3,
+            typeOfActivity=$4,
+            artistEvent=$5,
+            initialDate=$6,
+            finalDate=$7,
+            eventImage=$8
+          WHERE id = $9 AND organizer_id = $10
+          RETURNING *`,
         [
           eventTitle,
           eventDescription,

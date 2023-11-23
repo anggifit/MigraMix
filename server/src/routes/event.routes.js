@@ -37,5 +37,4 @@ router.delete(
   authenticateToken,
   deleteEventByOrganizer
 );
-
 export default router;
