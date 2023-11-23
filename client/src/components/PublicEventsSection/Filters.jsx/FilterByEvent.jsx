@@ -10,7 +10,7 @@ const FilterByEvent = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className="bg-[whitesmoke]">
       <TextField
         id="titleFilter"
         label="By event"
