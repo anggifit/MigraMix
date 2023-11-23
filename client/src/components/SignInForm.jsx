@@ -5,14 +5,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+import { Link as RouterLink } from 'react-router-dom';
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link as RouterLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from "./AdminDashboard";
@@ -64,7 +63,6 @@ export default function SignInForm() {
       [name]: "",
     });
   };
-
 
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
@@ -157,10 +155,6 @@ export default function SignInForm() {
               backgroundPosition: "center",
             }}
           />
-  {/*           {authenticationSuccessful ? (
-              <AdminDashboard/>
-            ) :
-            ( */}
               <Grid
               item
               xs={12}
@@ -179,7 +173,7 @@ export default function SignInForm() {
                   alignItems: "center",
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <Avatar sx={{ m: 1, bgcolor: "#FF4B4B" }}>
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -202,8 +196,8 @@ export default function SignInForm() {
                     autoFocus
                     value={formData.email}
                     onChange={handleInputChange}
-                    error={!!errors.email} // Set error to true if there's an error message
-                    helperText={errors.email} // Display the error message here
+                    error={!!errors.email} 
+                    helperText={errors.email} 
                   />
 
                   <TextField
@@ -217,34 +211,38 @@ export default function SignInForm() {
                     autoComplete="current-password"
                     value={formData.password}
                     onChange={handleInputChange}
-                    error={!!errors.password} // Set error to true if there's an error message
-                    helperText={errors.password} // Display the error message here
+                    error={!!errors.password} 
+                    helperText={errors.password} 
                   />
 
                   <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
                     label="Remember me"
-                    /* onSubmit={onSubmit} */
                   />
                   <Button
                     type="submit"
                     fullWidth
                     variant="contained"
-                      sx={{ mt: 3, mb: 2, borderRadius: '24px', }}
-                      
+                      sx={{ 
+                        mt: 3, 
+                        mb: 2, 
+                        borderRadius: '24px', 
+                        backgroundColor: "#020617",
+                      color: "white",
+                      fontWeight: "bold"
+                      }}  
                   >
                     Sign In
                   </Button>
                   <Grid container>
-                    <Grid item xs>
-                      <Link href="#" variant="body2">
-                        Forgot password?
-                      </Link>
-                    </Grid>
                     <Grid item>
-                      <Link href="#" variant="body2">
-                        {"Don't have an account? Sign Up"}
-                      </Link>
+                      <RouterLink 
+                        style={{ textDecoration: "underline", color: "#1776D1" }}
+                        to="/sign-up"
+                        variant="body2"
+                      >
+                        Do not have an account? Sign Up
+                      </RouterLink>
                     </Grid>
                   </Grid>
                   <Copyright sx={{ mt: 5 }} />

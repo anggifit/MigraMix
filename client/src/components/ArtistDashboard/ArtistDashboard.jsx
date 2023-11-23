@@ -1,10 +1,11 @@
 import ArtistForm from "./ArtistForm"
+import MyEventsArtist from "./MyEventsArtist";
 import PropTypes from "prop-types";
 
 const ArtistDashboard = ({artistProfilePic}) => {
   return (
     <div>
-      <ArtistForm artistProfilePic={artistProfilePic}/>     
+      <ArtistForm artistProfilePic={artistProfilePic}/> 
     </div>
   );
 }

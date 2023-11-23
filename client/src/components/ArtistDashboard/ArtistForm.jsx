@@ -4,7 +4,7 @@ import axios from "axios";
 import UploadProfilePhoto from "../EventPlannerDashboard/UploadProfilePhoto";
 import SelectOptions from "../SelectOptions";
 import { PropTypes } from "prop-types";
-import MyEventsModal from "./MyEventsModal";
+import MyEventsArtist from "./MyEventsArtist";
 
 const ArtistForm = ({ artistProfilePic }) => {
   const {
@@ -16,7 +16,6 @@ const ArtistForm = ({ artistProfilePic }) => {
   });
 
   const token = localStorage.getItem("token");
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventProfilePictureURL, setEventProfilePictureURL] = useState(null);
   const [selectedMusicGenre, setSelectedMusicGenre] = useState("");
   const [selectedPerformance, setSelectedPerformance] = useState("");
@@ -24,7 +23,8 @@ const ArtistForm = ({ artistProfilePic }) => {
     useState("");
 
   const handleMyEventsClick = () => {
-    setIsModalOpen(true);
+    const myEventsArtistElement = document.getElementById("myEventsArtist");
+    myEventsArtistElement.scrollIntoView({ behavior: "smooth" });
   };
 
   const socialMediaRegex =
@@ -93,15 +93,14 @@ const ArtistForm = ({ artistProfilePic }) => {
           <a
             href="#"
             className="text-sm p-2 bg-white text-center rounded shadow-md font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
-            onClick={handleLogOut}
+            onClick={handleMyEventsClick}
           >
             My Events 🎫
           </a>
-          {isModalOpen && <MyEventsModal />}
           <a
             href="#"
             className="text-sm p-2 bg-white text-center rounded shadow-md font-semibold hover:bg-indigo-700 hover:text-gray-200 md:transition-all "
-            onClick={handleMyEventsClick}
+            onClick={handleLogOut}
           >
             Log-out 🔒
           </a>
@@ -267,6 +266,15 @@ const ArtistForm = ({ artistProfilePic }) => {
                 {} 📤
               </button>
             </form>
+            <div className="pt-5">
+              <p 
+                style={{ color: '#2B2D42', fontWeight: 'bold', textAlign:'center'}}
+                className="pb-5"
+              >
+                My Events
+              </p>
+              <MyEventsArtist/>
+            </div>
           </div>
         </div>
       </div>
