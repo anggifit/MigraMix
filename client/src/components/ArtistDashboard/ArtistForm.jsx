@@ -38,9 +38,6 @@ const ArtistForm = ({artistProfilePic}) => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((response) => {
-          console.log(response.data);
-        })
         .catch((error) => {
           console.log(error.response.data);
         });
@@ -99,10 +96,7 @@ const ArtistForm = ({artistProfilePic}) => {
               className="flex flex-col space-y-2 "
               action="#"
             >
-              {/* Aqui van los campos comentados de name, username etc */}
-
               <div className="form-item w-full">
-                {/* <label className="text-sm "></label> */}
                 <textarea
                   cols="10"
                   rows="5"
@@ -174,23 +168,6 @@ const ArtistForm = ({artistProfilePic}) => {
                       { value: "Band", label: "Band" },
                     ]}
                   />
-
-                  {/* <label
-                    htmlFor="HeadlineAct"
-                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-md"
-                  >
-                    Performance
-                  </label>
-                  <select
-                    name="HeadlineAct"
-                    id="HeadlineAct"
-                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-600 sm:text-sm "
-                  >
-                    <option value="">Please select</option>
-                    <option value="JM">Solo</option>
-                    <option value="SRV">DeeJane/DeeJay</option>
-                    <option value="JH">Band</option>
-                  </select> */}
                 </div>
                 <div>
                   <SelectOptions
@@ -212,26 +189,8 @@ const ArtistForm = ({artistProfilePic}) => {
                       },
                     ]}
                   />
-
-                  {/* <label
-                    htmlFor="HeadlineAct"
-                    className="block text-sm-2 font-custom font-medium text-gray-400 shadow-md"
-                  >
-                    Music Version
-                  </label>
-                  <select
-                    name="HeadlineAct"
-                    id="HeadlineAct"
-                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-600 sm:text-sm"
-                  >
-                    <option value="">Please select</option>
-                    <option value="JM">Versions & own creations/tracks</option>
-                    <option value="SRV">Only versions</option>
-                    <option value="JH">Own creations only</option>
-                  </select> */}
                 </div>
               </div>
-              <div>{/* <h3 className="text-2xl">My Social Media</h3> */}</div>
               <div className="form-item">
                 <label className="text-xl "></label>
                 <input
@@ -296,13 +255,7 @@ const ArtistForm = ({artistProfilePic}) => {
                   placeholder="Contact Number"
                   id="ContactNumber"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow-md py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                  {...register("ContactNumber", {
-                    /* pattern: {
-                      value:
-                        /^(?:(?:\+|00)34[\s.]?)?(6\d{8}|[679]\d{1}[\s.-]?\d{2}[\s.-]?\d{2}[\s.-]?\d{2})$/,
-                      message: "Not a valid Spain mobile number",
-                    }, */
-                  })}
+                  {...register("ContactNumber")}
                 />
                 {errors.ContactNumber && (
                   <p className="text-red-500 text-sm">

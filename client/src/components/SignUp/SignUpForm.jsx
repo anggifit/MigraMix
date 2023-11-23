@@ -102,8 +102,7 @@ const SignUpForm = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="opacity-40 bg-gray-800 absolute inset-0 min-h-screen"></div>
- 
+      <div className="opacity-70 bg-gray-800 absolute inset-0 min-h-screen"></div>
       <div className="relative mt-15">
         <ThemeProvider theme={defaultTheme}>
           <Container component="main" maxWidth="xs" >
@@ -115,6 +114,7 @@ const SignUpForm = () => {
                 alignItems: "center",
                 padding: "20px",
                 backgroundColor: "white",
+                borderRadius:5,
               }}
             >
               <Avatar sx={{ m: 1, bgcolor: "#FF4B4B" }}>
@@ -358,6 +358,7 @@ const SignUpForm = () => {
                   onClose={() => setOpen(false)}
                   onClick={handleNextClick}
                   description="Succesfull Registration"
+                  infoButton="Next"
                 />
                 <Grid container justifyContent="flex-end">
                   <Grid item>

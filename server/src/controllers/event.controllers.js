@@ -53,10 +53,10 @@ export const createEventByOrganizer = async (req, res) => {
 
         await pool.query(
           `INSERT INTO event_by_artist (event_id, event_by_artist_id)
-   SELECT $1, users.id
-   FROM users
-   WHERE users.username LIKE $2
-   RETURNING *`,
+              SELECT $1, users.id
+              FROM users
+              WHERE users.username LIKE $2
+              RETURNING *`,
           [eventId, artistEvent]
         );
         res.status(200).json({ message: "Evento creado." });

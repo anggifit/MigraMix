@@ -60,7 +60,7 @@ const ButtonExplore = () => {
         </RouterLink>
       </Stack> */}
       <Stack spacing={3} direction="row" justifyContent="center">
-        <RouterLink to="/api/artistsPage">
+        <RouterLink to="/artistsPage">
           <CustomButton
             style={{
               backgroundColor: "transparent",
