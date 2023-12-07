@@ -111,7 +111,7 @@ export const editEventByOrganizer = async (req, res) => {
         `UPDATE events 
           SET 
             eventTitle=$1,
-            eventDescsription=$2,
+            eventDescription=$2,
             urlEvent=$3,
             typeOfActivity=$4,
             artistEvent=$5,
