@@ -46,6 +46,43 @@ Migramix offers a wide range of features to enhance your social networking exper
 - [PostgreSQL](https://www.postgresql.org/)
 - [Firebase](https://firebase.google.com/)
 
+# React/Node Project
+
+This repository contains a React/Node project with a folder structure separated for the client and the server.
+
+## Client Configuration
+
+1. Run `npm install` in the client folder to install the dependencies.
+
+2. Create a `.env` file in the client folder for Firebase configuration. You will need to create a project in Firebase (storage) to obtain the credentials and the appropriate settings (https://firebase.google.com/). Make sure to include the necessary variables in your `.env` file. Here is an example:
+
+   ```env
+        VITE_FIREBASE_API_KEY="your-api-key"
+        VITE_FIREBASE_AUTH_DOMAIN="your-auth-domain"
+        VITE_FIREBASE_PROJECT_ID="your-project-id"
+        VITE_FIREBASE_STORAGE_BUCKET="your-storage-bucket"
+        VITE_FIREBASE_MESSAGING_SENDER_ID="your-messaging-sender-id"
+        VITE_FIREBASE_APP_ID="your-app-id"
+3. Run `npm run dev` in the client folder to start the application in development mode.
+
+## Server Configuration
+
+1. Run `npm install` in the server folder to install the dependencies.
+
+2. Use the table creation script to set up the database (this is the file -> dbModel.sql ). Ensure that you have a configured database and adjust the script as needed.
+3. Update the `.env` file in the server folder with your database information and other configurations. Here is an example:
+
+   ```env
+   TOKEN_SECRET = "your-Secret-token"
+   PGUSER="your-pg-port"
+   PGHOST="your-pg-host"
+   PGPASSWORD="your-pg-password"
+   PGDATABASE="your-pg-database"
+   PGPORT="your-server-port"
+4. Run `npm run dev` in the server folder to start the application in development mode.
+
+Ready! Now, you should have both the client and server up and running.
+
 ## Meet the Team
 
 Meet the talented individuals who have contributed to the development of Migramix:
