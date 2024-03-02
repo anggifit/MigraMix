@@ -15,7 +15,7 @@ server.use(morgan("dev"));
 
 server.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5174", //verificar la direccion localhost que se indica al levantar el cliente 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
