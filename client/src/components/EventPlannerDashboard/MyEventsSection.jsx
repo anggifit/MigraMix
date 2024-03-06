@@ -7,6 +7,7 @@ import axios from "axios";
 import SuccesfullModal from "../SignUp/SuccesfullModal";
 import PropTypes from "prop-types";
 
+
 const MyEventsSection = ({onEditClick}) => {
 
   const [mixEventsData, setMixEventsData] = useState([])
@@ -22,7 +23,7 @@ const MyEventsSection = ({onEditClick}) => {
     fetchMixEventsData();
     async function fetchMixEventsData() {
       try {
-        const response = await axios.get('http://localhost:4000/api/events/eventsByOrganizer', {
+        const response = await axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/events/eventsByOrganizer`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Cache-Control': 'no-cache',
@@ -45,7 +46,7 @@ const MyEventsSection = ({onEditClick}) => {
   
 
   const deleteEvent = (eventId) => {
-    axios.delete(`http://localhost:4000/api/events/delete-event/${eventId}`, { 
+    axios.delete(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/events/delete-event/${eventId}`, { 
       headers: {
           Authorization: `Bearer ${token}`,
       }

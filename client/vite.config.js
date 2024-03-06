@@ -7,31 +7,31 @@ export default defineConfig({
     proxy: {
       // Configura el proxy solo para la ruta específica
       "/api/sign-up": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app",
         changeOrigin: true,
       },
       "/api/sign-in": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
       "/api/organizers/organizer": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
       "/api/events/events": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
       "/api/events/edit-event": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
       "/api/events/delete-event/:eventId": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },    
       "/api/artists/artists": {
-        target: "http://localhost:4000", // Reemplaza esto con la URL de tu servidor Express
+        target: "mmx-server-anggifit-anggifits-projects.vercel.app", // Reemplaza esto con la URL de tu servidor Express
         changeOrigin: true,
       },
     },

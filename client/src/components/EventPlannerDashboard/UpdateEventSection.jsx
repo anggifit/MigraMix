@@ -47,7 +47,7 @@ const UpdateEventSection = ({activeEventId}) => {
         fetchEventData()
         async function fetchEventData() {
             try {
-                const response = await axios.get(`http://localhost:4000/api/events/eventsById/${activeEventId}`, {
+                const response = await axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/events/eventsById/${activeEventId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, 
                         'Cache-Control': 'no-cache',
@@ -114,7 +114,7 @@ const UpdateEventSection = ({activeEventId}) => {
         fetchArtistData();
         async function fetchArtistData() {
         try {
-            const response = await axios.get("http://localhost:4000/api/artists/artistsList");
+            const response = await axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/artists/artistsList`);
             if (response.status !== 200) {
                 throw new Error("Network response was not ok");
             }

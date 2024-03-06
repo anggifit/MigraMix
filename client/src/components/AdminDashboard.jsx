@@ -4,7 +4,6 @@ import EventPlannerDashboard from "./EventPlannerDashboard/EventPlannerDashboard
 import UserContext from "./UserContext"
 import axios from "axios"
 
-
 const AdminDashboard = () => {
     const {role} = useContext(UserContext)
     
@@ -19,7 +18,7 @@ const AdminDashboard = () => {
 
     useEffect(() => {
         if (role === "Organizer" && token) {
-            axios.get('http://localhost:4000/api/organizers/organizer', {
+            axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/organizers/organizer`, {
                 headers: {
                     Authorization: `Bearer ${token}`, 
                     'Cache-Control': 'no-cache',
@@ -38,7 +37,7 @@ const AdminDashboard = () => {
                     console.error("error al obtener el nombre de usuario", error)
                 })
         } else if (role === "Artist" && token) {
-            axios.get('http://localhost:4000/api/artists/artists', {
+            axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/artists/artists`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Cache-Control': 'no-cache',

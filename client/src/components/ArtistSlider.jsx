@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "../assets/Slide.css";
 import axios from 'axios';
+import "../assets/Slide.css";
 
 const ArtistSlider = () => {
   const [artistData, setArtistData] = useState([])
@@ -14,7 +14,7 @@ const ArtistSlider = () => {
     fetchArtistData()
     async function fetchArtistData() {
       try {
-        const response = await axios.get('http://localhost:4000/api/artists/artistsList')
+        const response = await axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/artists/artistsList`)
         if (response.status !== 200) {
           throw new Error("Network response was not ok")
         }

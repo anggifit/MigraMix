@@ -24,7 +24,7 @@ const MixEventsSection = () => {
     async function fetchMixEventsData() {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/events/allEvents"
+          `${API_URL}/api/events/allEvents`
         );
 
         const data = response.data;
