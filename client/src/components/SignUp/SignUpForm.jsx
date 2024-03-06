@@ -69,7 +69,7 @@ const SignUpForm = () => {
       data.dateOfBirth = selectedDate;
       data.role = selectedRole;
       axios
-        .post('/api/sign-up', data, {
+        .post(`https://mmx-server.vercel.app/api/sign-up`, data, {
           headers: { 'Content-Type': 'application/json' },
         })
         .then((response) => {
