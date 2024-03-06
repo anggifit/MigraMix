@@ -23,7 +23,7 @@ const MyEventsSection = ({onEditClick}) => {
     fetchMixEventsData();
     async function fetchMixEventsData() {
       try {
-        const response = await axios.get(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/events/eventsByOrganizer`, {
+        const response = await axios.get(`https://mmx-server.vercel.app/api/events/eventsByOrganizer`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Cache-Control': 'no-cache',
@@ -46,7 +46,7 @@ const MyEventsSection = ({onEditClick}) => {
   
 
   const deleteEvent = (eventId) => {
-    axios.delete(`https://mmx-server-anggifit-anggifits-projects.vercel.app/api/events/delete-event/${eventId}`, { 
+    axios.delete(`https://mmx-server.vercel.app/api/events/delete-event/${eventId}`, { 
       headers: {
           Authorization: `Bearer ${token}`,
       }

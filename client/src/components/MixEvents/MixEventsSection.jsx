@@ -24,7 +24,7 @@ const MixEventsSection = () => {
     async function fetchMixEventsData() {
       try {
         const response = await axios.get(
-          `https://mmx-server-anggifit-anggifits-projects.vercel.app/api/events/allEvents`
+          `https://mmx-server.vercel.app/api/events/allEvents`
         );
 
         const data = response.data;
