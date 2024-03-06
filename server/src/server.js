@@ -14,7 +14,7 @@ server.use(morgan("dev"));
 
 server.use(
   cors({
-    origin: "https://migra-1sx8vnhmf-anggifits-projects.vercel.app", //verificar la direccion localhost que se indica al levantar el cliente 
+    origin: "https://migra-mix-tawny.vercel.app", //verificar la direccion localhost que se indica al levantar el cliente 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
