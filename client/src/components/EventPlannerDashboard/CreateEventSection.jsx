@@ -79,7 +79,7 @@ const CreateEventSection = () => {
         async function fetchArtistData() {
         try {
             const response = await axios.get(
-            "https://mmx-server.vercel.app/api/artists/artistsList"
+            `https://mmx-server.vercel.app/api/artists/artistsList`
             );
             if (response.status !== 200) {
                 throw new Error("Network response was not ok");

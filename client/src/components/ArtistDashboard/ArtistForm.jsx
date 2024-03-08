@@ -43,7 +43,7 @@ const ArtistForm = ({ artistProfilePic }) => {
       data.Performance = selectedPerformance;
       data.Type_of_performance = selectedTypeOfPerformance;
       axios
-        .put(`/api/artists/artists`, data, {
+        .put(`https://mmx-server.vercel.app/api/artists/artists`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

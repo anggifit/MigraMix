@@ -136,7 +136,7 @@ export default function SignInForm() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: "url(/images/backgroundImage.jpg)",
+              backgroundImage: `url(/images/backgroundImage.jpg)`,
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"
