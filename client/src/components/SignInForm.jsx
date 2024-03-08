@@ -101,7 +101,7 @@ export default function SignInForm() {
     if (email && password) {
       axios
       .post(
-          "/api/sign-in",
+          `https://mmx-server.vercel.app/api/sign-in`,
           { email, password }, 
           {
             headers: { "Content-Type": "application/json" },
@@ -136,7 +136,7 @@ export default function SignInForm() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: "url(/images/sign_in_background.jpg)",
+              backgroundImage: "url(/images/backgroundImage.jpg)",
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"
