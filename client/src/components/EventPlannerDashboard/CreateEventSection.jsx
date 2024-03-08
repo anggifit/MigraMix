@@ -105,7 +105,7 @@ const CreateEventSection = () => {
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
             axios
-            .post('/api/events/events', data, { 
+            .post(`https://mmx-server.vercel.app/api/events/events`, data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
