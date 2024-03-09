@@ -17,12 +17,3 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 } 
-
-/* Remove up/down arrow dials from TextField */
-
-/* body {
-  margin: 0; 
-  padding: 0; /* 
-  background-color: #F70808 
-}
-*/

@@ -36,7 +36,7 @@ const EditProfile = () => {
         if (isValid){
             data.eventProfilePicture = eventProfilePictureURL;
             axios
-            .post(`https://migra-mix-tawny.vercel.app/api/organizers/organizer`, data, 
+            .post(`https://mmx-server.vercel.app/api/organizers/organizer`, data, 
             {headers: {
                 Authorization: `Bearer ${token}`
             }})
