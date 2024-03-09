@@ -140,7 +140,7 @@ const UpdateEventSection = ({activeEventId}) => {
             data.initialDate = initialDateSelected
             data.finalDate = finalDateSelected
             axios
-            .put('/api/events/edit-event', data, { 
+            .put('https://mmx-server.vercel.app/api/events/edit-event', data, { 
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
