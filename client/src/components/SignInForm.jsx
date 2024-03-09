@@ -16,6 +16,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from "./AdminDashboard";
 import UserContext from "./UserContext";
+import backgroundImage from "../assets/images/sign_in_background.jpg"
 
 function Copyright(props) {
   return (
@@ -136,7 +137,7 @@ export default function SignInForm() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: `url(/images/backgroundImage.jpg)`,
+              backgroundImage: `url(${backgroundImage})`,
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"

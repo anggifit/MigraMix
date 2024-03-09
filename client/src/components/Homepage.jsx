@@ -12,13 +12,12 @@ const Homepage = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    opacity: 0.3, // Adjust the opacity value as needed
-    position: "fixed", // or 'absolute' depending on your layout
-    top: 0,
+    opacity: 0.3, 
+    position: "fixed", 
     left: 0,
     width: "100%",
     height: "100%",
-    zIndex: -1, // Ensure it's behind other elements
+    zIndex: -1, 
     loading:"lazy"
   };
 
