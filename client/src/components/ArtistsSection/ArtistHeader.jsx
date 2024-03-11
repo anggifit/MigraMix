@@ -10,10 +10,10 @@ const ArtistHeader = () => {
         className="p-10 text-[#F70808] hover:text-[#1f1e1e]"
         style={{ fontFamily: "Audiowide, sans-serif" }}
       >
-        <Grid item xs={1}>
+        <Grid item xs={12} lg={1}>
           <ButtonHome />
         </Grid>
-        <Grid item xs={11}>
+        <Grid item xs={12} lg={11}>
           <h1 className="text-5xl font-semibold text-center">Artists</h1>
         </Grid>
       </Grid>

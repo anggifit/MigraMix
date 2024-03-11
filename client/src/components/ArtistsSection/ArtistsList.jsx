@@ -36,7 +36,7 @@ const ArtistsList = () => {
                     <p>Error: {error.message}</p>
                 ) : (
                     artistData.map((person) =>(
-                        <Grid key={person.id} item xs={6}>
+                        <Grid key={person.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
                             <ArtistCard 
                                 image={person.artistsprofilepicture}
                                 user={person.username}

@@ -7,7 +7,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: "90%",
+  maxWidth: "600px",
   boxShadow: 24,
   p: 4,
   borderRadius: 4,
@@ -25,7 +26,7 @@ const ArtistProfile = ({
   mainLink,
 }) => {
   
-  const protocol = "http://";
+  const protocol = "https://";
 
   return (
     <div>
@@ -42,17 +43,18 @@ const ArtistProfile = ({
             alignItems="center"
             spacing={2}
           >
-            <div className="container mx-auto my-60">
+            <div className="container mx-auto my-10">
               <div>
                 <div className="flex justify-center">
                   <img
                     src={image}
-                    className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+                    className="rounded-full mx-auto absolute -top-20 w-32 h-32 lg:w-40 lg:h-40 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
                     loading="lazy"
                     style={{ objectFit: "cover" }}
+                    alt={user}
                   />
                 </div>
-                <div className="mt-10 text-[#FF4B4B]">
+                <div className="mt-6 text-[#FF4B4B]">
                   <Typography
                     id="modal-modal-title"
                     variant="h2"
@@ -61,10 +63,7 @@ const ArtistProfile = ({
                   >
                     {user}
                   </Typography>
-                  <div 
-                    className="flex justify-between items-center my-5 px-6"
-                    style={{ alignItems: 'baseline' }}  
-                  >
+                  <div className="mt-5 px-2">
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -85,7 +84,6 @@ const ArtistProfile = ({
                       >
                         <Typography>Performance</Typography>
                       </AccordionSummary>
-
                       <AccordionDetails>
                         <Typography>{performance}</Typography>
                       </AccordionDetails>
@@ -106,7 +104,7 @@ const ArtistProfile = ({
 
                   <div className="mt-8 py-6 border-t border-slate-200 text-center">
                     <div className="flex flex-wrap justify-center">
-                      <div className="w-full px-4">
+                      <div className="w-full lg:w-2/3 px-4">
                         <p className="mb-4 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                           {bio}
                         </p>
