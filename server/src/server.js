@@ -12,9 +12,14 @@ dotenv.config();
 const server = express();
 server.use(morgan("dev"));
 
+const allowedOrigins = [
+  "https://migra-mix-git-main-anggifits-projects.vercel.app",
+  "http://localhost:5173", //verificar la direccion localhost que se indica al levantar el cliente
+];
+
 server.use(
   cors({
-    origin: "https://migra-mix-tawny.vercel.app", //verificar la direccion localhost que se indica al levantar el cliente 
+    origin: allowedOrigins,  
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
