@@ -10,7 +10,7 @@ const ButtonHome = () => {
       }
     return (
          <Button
-            className="w-12" 
+            className="w-12 lg:hidden" 
             variant="text" 
             startIcon={<HomeIcon />} 
             onClick={handleHomeClick}
