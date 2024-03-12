@@ -1,41 +1,36 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography, useTheme } from "@mui/material"; // Import necessary components from Material-UI
 import ButtonExplore from "./ButtonExplore";
 import ButtonLogin from "./ButtonLogin";
-
-const Header = () => {
-  
+function Header() {
+  const theme = useTheme();
   return (
-    <div className="p-7 m-auto">
+    <div className="p-8 m-auto">
       <ButtonLogin />
       <Typography
         variant="h1"
         classes={{
-          root: "text-sm sm:text-sm text-center text-[#ED0707] transition duration-500 ease-in-out hover:scale-90",
+          root: "text-xs xs:text-xs text-center text-[#ED0707] transition duration-300 ease-in-out hover:scale-90",
         }}
-        style={{
+        sx={{
           fontSize: {
-            xs: "1rem", // Adjust the font size for extra-small screens
-            sm: "3rem", // Default font size for small and larger screens
+            xs: "3rem", 
+            sm: "2rem",
+            md: "3.4rem", 
           },
           fontFamily: "Gayathri, sans-serif",
           fontWeight: "bold",
-          letterSpacing: "5px",
+          letterSpacing: "2px",
+          [theme.breakpoints.up("md")]: {
+            fontSize: "7rem",
+          },
         }}
       >
         MIGRAMIX
       </Typography>
-      {/* <Typography
-        variant="h4"
-        className="mt-6 text-bold text-xl md:text-2xl lg:text-3xl p-7 text-white "
-        style={{ fontFamily: "Helvetica, sans-serif" }}
-      >
-        Amplify Culture, Harmonize Art
-      </Typography> */}
       <div className="mt-auto text-base md:text-lg lg:text-lg text-blue text-custom p-7 text-center">
         <Typography
           variant="body1"
-          style={{
+          sx={{
             fontWeight: 600,
             margin: "10px",
             color: "#2D3142",
@@ -43,25 +38,37 @@ const Header = () => {
           }}
         >
           Welcome to a vibrant platform showcasing emerging migrant artists in
-          Barcelona`s electronic music scene.{" "}
+          Barcelona´s electronic music scene.
         </Typography>
         <Typography
           variant="body1"
-          style={{
+          sx={{
             fontWeight: 600,
             margin: "10px",
             color: "#2D3142",
             letterSpacing: "1px",
           }}
         >
-          <a>Let`s unite through music, creativity, and cultural diversity.</a>
+          <a href="#">
+            Let´s unite through music, creativity, and cultural diversity.
+          </a>
         </Typography>
       </div>
-      <Stack className="mt-6 ">
+      <Stack direction="row" spacing={2} justifyContent="center" mt={6}>
         <ButtonExplore />
       </Stack>
     </div>
   );
-};
-
+}
 export default Header;
+
+
+
+
+
+
+
+
+
+
+

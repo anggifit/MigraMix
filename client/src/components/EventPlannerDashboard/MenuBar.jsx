@@ -18,7 +18,7 @@ function MenuBar({ onMenuClick, profilePhoto, username, fullname }) {
         }
     };
     return (
-        <Card className="h-full w-full max-w-[20rem] bg-gradient-to-t from-red-300 to-neutral-50 shadow-lg shadow-red-300">
+        <Card className="h-full max-w-[20rem] xs:max-w-[12rem] bg-gradient-to-t from-red-300 to-neutral-50 shadow-lg shadow-red-300">
         <div className="mb-4 p-6">
             <EventPlannerHeader
             fullname={fullname}
