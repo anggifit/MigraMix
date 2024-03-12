@@ -139,6 +139,13 @@ const EditProfile = () => {
                             alignItems="center"
                             justifyContent="center"
                             spacing={8}
+                            sx={{ 
+                                padding: 2,
+                                '@media (max-width: 640px)': {
+                                  justifyContent: 'center', // Centrar en dispositivos móviles
+                                  alignItems: 'center', // Centrar en dispositivos móviles
+                                },
+                            }}
                         >
                             <RedButton 
                                 info="Save" 
@@ -146,8 +153,6 @@ const EditProfile = () => {
                                 size="large"
                                 type="submit" 
                             />
-                           {/* <RedButton info="Delete User" widen size="large" onClick={handleDeleteClick}/> */}
-
                             <SuccesfullModal
                                 open={open}
                                 onClose={() => setOpen(false)}

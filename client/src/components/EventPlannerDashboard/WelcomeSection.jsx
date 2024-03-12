@@ -3,13 +3,13 @@ import { Box, Container } from "@mui/system";
 
 const WelcomeSection = () => {
   return (
-    <div style={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="flex items-center justify-center h-screen">
       <Container maxWidth="xl">
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            padding: '200px',
+            padding: '4 xs:p-6 sm:p-8 md:p-10 lg:p-14 xl:p-18 2xl:p-20',
             backgroundColor: 'white',
           }}
         >
