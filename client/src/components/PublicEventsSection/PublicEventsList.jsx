@@ -42,6 +42,7 @@ function PublicEventsList() {
         setLoading(false);
       });
   }, []);
+
   const filteredData = data
     .filter((event) => {
       if (filterType === "free") {
@@ -59,6 +60,7 @@ function PublicEventsList() {
         return event.titol.toLowerCase().includes(searchTerm.toLowerCase());
       }
     });
+    
   return (
     <div className="font-sans">
       <SearchEventsBar

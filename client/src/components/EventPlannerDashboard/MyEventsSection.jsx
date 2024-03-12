@@ -75,7 +75,7 @@ const MyEventsSection = ({onEditClick}) => {
   }, [error]);
 
   return (
-    <div style={{ height: '100%', width: '100%'}}> 
+    <div className="w-4/6" style={{ height: '100%'}}> 
         <Container maxWidth="xl">
           <Box
             sx={{
@@ -96,7 +96,7 @@ const MyEventsSection = ({onEditClick}) => {
             <p className="mb-3 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
               This information will be displayed publicly so be careful what you share.
             </p>
-            <Grid container spacing={3} justifyContent="center" sx={{ padding: 5 }}>
+            <Grid container spacing={3} justifyContent="center" sx={{ padding: 1 }}>
               {loading ? (
                 <p>Loading data..</p>
               ) : errorsCache ? (
@@ -105,7 +105,7 @@ const MyEventsSection = ({onEditClick}) => {
                   <p style={{ color: '#2B2D42', fontWeight: 'bold'}}>There are no events to show</p>
                 ) : (
                   mixEventsData.map((event) => (
-                    <Grid item xs={4} key={event.id}>
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={event.id}>
                       <EventCard
                         image={
                           event.eventimage && event.eventimage.length > 0

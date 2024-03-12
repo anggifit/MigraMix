@@ -16,7 +16,7 @@ const MixEventsList = ({ mixEventsData, loading, error }) => {
                 <p>Error: {error.message}</p>
                 ) : (
                   mixEventsData.map((event) => (
-                    <Grid item xs={4} key={event.id}>
+                    <Grid item xs={6} sm={6} md={4} lg={3} key={event.id}>
                       <EventCard 
                         image={
                           event.eventimage && event.eventimage.length > 0
