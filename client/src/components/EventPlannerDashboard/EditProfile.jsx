@@ -65,8 +65,12 @@ const EditProfile = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '20px',
                     backgroundColor: 'white',
+                    padding: '10px', 
+                        '@media (max-width: 640px)': {
+                            padding: '5px',
+                            textAlign: 'center',
+                        },
                     }}
                 >
                     <Avatar sx={{ m: 2, bgcolor: '#FF4B4B' }}>
@@ -81,7 +85,14 @@ const EditProfile = () => {
                     <Box 
                         component="form" 
                         onSubmit={handleSubmit(onSubmit)}
-                        sx={{ mt: 3 }}
+                        sx={{ 
+                            mt: 3,
+                            '@media (max-width: 640px)': {
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                textAlign: 'center', // Ajusta la alineación del texto
+                            },
+                        }}
                     >
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -135,16 +146,13 @@ const EditProfile = () => {
                             </Grid>
                         </Grid>
                         <Stack 
-                            direction="row"
+                            /* direction="row" */
+                            direction={{ xs: "column", sm: "row" }}
                             alignItems="center"
                             justifyContent="center"
                             spacing={8}
                             sx={{ 
                                 padding: 2,
-                                '@media (max-width: 640px)': {
-                                  justifyContent: 'center', // Centrar en dispositivos móviles
-                                  alignItems: 'center', // Centrar en dispositivos móviles
-                                },
                             }}
                         >
                             <RedButton 
