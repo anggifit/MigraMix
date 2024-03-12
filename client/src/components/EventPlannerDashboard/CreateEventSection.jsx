@@ -130,8 +130,13 @@ const CreateEventSection = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '20px',
                     backgroundColor: 'white',
+                    padding: '10px', 
+                    '@media (max-width: 640px)': {
+                        padding: '5px',
+                        textAlign: 'center',
+                        marginTop: '7rem'                        
+                    }
                     }}
                 >
                     <Avatar sx={{ m: 2, bgcolor: '#FF4B4B' }}>
@@ -146,7 +151,14 @@ const CreateEventSection = () => {
                     <Box 
                     component="form" 
                     onSubmit={handleSubmit(onSubmit)}
-                    sx={{ mt: 3 }}>
+                    sx={{ 
+                        mt: 3,
+                            '@media (max-width: 640px)': {
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                textAlign: 'center', 
+                            }
+                    }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -284,10 +296,13 @@ const CreateEventSection = () => {
                         </Grid>
                     </Grid>
                     <Stack 
-                        direction="row"
+                        direction={{ xs: "column", sm: "row" }}
                         alignItems="center"
                         justifyContent="center"
                         spacing={8}
+                        sx={{ 
+                            padding: 2,
+                        }}
                     >
                         <RedButton info="Save Event" widen size="large" type="submit"/>
                         <SuccesfullModal

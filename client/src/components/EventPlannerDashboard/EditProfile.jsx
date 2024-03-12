@@ -146,7 +146,6 @@ const EditProfile = () => {
                             </Grid>
                         </Grid>
                         <Stack 
-                            /* direction="row" */
                             direction={{ xs: "column", sm: "row" }}
                             alignItems="center"
                             justifyContent="center"
