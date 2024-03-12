@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Typography, Button, Card, CardActionArea, CardMedia, CardContent, CardActions, Stack} from "@mui/material";
 import moment from "moment";
-
 const BackSideCard = ({
   image,
   title,
@@ -19,13 +18,12 @@ const BackSideCard = ({
     minHeight: "500px",
     display: "flex",
     flexDirection: "column",
+    //
   };
-
   const cardMediaStyle = {
     pt: "56.25%",
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url(${image})`,    
   };
-
   const isPaidStyle = {
     background: price === "Free" ? "#84CC14" : "#FF4B4B",
     color: "white",
@@ -34,7 +32,6 @@ const BackSideCard = ({
     position: "absolute",
     right: "10px", // Puedes ajustar la posición según tus necesidades
   };
-
   return (
     <div>
       <Card sx={cardStyle}>
@@ -78,7 +75,6 @@ const BackSideCard = ({
     </div>
   );
 };
-
 BackSideCard.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
@@ -88,5 +84,4 @@ BackSideCard.propTypes = {
   urlEvent: PropTypes.string,
   price: PropTypes.string,
 };
-
 export default BackSideCard;

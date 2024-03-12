@@ -16,9 +16,12 @@ const FilterByEvent = ({ onSearch }) => {
         label="By event"
         onChange={handleSearch}
         sx={{
-          width: "100%", // Set width to 100% for small screens
+          width: "100%", 
+          [theme.breakpoints.up("xs")]: {
+            width: 200, 
+          },
           [theme.breakpoints.up("sm")]: {
-            width: 300, // Adjust width for screens wider than or equal to sm
+            width: 300, 
           },
           [theme.breakpoints.up("md")]: {
             width: 400, // Adjust width for screens wider than or equal to md

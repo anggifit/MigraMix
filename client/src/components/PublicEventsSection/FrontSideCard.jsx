@@ -1,56 +1,59 @@
 import PropTypes from "prop-types";
 import { Typography, Card, CardActionArea, CardMedia, CardContent} from "@mui/material";
-
 const FrontSideCard = ({ image,title, price, artist}) => {
   const cardStyle = {
-    width: '100%',
-    minHeight: '350px',
-    display: 'flex',
-    flexDirection: 'column',
-};
-
+    width: "95%",
+    minHeight: "250px",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#F8F9F9",
+  };
 const cardMediaStyle = {
-    pt: "56.25%",
+    pt: "65%",
     backgroundImage: `url(${image})`,
 };
-
 const isFreeStyle = {
-    background: price === "Free" ? "#84CC14" : "#FF4B4B",
-    color: "white",
-    padding: "5px 10px",
-    borderRadius: "4px",
-    position: "absolute",
-    top: "10px",
-    left: "10px",
+  background: "white",
+  color: price === "Free" ? "#1BCB39 " : "#FF4B4B",
+  padding: "3px 8px",
+  borderRadius: "4px",
+  position: "absolute",
+  top: "10px",
+  left: "10px",
 };
-
     return (
       <Card sx={cardStyle}>
         <CardActionArea>
-            <CardMedia
-                component="div"
-                sx={cardMediaStyle}
-                image={image}
-                alt={title}
-            />
-            <div style={isFreeStyle}>
-                {price === "Free" ? "Free" : "Paid"}
-            </div>
-            <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {title || "Event Title"}
-                </Typography>
-                {artist && (
-                    <Typography variant="body2" color="textSecondary" component="p">
-                    Artist: {artist}
-                    </Typography>
-                )}
-            </CardContent>
+          <CardMedia
+            component="div"
+            sx={cardMediaStyle}
+            image={image}
+            alt={title}
+          />
+          <div style={isFreeStyle}>
+            <span style={{ fontWeight: "bold" }}>
+              {price === "Free" ? "Free" : "Paid"}
+            </span>
+          </div>
+          <CardContent sx={{ flexGrow: 1 }}>
+            <Typography
+              gutterBottom
+              variant="p"
+              component="h2"
+              style={{ fontSize: "18px" }}
+            >
+              {title || "Event Title"}
+            </Typography>
+            {artist && (
+              <Typography variant="body2" color="textSecondary" component="p">
+                Artist: {artist}
+              </Typography>
+            )}
+          </CardContent>
         </CardActionArea>
-    </Card>
-    )
+      </Card>
+    );
 }
-
 FrontSideCard.propTypes = {
     image: PropTypes.string,
     title: PropTypes.string,
@@ -61,6 +64,5 @@ FrontSideCard.propTypes = {
     price: PropTypes.string,
     artist:PropTypes.string
 };
-
 export default FrontSideCard
 

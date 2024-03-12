@@ -21,7 +21,11 @@ const FilterByTypeOfActivity = ({ onFilterChange }) => {
           m: 1,
           width: "100%",
           bgcolor:"whitesmoke",
+          [theme.breakpoints.up("xs")]: {
+            width: 130, 
+          },
           [theme.breakpoints.up("sm")]: { width: 200 },
+
         }}
       >
         <InputLabel id="demo-simple-select-helper-label">By Type</InputLabel>
