@@ -14,12 +14,13 @@ server.use(morgan("dev"));
 
 const allowedOrigins = [
   "https://migra-mix-git-main-anggifits-projects.vercel.app",
+  "https://migramix.migracode.org/",
   "http://localhost:5173", //verificar la direccion localhost que se indica al levantar el cliente
 ];
 
 server.use(
   cors({
-    origin: allowedOrigins,  
+    origin: allowedOrigins,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
